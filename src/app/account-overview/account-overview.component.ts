@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductListService } from '../product-list.service';
-import { ProductList } from '../productList';
+import { Basket } from '../basket';
+import { BasketService } from '../basket.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -19,18 +19,36 @@ export class AccountOverviewComponent implements OnInit {
 
   @Input() user: User = { id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false};
 
-  productLists:ProductList[] = []
+  baskets:Basket[] = []
+  newBaskets:Basket[] = []
 
-  productLists$: Subscription = new Subscription();
+  baskets$: Subscription = new Subscription();
   user$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private productListService: ProductListService) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private basketService: BasketService) {
   }
 
   ngOnInit(): void {
     this.user$ = this.userService.getUserById(+this.userId).subscribe(result => this.user = result);
-    this.productLists$ = this.productListService.getProductListsByUserIdWithOrders(+this.userId).subscribe(result => this.productLists = result);
+    this.baskets$ = this.basketService.getBasketsByUserId(+this.userId).subscribe(result => this.newBaskets = result);
+
+    this.user$ = this.userService.getUserById(+this.userId).subscribe(result => {
+      this.user = result
+      this.baskets$ = this.basketService.getBasketsByUserIdWithOrders(+this.userId).subscribe(result => {
+        this.newBaskets = result
+        if (this.newBaskets.length != 0) {
+          this.newBaskets.forEach(basket => {
+            if (basket.orderId != null) {
+              this.baskets.push(basket);
+            }
+          });
+        }
+      });
+    });
+
+
+
   }
 
   toggleIsEdit(){
@@ -41,7 +59,6 @@ export class AccountOverviewComponent implements OnInit {
       this.isEdit = true;
     }
   }
-
 
 
 }

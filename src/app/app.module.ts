@@ -36,9 +36,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
     CardComponent,
     PaymentFormComponent,
     CategoryManagementComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
     AccountFormComponent,
-    AccountOrderComponent
+    AccountOrderComponent,
     ProductFormComponent
   ],
   imports: [
@@ -48,7 +48,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
