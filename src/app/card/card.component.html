@@ -1,0 +1,25 @@
+<mat-form-field appearance="fill">
+  <mat-label>Filter on category</mat-label>
+  <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
+    <mat-option value="0">All categories</mat-option>
+    <mat-option *ngFor="let category of categories" [value]="category.id">
+      {{ category.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
+    <!-- <a href="product/{{product.id}}"> -->
+    <div class="card" (click)="toDetail(product.id)">
+      <div class="card-body">
+        <img src="../../assets/images/aquarius.jpg" alt="Aquarius" />
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <p>{{ product.name }}</p>
+        <p class="bold red">€ {{ product.price }}</p>
+      </div>
+    </div>
+    <!-- </a> -->
+  </div>
+</div>

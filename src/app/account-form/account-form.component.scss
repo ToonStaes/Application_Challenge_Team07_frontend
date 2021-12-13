@@ -1,0 +1,83 @@
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+border-left: 5px solid #a94442; /* red */
+}
+
+
+.account-info-container{
+  width: 100%;
+ }
+
+ .account-info{
+   margin-left: 0px;
+   height: 100%;
+ }
+
+ .edit-button > i{
+   background-color: darkgray;
+   color: rgb(77, 77, 77);
+   padding: 10px;
+   border-radius: 20%;
+ }
+
+ .edit-button > i:hover{
+   background-color: rgb(136, 136, 136);
+   cursor: pointer;
+ }
+
+ .save-button > i{
+  background-color: lightgreen;
+  color: rgba(77, 77, 77, 0.572);
+  padding: 10px;
+  border-radius: 20%;
+  position: relative;
+  bottom: 100px;
+  left: 15px;
+}
+
+.save-button > i:hover{
+  background-color: rgb(131, 218, 131);
+  cursor: pointer;
+}
+
+ form{
+   width: 100%;
+ }
+
+ input{
+   max-width: 150px !important;
+ }
+
+ @media only screen and (min-width: 768px) {
+  input{
+    max-width: 200px !important;
+  }
+ }
+
+@media only screen and (min-width: 992px) {
+    .account-info-container{
+      width: 77%;
+     }
+
+    .account-info{
+      margin-left: 20px;
+    }
+    input{
+      max-width: 165px !important;
+      margin: 5px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+  .account-info-container{
+    width: 100%;
+   }
+   input{
+    max-width: none !important;
+    margin: 0;
+  }
+}

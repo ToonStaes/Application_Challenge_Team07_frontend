@@ -1,0 +1,90 @@
+.container-account{
+  margin-left: 10% ;
+  margin-right: 10% ;
+}
+
+.bb{
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px;
+}
+
+.account-info-container, app-account-form{
+ width: 100%;
+}
+
+.account-info{
+  margin-left: 0px;
+}
+
+.edit-button > i{
+  background-color: darkgray;
+  color: rgb(77, 77, 77);
+  padding: 10px;
+  border-radius: 20%;
+}
+
+.edit-button > i:hover{
+  background-color: rgb(136, 136, 136);
+  cursor: pointer;
+}
+
+
+.order-container{
+  margin-top: 50px;
+  border: solid 1px black;
+}
+.profile-symbol{
+  width: 30vw;
+  height: 1px;
+  }
+
+.profile-symbol > i{
+  visibility: hidden;
+}
+
+@media only screen and (min-width: 992px) {
+  .container-account{
+    margin-left: 20% ;
+    margin-right: 20% ;
+  }
+
+  .profile-symbol > i{
+    position: relative;
+    top: 38%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    visibility: visible;
+  }
+
+  .profile-symbol{
+    border-radius: 100%;
+    background-color: aquamarine;
+    color: rgb(53, 121, 98);
+    width: 125px;
+    height: 125px;
+    font-size: 50px;
+    visibility: visible;
+    }
+
+    .account-info-container{
+      width: 77%;
+     }
+
+    .account-info{
+      margin-left: 20px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+  .account-info-container{
+    width: 80%;
+   }
+}
+
+
+
+
+
+
+

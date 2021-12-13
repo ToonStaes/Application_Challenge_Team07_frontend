@@ -1,0 +1,37 @@
+.card{
+  &:hover{
+    box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.14),0px 3px 3px -2px rgba(0,0,0,0.12),0px 1px 8px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+}
+
+.card-body{
+  text-align: center;
+}
+
+img{
+  width: 70px;
+  height: auto;
+}
+
+.fr{
+  float: right;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.pb{
+  padding-bottom: 30px;
+}
+
+.red{
+  color: rgb(202, 60, 60) !important;
+}
+
+#filter{
+  padding-top: -155px;
+  margin-bottom: 15px;
+}
+

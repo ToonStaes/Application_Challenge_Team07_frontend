@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="d-flex flex-wrap-reverse">
+    <div class="product-image left p-4 d-flex justify-content-center"><img src="../../assets/images/aquarius.jpg" alt="Aquarius"></div>
+
+
+    <div class="product-detail right p-4">
+      <p class="font-weight-bold name">{{product.name}}</p>
+      <p class="font-italic">{{product.category.name}}</p>
+      <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
+      <p class="stock">In Stock: {{product.amountInStock}}</p>
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap">
+    <div class="product-description left p-4">
+      <p class="font-weight-bold">Over dit product:</p>
+      <p>{{product.description}}</p>
+
+    </div>
+
+    <div class="product-buttons right p-4 d-flex flex-column justify-content-end">
+      <form action="">
+        <label for="amount">Aantal</label>
+        <input type="number" class="form-control m-2" id="amount" name="amount" value="1">
+         <button type="button" class="btn btn-primary m-2">In Winkelmand</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,40 @@
+
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+  {{errorMessage}}
+</div>
+<div class="d-flex flex-wrap d-flex justify-content-between account-info-container">
+
+  <div class="account-info d-flex flex-column justify-content-center p-2" *ngIf="!isEdit; else inputFields">
+    <h3>{{user.firstName}} {{user.lastName}}</h3>
+    <h5>{{user.email}}</h5>
+  </div>
+  <div class="edit-button ml-auto p-2" *ngIf="!isEdit" (click)="toggleIsEdit()">
+    <i class="fas fa-pencil-alt"></i>
+  </div>
+
+</div>
+
+
+
+<ng-template #inputFields>
+    <form class="account-info d-flex flex-column justify-content-center p-2"  (ngSubmit)="onSubmit()" [formGroup]="accountForm">
+
+
+      <div class="d-flex">
+        <div>
+          <label for="firstName">Voornaam</label>
+          <input type="text" id="firstName" name="firstName"  formControlName="firstName" minlength="2">
+        </div>
+        <div>
+          <label for="lastName">Achternaam</label>
+          <input type="text"  id="lastName" name="lastName" formControlName="lastName" minlength="2">
+        </div>
+      </div>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" formControlName="email" minlength="5">
+      <button  type="submit" class=" btn save-button ml-auto p-2" [disabled]="!accountForm.valid || isSubmitted">
+        <i class="fas fa-check"></i>
+      </button>
+    </form>
+
+</ng-template>

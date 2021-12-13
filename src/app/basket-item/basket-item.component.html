@@ -1,0 +1,24 @@
+<!-- <p *ngIf="isLoading">Loading data</p>
+<div class="row item" *ngIf="!isLoading">
+  <p class="col-md-4 mb-0">{{ product!.name }}</p>
+  <p class="col-md-2 mb-0">{{ category!.name }}</p>
+  <form (change)="amountChanged()" [formGroup]="amountForm" class="col-md-2 mb-0">
+    <div class="form-group">
+      <input type="number" id="basketItemAmount" formControlName="amount">
+    </div>
+  </form>
+  <p class="col-md-2 mb-0">€ {{ itemTotal.total }}</p>
+  <button class="btn col-md-2 py-0"><i class="fas fa-trash-alt"></i></button>
+</div> -->
+
+
+<p *ngIf="isLoading">Loading data</p>
+<div class="row item" *ngIf="!isLoading">
+  <p class="col-md-4 mb-0  align-self-center">{{ product!.name }}</p>
+  <p class="col-md-2 mb-0  align-self-center">{{ category!.name }}</p>
+  <form (change)="amountChanged()" [formGroup]="amountForm" class="d-flex col-md-2  align-self-center">
+      <input type="number" id="basketItemAmount" formControlName="amount">
+  </form>
+  <p class="col-md-2 mb-0  align-self-center">€ {{ itemTotal.total }}</p>
+  <button class="btn col-md-2 py-0  align-self-center"><i class="fas fa-trash-alt"></i></button>
+</div>

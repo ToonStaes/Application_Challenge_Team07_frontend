@@ -1,0 +1,6 @@
+<p>In Winkelmandje</p>
+<p>(momenteel hard coded van user met id 1)</p>
+<div class="row">
+  <app-basket-item *ngFor="let basketItem of basketItems" [basketItem]="basketItem" class="col-12" (sendItemAmountEvent)="updateTotal($event)"></app-basket-item>
+  <p class="pt-4 col-12 text-right">Totaal: <span class="bedrag">€ {{ totalRounded }}</span></p>
+</div>
