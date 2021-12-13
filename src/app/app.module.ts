@@ -36,9 +36,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
     CardComponent,
     PaymentFormComponent,
     CategoryManagementComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
     AccountFormComponent,
-    AccountOrderComponent
+    AccountOrderComponent,
     ProductFormComponent
   ],
   imports: [
