@@ -7,7 +7,7 @@
       <p class="font-weight-bold name">{{product.name}}</p>
       <p class="font-italic">{{product.category.name}}</p>
       <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
-      <p class="stock" *ngIf="product.amountInStock != 0; else outOfStock">In Stock: {{product.amountInStock}}</p>
+      <p class="green" *ngIf="product.amountInStock != 0; else outOfStock">In Stock: {{product.amountInStock}}</p>
     </div>
   </div>
 
@@ -19,10 +19,11 @@
     </div>
 
     <div class="product-buttons right p-4 d-flex flex-column justify-content-end">
-      <form action="">
+      <p class="green">{{addedToCartMessage}}</p>
+      <form (ngSubmit)="onSubmit()" [formGroup]="addProductToCartForm">
         <label for="amount">Aantal</label>
-        <input type="number" class="form-control m-2" id="amount" name="amount" value="1">
-         <button type="button" class="btn btn-primary m-2">In Winkelmand</button>
+        <input type="number" class="form-control m-2" id="amount" name="amount" value="1" formControlName="amount" min="1" step="1">
+        <button type="submit" class="btn btn-primary m-2" [disabled]="!addProductToCartForm.valid || product.amountInStock == 0">In Winkelmand</button>
       </form>
 
     </div>
@@ -31,6 +32,6 @@
 
 
 <ng-template #outOfStock>
-  <p class="outOfStock"> Out Of Stock </p>
+  <p class="red"> Out Of Stock </p>
 </ng-template>
 
