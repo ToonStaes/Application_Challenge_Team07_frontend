@@ -5,19 +5,19 @@
 
 <table class="table" *ngIf="categories && categories.length > 0">
   <thead>
-      <tr>
+      <tr class="item">
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Actions</th>
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let cat of categories">
+      <tr *ngFor="let cat of categories" class="item">
           <th scope="row">{{cat.id}}</th>
           <td>{{cat.name}}</td>
           <td>
               <button type="button" class="btn btn-success" (click)="edit(cat.id)"><i class="fas fa-edit"></i></button>
-              <!-- <button type="button" class="btn btn-danger" (click)="delete(cat.id)"><i class="far fa-trash-alt"></i></button> -->
+              <button type="button" class="btn btn-danger" (click)="toNonActive(cat.id)"><i class="far fa-trash-alt"></i></button>
           </td>
       </tr>
   </tbody>

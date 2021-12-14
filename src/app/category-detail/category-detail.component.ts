@@ -16,7 +16,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   categoryId: number = 0;
 
-  category: Category = { id: 0, name: "" };
+
+  // category: Category = { id: 0, name: "" };
 
   isSubmitted: boolean = false;
   errorMessage: string = "";
@@ -35,8 +36,14 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = +this.router.getCurrentNavigation()?.extras.state?.id;
 
+
     if (this.categoryId != null && this.categoryId > 0) {
-      this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => this.category = result);
+      this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => {
+        this.categoryForm.setValue({
+          name: result.name,
+          // active: result.active
+        });
+      });
     }
   }
 
@@ -52,18 +59,18 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.isSubmitted = true;
     if (this.isAdd) {
-      this.postCategory$ = this.categoryService.postCategory(this.category).subscribe(result => {
+      this.postCategory$ = this.categoryService.postCategory(this.categoryForm.value).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("category-detail");
+                this.router.navigateByUrl("category-management");
               },
               error => {
                 this.errorMessage = error.message;
               });
     }
     if (this.isEdit) {
-      this.putCategory$ = this.categoryService.putCategory(this.categoryId, this.category).subscribe(result => {
+      this.putCategory$ = this.categoryService.putCategory(this.categoryId, this.categoryForm.value).subscribe(result => {
                 //all went well
-                this.router.navigateByUrl("category-detail");
+                this.router.navigateByUrl("category-management");
               },
               error => {
                 this.errorMessage = error.message;

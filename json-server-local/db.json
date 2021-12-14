@@ -28,7 +28,6 @@
       "isActive": true,
       "amountInStock": 8,
       "rating": 3.5,
-
       "categoryId": 2
     },
     {
@@ -64,12 +63,16 @@
   ],
   "categories": [
     {
-      "id": 1,
-      "name": "dranken"
+      "name": "dranken",
+      "id": 1
     },
     {
       "id": 2,
       "name": "kleding"
+    },
+    {
+      "name": "test",
+      "id": 3
     }
   ],
   "users": [

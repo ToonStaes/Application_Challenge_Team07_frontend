@@ -12,7 +12,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 const routes: Routes = [
   {path: '', component: PaymentFormComponent},
   {path: 'category-management', component: CategoryManagementComponent},
-  {path: 'category-detail', component: CategoryDetailComponent}
+  {path: 'category-detail', component: CategoryDetailComponent},
   {path: 'basket', component: BasketComponent},
   {path: 'product/:id', component: ProductDetailComponent},
   {path: 'account', component: AccountOverviewComponent}
