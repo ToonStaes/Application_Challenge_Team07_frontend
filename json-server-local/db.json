@@ -112,7 +112,7 @@
   "orders": [
     {
       "id": 1,
-      "productListId": 3,
+      "basketId": 3,
       "address": "Helloworldstraat 12",
       "place": "Antwerpen",
       "postalcode": "2060",
@@ -121,7 +121,7 @@
     },
     {
       "id": 2,
-      "productListId": 4,
+      "basketId": 4,
       "address": "Teststraat 99",
       "place": "Antwerpen",
       "postalcode": "2000",
@@ -130,7 +130,7 @@
     },
     {
       "id": 3,
-      "productListId": 1,
+      "basketId": 1,
       "address": "Teststraat 999",
       "place": "Geel",
       "postalcode": "2440",

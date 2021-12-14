@@ -1,5 +1,5 @@
 <div class="container-account">
-  <h2 class="bb">Account Overzicht</h2>
+  <h1 class="bb">Account Overzicht</h1>
 
 
 
@@ -14,13 +14,14 @@
 
   <div class="order-container p-4">
     <h5 class="bb">Bestellingen</h5>
-    <div *ngFor="let productList of productLists" >
-      <app-account-order [productList]="productList"></app-account-order>
+    <div *ngFor="let basket of baskets" >
+      <app-account-order [basket]="basket"></app-account-order>
     </div>
 
   </div>
 
 </div>
+
 
 
 
