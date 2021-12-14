@@ -20,6 +20,13 @@ export class BasketItemService {
     );
   }
 
+  addBasketItem( basketItem: BasketItem): Observable<BasketItem> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<BasketItem>("http://localhost:3000/basketItems", basketItem, {headers: headers});
+  }
+
   getProductsByBasketId(basketId: number): Observable<BasketItem[]> {
     return this.httpClient.get<BasketItem[]>(
       'http://localhost:3000/basketItems?basketId=' + basketId.toString()
