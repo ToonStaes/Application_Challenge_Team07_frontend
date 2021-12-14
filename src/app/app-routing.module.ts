@@ -10,7 +10,7 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 
 const routes: Routes = [
-  {path: '', component: PaymentFormComponent},
+  {path: '', component: HomeComponent},
   {path: 'category-management', component: CategoryManagementComponent},
   {path: 'category-detail', component: CategoryDetailComponent},
   {path: 'basket', component: BasketComponent},

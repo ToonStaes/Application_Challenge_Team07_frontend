@@ -44,7 +44,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.deleteCategorie$ = this.categoryService.toNonActiveCategory(id).subscribe(result => {
       //all went well
       this.getCategories();
-      this.router.navigateByUrl("category-management");
+      // this.router.navigateByUrl("category-management");
     }, error => {
       //error
       this.errorMessage = error.message;
