@@ -7,7 +7,7 @@
       <p class="font-weight-bold name">{{product.name}}</p>
       <p class="font-italic">{{product.category.name}}</p>
       <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
-      <p class="stock">In Stock: {{product.amountInStock}}</p>
+      <p class="stock" *ngIf="product.amountInStock != 0; else outOfStock">In Stock: {{product.amountInStock}}</p>
     </div>
   </div>
 
@@ -28,4 +28,9 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #outOfStock>
+  <p class="outOfStock"> Out Of Stock </p>
+</ng-template>
 

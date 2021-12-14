@@ -6,7 +6,7 @@
       "price": 6.95,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit necessitatibus itaque explicabo?",
       "isActive": true,
-      "amountInStock": 5,
+      "amountInStock": 0,
       "rating": 4.2,
       "categoryId": 1
     },
