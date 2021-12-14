@@ -69,8 +69,11 @@
     {
       "id": 2,
       "name": "kleding"
+    },
+    {
+      "name": "test",
+      "id": 3
     }
-
   ],
   "users": [
     {

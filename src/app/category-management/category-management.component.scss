@@ -15,13 +15,23 @@
 i {
   &.edit{
     color: #5cb85c ;
+
+    &:hover{
+      color: black;
+    }
   }
   &.delete{
     color: red;
+
+    &:hover{
+      color: black;
+    }
   }
 
 
-  &:hover{
-    color: black;
-  }
+
+}
+
+.btn-success{
+border-radius: 50%;
 }
