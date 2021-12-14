@@ -11,3 +11,17 @@
 //     color: black;
 //   }
 // }
+
+i {
+  &.edit{
+    color: #5cb85c ;
+  }
+  &.delete{
+    color: red;
+  }
+
+
+  &:hover{
+    color: black;
+  }
+}
