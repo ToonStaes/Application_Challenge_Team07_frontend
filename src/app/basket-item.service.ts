@@ -25,4 +25,17 @@ export class BasketItemService {
       'http://localhost:3000/basketItems?basketId=' + basketId.toString()
     );
   }
+
+  getBasketItems(): Observable<BasketItem[]> {
+    return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems");
+  }
+
+  getBasketItemsByBasketId(id: number): Observable<BasketItem[]> {
+    return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id);
+  }
+
+  getBasketItemsByBasketIdWithProduct(id: number): Observable<BasketItem[]> {
+    return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id + "&_expand=product");
+  }
+
 }
