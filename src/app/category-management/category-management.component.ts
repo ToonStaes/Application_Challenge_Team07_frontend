@@ -35,7 +35,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['category-detail'], {state: {mode: 'add'}});
   }
 
-  edit(id: number) {
+  edit(id: string) {
     //Navigate to form in edit mode
     this.router.navigate(['category-detail'], {state: {id: id, mode: 'edit'}});
   }

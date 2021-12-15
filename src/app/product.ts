@@ -8,6 +8,6 @@ export interface Product {
   // isActive: boolean;
   stockCount: number;
   rating: number;
-  categoryId: number;
+  categoryId: string;
   // category: Category
 }

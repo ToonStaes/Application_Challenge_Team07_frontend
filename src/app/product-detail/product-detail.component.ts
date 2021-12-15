@@ -16,7 +16,7 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  category: Category = {id: 0, name: "test category"};
+  category: Category = {_id: '', name: "test category"};
   basket: Basket = {id:0, userId:0};
   basketItem: BasketItem = {id:0, basketId:0, productId:'', amount:0};
   @Input() product: Product = {
@@ -27,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
     // isActive: true,
     stockCount: 0,
     rating: 5,
-    categoryId: 1,
+    categoryId: '61b6fd619d7d2a27b9880374',
     // category: this.category
   };
 
