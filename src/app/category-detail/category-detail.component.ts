@@ -27,7 +27,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   putCategory$: Subscription = new Subscription();
 
   categoryForm = new FormGroup({
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required]),
+    isActive: new FormControl('')
   });
 
   constructor(private router: Router, private categoryService: CategoryService) {
@@ -41,7 +42,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => {
         this.categoryForm.setValue({
           name: result.name,
-          // active: result.active
+          isActive: result.isActive
         });
       });
     }

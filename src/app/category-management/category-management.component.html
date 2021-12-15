@@ -8,6 +8,7 @@
       <tr class="item">
           <th scope="col">#</th>
           <th scope="col">Name</th>
+          <th scope="col">Active?</th>
           <th scope="col">Actions</th>
       </tr>
   </thead>
@@ -15,9 +16,11 @@
       <tr *ngFor="let cat of categories" class="item">
           <th scope="row">{{cat.id}}</th>
           <td>{{cat.name}}</td>
+          <td *ngIf="cat.isActive == false">Not Active</td>
+          <td *ngIf="cat.isActive == true">Active</td>
           <td>
               <button type="button" class="btn py-0  align-self-center" (click)="edit(cat.id)"><i class="fas fa-edit edit"></i></button>
-              <button type="button" class="btn py-0  align-self-center" (click)="toNonActive(cat.id)"><i class="far fa-trash-alt delete"></i></button>
+              <button type="button" class="btn py-0  align-self-center" (click)="toNonActive(cat)"><i class="far fa-trash-alt delete"></i></button>
               <!-- <button class="btn col-md-2 py-0  align-self-center"><i class="fas fa-trash-alt"></i></button> -->
           </td>
       </tr>
