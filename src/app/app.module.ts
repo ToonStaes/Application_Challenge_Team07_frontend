@@ -18,11 +18,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
 import { CardComponent } from './card/card.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { CategoryManagementComponent } from './category-management/category-management.component';
-import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { AdminModule } from './admin/admin.module';
+
 
 @NgModule({
   declarations: [
@@ -35,8 +35,6 @@ import { ProductFormComponent } from './product-form/product-form.component';
     AccountOverviewComponent,
     CardComponent,
     PaymentFormComponent,
-    CategoryManagementComponent,
-    CategoryDetailComponent,
     AccountFormComponent,
     AccountOrderComponent,
     ProductFormComponent
@@ -49,6 +47,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     ReactiveFormsModule,
     MatMenuModule,
     MatSelectModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
