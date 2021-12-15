@@ -46,6 +46,19 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
         });
       });
     }
+
+    if (this.isAdd) {
+      this.categoryForm.setValue({
+        name: "",
+        isActive: true
+      });
+    }
+
+    // if (this.isAdd){
+    //   this.categoryForm.setValue({
+    //     isActive: true
+    //   });
+    // }
   }
 
   ngOnInit(): void {
