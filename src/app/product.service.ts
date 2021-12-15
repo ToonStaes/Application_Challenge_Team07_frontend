@@ -26,10 +26,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>("http://localhost:3000/products?categoryId="+ categoryId); //waiting for specific call
   }
 
-  postProduct(products: Product):  Observable<Product>{
+  postProduct(product: Product):  Observable<Product>{
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Product>(this.url + "/products", products, {headers: headers});
+    return this.httpClient.post<Product>(this.url + "/products", product, {headers: headers});
   }
 
   putProduct(id: string, product: Product): Observable<Product>{
