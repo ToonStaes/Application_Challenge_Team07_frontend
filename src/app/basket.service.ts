@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Basket } from './basket';
@@ -7,7 +7,6 @@ import { Basket } from './basket';
   providedIn: 'root'
 })
 export class BasketService {
-  url = "https://bitworks-api.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,4 +14,19 @@ export class BasketService {
     return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + userId.toString())
   }
 
+  getBaskets(): Observable<Basket[]> {
+    return this.httpClient.get<Basket[]>("http://localhost:3000/baskets");
+  }
+
+  getBasketById(id: number): Observable<Basket> {
+    return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id);
+  }
+
+  getBasketByIdWithOrders(id: number): Observable<Basket> {
+    return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id + "?_embed=orders");
+  }
+
+  getBasketsByUserIdWithOrders(id: number): Observable<Basket[]> {
+    return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + id+ "&_embed=orders&_embed=basketItems");
+  }
 }
