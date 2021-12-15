@@ -16,9 +16,10 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  category: Category = {_id: '', name: "test category"};
-  basket: Basket = {_id:'', userId:0};
-  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0};
+
+  category: Category = {_id: '', name: "test category", isActive: true};
+  basket: Basket = {_id:'', userId:0, orders: [], basketItems: []};
+  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0, product:{} as Product};
   @Input() product: Product = {
     _id: '0',
     name: "Test Product",
@@ -30,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
     categoryId: '61b6fd619d7d2a27b9880374',
     category: this.category
   };
+
 
   userId= 1;
 

@@ -19,6 +19,7 @@ export class BasketItemComponent implements OnInit {
     basketId: '',
     productId: '',
     amount: 0,
+    product: {} as Product
   };
 
   @Output() sendItemAmountEvent: EventEmitter<any> = new EventEmitter();

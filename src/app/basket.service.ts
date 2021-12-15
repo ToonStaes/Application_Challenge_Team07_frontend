@@ -27,7 +27,7 @@ export class BasketService {
     return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id + "?_embed=orders");
   }
 
-  getBasketsByUserIdWithOrders(id: string): Observable<Basket[]> {
+  getBasketsByUserIdWithOrders(id: number): Observable<Basket[]> {
     return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + id+ "&_embed=orders&_embed=basketItems");
   }
 
