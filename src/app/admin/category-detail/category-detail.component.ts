@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from '../category';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../../category.service';
 import {Subscription} from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
