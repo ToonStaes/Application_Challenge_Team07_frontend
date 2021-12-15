@@ -20,6 +20,7 @@
 
     <div class="product-buttons right p-4 d-flex flex-column justify-content-end">
       <p class="green">{{addedToCartMessage}}</p>
+      <p class="red">{{errorMessage}}</p>
       <form (ngSubmit)="onSubmit()" [formGroup]="addProductToCartForm">
         <label for="amount">Aantal</label>
         <input type="number" class="form-control m-2" id="amount" name="amount" value="1" formControlName="amount" min="1" step="1">
