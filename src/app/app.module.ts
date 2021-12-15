@@ -22,6 +22,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -40,13 +41,7 @@ import { AdminModule } from './admin/admin.module';
     ProductFormComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatMenuModule,
-    MatSelectModule,
+    SharedModule,
     AdminModule
   ],
   providers: [],
