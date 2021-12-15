@@ -11,7 +11,7 @@ export class BasketService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBasketsByUserId(userId: string): Observable<Basket[]> {
+  getBasketsByUserId(userId: number): Observable<Basket[]> {
     return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + userId.toString())
   }
 

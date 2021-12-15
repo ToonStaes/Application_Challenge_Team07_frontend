@@ -15,12 +15,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   categoryId: string = '';
 
-<<<<<<< HEAD:src/app/category-detail/category-detail.component.ts
-  category: Category = { _id: '', name: "" };
-=======
-
   // category: Category = { id: 0, name: "" };
->>>>>>> main:src/app/admin/category-detail/category-detail.component.ts
 
   isSubmitted: boolean = false;
   errorMessage: string = "";
@@ -40,12 +35,9 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-<<<<<<< HEAD:src/app/category-detail/category-detail.component.ts
-    if (this.categoryId != null && this.categoryId != '') {
-      this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => this.category = result);
-=======
 
-    if (this.categoryId != null && this.categoryId > 0) {
+
+    if (this.categoryId != null && this.categoryId != '') {
       this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => {
         this.categoryForm.setValue({
           name: result.name,
@@ -59,7 +51,6 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
         name: "",
         isActive: true
       });
->>>>>>> main:src/app/admin/category-detail/category-detail.component.ts
     }
 
     // if (this.isAdd){
