@@ -19,7 +19,7 @@ export class AccountFormComponent implements OnInit {
 
   userId = 1
 
-  @Input() user: User = { id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
+  @Input() user: User = { _id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
 
   user$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
@@ -32,7 +32,7 @@ export class AccountFormComponent implements OnInit {
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
-    if (this.user.id != 0) {
+    if (this.user._id != 0) {
 
         this.accountForm.setValue({
           firstName: this.user.firstName,
@@ -84,7 +84,7 @@ export class AccountFormComponent implements OnInit {
   }
 
   toggleIsEdit(){
-    if (this.user.id != 0) {
+    if (this.user._id != 0) {
       this.isSubmitted = false;
 
       this.accountForm.setValue({

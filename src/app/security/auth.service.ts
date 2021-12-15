@@ -19,7 +19,7 @@ export class AuthService {
   getUser(): User | null {
     if (this.isLoggedIn()){
       return {
-        id : parseInt(localStorage.getItem('id') ?? '0') ,
+        _id : parseInt(localStorage.getItem('id') ?? '0') ,
         firstName: '',
         lastName: '',
         email: localStorage.getItem('email') ?? '',

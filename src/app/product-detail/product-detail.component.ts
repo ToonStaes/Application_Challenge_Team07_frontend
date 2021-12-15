@@ -17,18 +17,18 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailComponent implements OnInit {
   category: Category = {_id: '', name: "test category"};
-  basket: Basket = {id:0, userId:0};
-  basketItem: BasketItem = {id:0, basketId:0, productId:'', amount:0};
+  basket: Basket = {_id:'', userId:0};
+  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0};
   @Input() product: Product = {
     _id: '0',
     name: "Test Product",
     price: 0.00,
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    // isActive: true,
+    isActive: true,
     stockCount: 0,
     rating: 5,
     categoryId: '61b6fd619d7d2a27b9880374',
-    // category: this.category
+    category: this.category
   };
 
   userId= 1;
@@ -72,7 +72,7 @@ export class ProductDetailComponent implements OnInit {
 
 
     if (this.addProductToCartForm.value.amount != 0) {
-      this.basketItem.basketId = this.basket.id;
+      this.basketItem.basketId = this.basket._id;
       this.basketItem.productId = this.product._id;
       this.basketItem.amount = this.addProductToCartForm.value.amount;
 

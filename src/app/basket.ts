@@ -1,5 +1,5 @@
 export interface Basket {
-  id: number;
+  _id: string;
   userId: number;
   orderId?: number;
 }
