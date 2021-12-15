@@ -23,7 +23,6 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,9 +35,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
     CardComponent,
     PaymentFormComponent,
     CategoryManagementComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
     AccountFormComponent,
-    AccountOrderComponent
+    AccountOrderComponent,
     ProductFormComponent
   ],
   imports: [
@@ -48,7 +47,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

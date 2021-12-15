@@ -28,7 +28,6 @@
       "isActive": true,
       "amountInStock": 8,
       "rating": 3.5,
-
       "categoryId": 2
     },
     {
@@ -201,7 +200,7 @@
       "id": 6,
       "productId": 2,
       "basketId": 5,
-      "amount": 4
+      "amount": 1
     },
     {
       "id": 7,

@@ -9,5 +9,5 @@ export interface Product {
   amountInStock: number;
   rating: number;
   categoryId: number;
-  category: Category
+  category?: Category
 }
