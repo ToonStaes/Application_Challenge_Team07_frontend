@@ -63,12 +63,34 @@
   ],
   "categories": [
     {
+      "name": "dranken",
       "id": 1,
-      "name": "dranken"
+      "isActive": true
     },
     {
-      "id": 2,
-      "name": "kleding"
+      "name": "kleding",
+      "isActive": true,
+      "id": 2
+    },
+    {
+      "name": "test",
+      "id": 3,
+      "isActive": false
+    },
+    {
+      "name": "test",
+      "id": 4,
+      "isActive": false
+    },
+    {
+      "name": "123",
+      "isActive": false,
+      "id": 5
+    },
+    {
+      "name": "trz",
+      "isActive": true,
+      "id": 6
     }
   ],
   "users": [

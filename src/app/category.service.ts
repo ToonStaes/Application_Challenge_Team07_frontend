@@ -35,7 +35,7 @@ export class CategoryService {
   }
 
 
-  // toNonActiveCategory(id: number): Observable<Category> {
-  //   return this.httpClient.delete<Category>("http://localhost:3000/categories/" + id);
-  // }
+  toNonActiveCategory(id: number): Observable<Category> {
+    return this.httpClient.delete<Category>("http://localhost:3000/categories/" + id);
+  }
 }

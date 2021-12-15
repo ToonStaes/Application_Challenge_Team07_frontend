@@ -17,22 +17,23 @@
   <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!categoryForm.form.valid || isSubmitted">Save</button>
 </form> -->
 
-<!-- <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
   {{errorMessage}}
 </div>
-<div class="alert alert-warning" role="warning">
-  <p>Form Status: {{ categoryForm.name }}</p>
-</div>
+<!-- <div class="alert alert-warning" role="warning">
+<p>Form Status: {{ categoryForm.name }}</p>
+</div> -->
 <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name" formControlName="name" minlength="2">
   </div>
-  <div class="form-group">
-    <input type="checkbox" formControlName="active" id="active" class="mr-2">
-    <label for="active">Active</label>
+  <div class="form-group" >
+    <input type="checkbox" formControlName="isActive" id="isActive" class="mr-2">
+    <label for="isActive">Active</label>
   </div>
-  <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!statusForm.valid || isSubmitted">Add</button>
-  <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!statusForm.valid || isSubmitted">Save</button>
-</form> -->
+
+  <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!categoryForm.valid || isSubmitted">Add</button>
+  <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!categoryForm.valid || isSubmitted">Save</button>
+</form>
 
