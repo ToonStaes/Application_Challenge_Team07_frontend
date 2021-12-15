@@ -213,6 +213,12 @@
       "basketId": 5,
       "productId": 3,
       "amount": 1
+    },
+    {
+      "id": 9,
+      "basketId": 5,
+      "productId": "61b851d24cfca36337954265",
+      "amount": 2
     }
   ],
   "favorites": [

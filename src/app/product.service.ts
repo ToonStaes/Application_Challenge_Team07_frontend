@@ -9,16 +9,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
+  url = "https://bitworks-api.herokuapp.com";
 
   constructor(private httpClient: HttpClient) {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>("http://localhost:3000/products?_expand=category");
+    return this.httpClient.get<Product[]>(this.url + "/products");
   }
 
-  getProductById(id: number): Observable<Product> {
-    return this.httpClient.get<Product>("http://localhost:3000/products/" + id + "?_expand=category");
+  getProductById(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(this.url + "/products/" + id);
   }
 
   getProductsByCategory(categoryId: number): Observable<Product[]>{
@@ -31,7 +32,7 @@ export class ProductService {
     return this.httpClient.post<Product>("http://localhost:3000/products", products, {headers: headers});
   }
 
-  putProduct(id: number, product: Product): Observable<Product>{
+  putProduct(id: string, product: Product): Observable<Product>{
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.put<Product>("http://localhost:3000/products/"+id , product, {headers: headers});

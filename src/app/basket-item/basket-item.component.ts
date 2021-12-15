@@ -17,7 +17,7 @@ export class BasketItemComponent implements OnInit {
   @Input() basketItem: BasketItem = {
     id: 0,
     basketId: 0,
-    productId: 0,
+    productId: '',
     amount: 0,
   };
 
@@ -26,7 +26,7 @@ export class BasketItemComponent implements OnInit {
   product?: Product;
   category?: Category;
   isLoading: Boolean = true;
-  itemTotal: ItemTotal = {productId: 0, total: 0};
+  itemTotal: ItemTotal = {productId: '0', total: 0};
 
   constructor(
     private productService: ProductService,
@@ -43,7 +43,7 @@ export class BasketItemComponent implements OnInit {
       .subscribe((dbProduct) => {
         this.product = dbProduct;
 
-        this.itemTotal.productId = this.product.id;
+        this.itemTotal.productId = this.product._id;
 
         this.itemTotal.total = Math.round((this.product.price * this.basketItem.amount + Number.EPSILON) * 100) / 100;
         this.sendItemAmountEvent.emit(this.itemTotal);

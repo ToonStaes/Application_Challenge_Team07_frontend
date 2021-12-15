@@ -19,7 +19,7 @@ export class AccountFormComponent implements OnInit {
 
   userId = 1
 
-  @Input() user: User = { id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false};
+  @Input() user: User = { id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
 
   user$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();

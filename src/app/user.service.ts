@@ -42,4 +42,11 @@ export class UserService {
     return this.httpClient.delete<User>("http://localhost:3000/users/" + id);
   }
 
+  getToken(email: string, password: string): Observable<string>{
+    let obj = ""
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<string>("https://bitworks-api.herokuapp.com/auth/login", obj, {headers: headers});
+  }
+
 }

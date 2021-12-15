@@ -5,5 +5,6 @@ export interface User{
   email: string,
   password: string,
   isAdmin: boolean,
-  isSuperAdmin: boolean
+  isSuperAdmin: boolean,
+  token: string
 }
