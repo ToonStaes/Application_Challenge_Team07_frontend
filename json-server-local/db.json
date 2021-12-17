@@ -63,12 +63,34 @@
   ],
   "categories": [
     {
+      "name": "dranken",
       "id": 1,
-      "name": "dranken"
+      "isActive": true
     },
     {
-      "id": 2,
-      "name": "kleding"
+      "name": "kleding",
+      "isActive": true,
+      "id": 2
+    },
+    {
+      "name": "test",
+      "id": 3,
+      "isActive": false
+    },
+    {
+      "name": "test",
+      "id": 4,
+      "isActive": false
+    },
+    {
+      "name": "123",
+      "isActive": false,
+      "id": 5
+    },
+    {
+      "name": "trz",
+      "isActive": true,
+      "id": 6
     }
   ],
   "users": [
@@ -112,7 +134,7 @@
   "orders": [
     {
       "id": 1,
-      "productListId": 3,
+      "basketId": 3,
       "address": "Helloworldstraat 12",
       "place": "Antwerpen",
       "postalcode": "2060",
@@ -121,7 +143,7 @@
     },
     {
       "id": 2,
-      "productListId": 4,
+      "basketId": 4,
       "address": "Teststraat 99",
       "place": "Antwerpen",
       "postalcode": "2000",
@@ -130,7 +152,7 @@
     },
     {
       "id": 3,
-      "productListId": 1,
+      "basketId": 1,
       "address": "Teststraat 999",
       "place": "Geel",
       "postalcode": "2440",
@@ -217,8 +239,8 @@
     {
       "id": 9,
       "basketId": 5,
-      "productId": "61b851d24cfca36337954265",
-      "amount": 2
+      "productId": 6,
+      "amount": 1
     }
   ],
   "favorites": [
