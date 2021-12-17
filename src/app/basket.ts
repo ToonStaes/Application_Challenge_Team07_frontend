@@ -2,7 +2,7 @@ import { BasketItem } from "./basketItem";
 import { Order } from "./order";
 
 export interface Basket {
-  id: number;
+  _id: string;
   userId: number;
   orderId?: number;
   orders: Array<Order>;

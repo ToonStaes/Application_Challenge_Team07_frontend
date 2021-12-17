@@ -60,7 +60,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  toDetail(id: number) {
+  toDetail(id: string) {
     this.router.navigateByUrl("/product/" + id)
   }
 }
