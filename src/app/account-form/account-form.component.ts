@@ -16,14 +16,13 @@ export class AccountFormComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
-  userId = 1;
+  userId = '61b70536efeb9804e3a76664'
 
   @Input() user: User = {
-    id: '',
+    _id: '',
     firstName: 'firstname',
     lastName: 'lastname',
     email: 'email@test.com',
-    password: 'password',
     isAdmin: false,
     isSuperAdmin: false,
     token: '',
@@ -37,6 +36,7 @@ export class AccountFormComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
   });
+
 
   constructor(
     private userService: UserService,
@@ -54,7 +54,7 @@ export class AccountFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.userService
-      .getUserById(+this.userId)
+      .getUserById(this.userId)
       .subscribe((result) => (this.user = result));
   }
 
@@ -97,8 +97,10 @@ export class AccountFormComponent implements OnInit {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  toggleIsEdit() {
-    if (this.user.id != '' && this.user.id != '0') {
+
+  toggleIsEdit(){
+    if (this.user._id != '') {
+
       this.isSubmitted = false;
 
       this.accountForm.setValue({

@@ -9,6 +9,11 @@ export interface Product {
   isActive: boolean;
   stockCount: number;
   rating: number;
+  imageLocation: string;
+  expirationDate: string;
+  color: string;
+  size: string;
+  amount: number;
   categoryId: string;
   category?: Category;
 }

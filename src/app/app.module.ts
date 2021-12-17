@@ -26,6 +26,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { SecurityModule } from './security/security.module';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
+import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     AccountFormComponent,
     AccountOrderComponent,
     ProductFormComponent,
+    ApiTestsComponent,
     ContactFormComponent
   ],
   imports: [

@@ -7,6 +7,7 @@ import { BasketItem } from './basketItem';
   providedIn: 'root',
 })
 export class BasketItemService {
+  url = "https://bitworks-api.herokuapp.com";
   constructor(private httpClient: HttpClient) {}
 
   updateBasketItem(
@@ -17,7 +18,7 @@ export class BasketItemService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.put<BasketItem>(
-      'http://localhost:3000/basketItems/' + id,
+      this.url + '/basket-items/' + id,
       basketItem,
       { headers: headers }
     );
@@ -27,36 +28,25 @@ export class BasketItemService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<BasketItem>(
-      'http://localhost:3000/basketItems',
-      basketItem,
-      { headers: headers }
-    );
+    return this.httpClient.post<BasketItem>( this.url + "/basket-items", basketItem, {headers: headers});
   }
 
-  getProductsByBasketId(basketId: number | string): Observable<BasketItem[]> {
-    return this.httpClient.get<BasketItem[]>(
-      'http://localhost:3000/basketItems?basketId=' + basketId.toString()
-    );
-  }
+  // getProductsByBasketId(basketId: string): Observable<BasketItem[]> {
+  //   return this.httpClient.get<BasketItem[]>(
+  //     'http://localhost:3000/basketItems?basketId=' + basketId.toString()
+  //   );
+  // }
 
   getBasketItems(): Observable<BasketItem[]> {
-    return this.httpClient.get<BasketItem[]>(
-      'http://localhost:3000/basketitems'
-    );
+    return this.httpClient.get<BasketItem[]>(this.url + "/basket-items");
   }
 
-  getBasketItemsByBasketId(id: number | string): Observable<BasketItem[]> {
-    return this.httpClient.get<BasketItem[]>(
-      'http://localhost:3000/basketitems?basketId=' + id
-    );
+  getBasketItemsByBasketId(id: string): Observable<BasketItem[]> {
+    return this.httpClient.get<BasketItem[]>(this.url + '/basket-items/findByBasket/'  + id);
   }
 
-  getBasketItemsByBasketIdWithProduct(
-    id: number | string
-  ): Observable<BasketItem[]> {
-    return this.httpClient.get<BasketItem[]>(
-      'http://localhost:3000/basketitems?basketId=' + id + '&_expand=product'
-    );
-  }
+  // getBasketItemsByBasketIdWithProduct(id: string): Observable<BasketItem[]> {
+  //   return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id + "&_expand=product");
+  // }
+
 }

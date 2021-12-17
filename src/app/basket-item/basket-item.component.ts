@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Basket } from '../basket';
 import { BasketItemService } from '../basket-item.service';
 import { BasketItem } from '../basketItem';
 import { Category } from '../category';
@@ -21,6 +22,7 @@ export class BasketItemComponent implements OnInit {
     productId: '',
     amount: 0,
     product: {} as Product,
+    basket: {} as Basket
   };
 
   @Output() sendItemAmountEvent: EventEmitter<any> = new EventEmitter();

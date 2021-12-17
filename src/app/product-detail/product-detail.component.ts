@@ -7,8 +7,10 @@ import { BasketItemService } from '../basket-item.service';
 import { BasketService } from '../basket.service';
 import { BasketItem } from '../basketItem';
 import { Category } from '../category';
+import { Order } from '../order';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,28 +18,45 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  category: Category = { id: '', name: '', isActive: true };
-  basket: Basket = { id: '', userId: '', orders: [], basketItems: [] };
+
+  category: Category = {_id: '', name: '', isActive: true};
+  basket: Basket = {
+    _id:'', 
+    userId:0, 
+    isActive: true, 
+    user: {} as User, 
+    order: {} as Order, 
+    basketItems: []
+    };
   basketItem: BasketItem = {
-    id: '',
-    basketId: '',
-    productId: '',
-    amount: 0,
-    product: {} as Product,
-  };
-  product: Product = {
-    id: '0',
+    _id:'', 
+    basketId:' ', 
+    productId:'', 
+    amount:0, 
+    product:{} as Product, 
+    basket: {} as Basket
+    };
+
+  date: Date = new Date();
+  @Input() product: Product = {
+
     _id: '0',
     name: '',
     price: 0,
     description: '',
     isActive: true,
     stockCount: 0,
-    rating: 0,
-    categoryId: '',
+    rating: 5,
+    imageLocation: "string",
+    expirationDate: "date",
+    color: "string",
+    size: "string",
+    amount: 0,
+    categoryId: '61b6fd619d7d2a27b9880374',
+    category: this.category
   };
 
-  userId = 1;
+  userId= "61b70536efeb9804e3a76664";
 
   product$: Subscription = new Subscription();
   basket$: Subscription = new Subscription();
@@ -60,13 +79,14 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId != null) {
+
       this.product$ = this.productService
         .getProductById(productId)
         .subscribe((result) => {
           this.product = result;
         });
       this.basket$ = this.basketService
-        .getBasketsByUserId(+this.userId)
+        .getBasketsByUserId(this.userId)
         .subscribe((result) => {
           result.forEach((list) => {
             if (list.orderId == null) {

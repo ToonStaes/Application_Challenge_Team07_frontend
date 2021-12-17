@@ -37,7 +37,7 @@ export class BasketComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.basketService.getBasketsByUserId(1).subscribe((result) => {
+    this.basketService.getBasketsByUserId("61b70536efeb9804e3a76664").subscribe((result) => {
       result.forEach((dbBasket) => {
         if (dbBasket.orderId == null) {
           console.log('basket found');
