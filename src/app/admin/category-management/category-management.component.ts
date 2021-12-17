@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Category} from '../category';
-import {CategoryService} from '../category.service';
+import {Category} from '../../category';
+import {CategoryService} from '../../category.service';
 import {Observable, Subscription} from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../security/auth.service';
 
 @Component({
   selector: 'app-category-management',
@@ -18,11 +19,14 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   errorMessage: string = '';
 
-  constructor(private categoryService: CategoryService, private router: Router) {
+  constructor(private categoryService: CategoryService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
     this.getCategories();
+    if (!this.authService.isLoggedIn()){
+      this.router.navigateByUrl('/login')
+    }
   }
 
   ngOnDestroy(): void {
@@ -35,20 +39,24 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['category-detail'], {state: {mode: 'add'}});
   }
 
-  edit(id: number) {
+  edit(id: number | string) {
     //Navigate to form in edit mode
     this.router.navigate(['category-detail'], {state: {id: id, mode: 'edit'}});
   }
 
-  // delete(id: number) {
-  //   this.deleteCategorie$ = this.categoryService.toNonActiveCate(id).subscribe(result => {
-  //     //all went well
-  //     this.getCategories();
-  //   }, error => {
-  //     //error
-  //     this.errorMessage = error.message;
-  //   });
-  // }
+  toNonActive(category: Category) {
+
+    category.isActive = false
+
+    this.deleteCategorie$ = this.categoryService.putCategory(category._id , category).subscribe(result => {
+      //all went well
+      this.getCategories();
+      // this.router.navigateByUrl("category-management");
+    }, error => {
+      //error
+      this.errorMessage = error.message;
+    });
+  }
 
   getCategories() {
     this.categories$ = this.categoryService.getCategories().subscribe(result => this.categories = result);

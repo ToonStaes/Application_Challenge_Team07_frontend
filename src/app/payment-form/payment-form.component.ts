@@ -10,7 +10,8 @@ import { OrderService } from '../order.service';
 })
 export class PaymentFormComponent implements OnInit {
   isAdd: boolean = false;
-  orderId: number=0;
+  isEdit: boolean = false;
+  orderId: string='';
   basketId: number=0;
   isSubmitted: boolean = false;
   errorMessage: string = '';
@@ -28,9 +29,10 @@ export class PaymentFormComponent implements OnInit {
 
   constructor(private router: Router, private orderService: OrderService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
-    this.orderId = +this.router.getCurrentNavigation()?.extras.state?.id;
+    this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
+    this.orderId = this.router.getCurrentNavigation()?.extras.state?.id;
     this.basketId = +this.router.getCurrentNavigation()?.extras.state?.basket_id;
-    if (this.orderId != null && this.orderId>0){
+    if (this.orderId != null && this.orderId!=''){
       this.order$ = this.orderService.getOrderById(this.orderId).subscribe(result => {
         this.paymentForm.setValue({
           address: result.address,

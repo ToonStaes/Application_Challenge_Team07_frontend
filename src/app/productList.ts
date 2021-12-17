@@ -2,8 +2,8 @@ import { Order } from "./order";
 import { ProductsInProductLists } from "./productsInProductLists";
 
 export interface ProductList{
-  id: number,
-  userId: number,
+  id: string,
+  userId: string,
   isActive: boolean,
   orders: Array<Order>
   productInProductLists: Array<ProductsInProductLists>

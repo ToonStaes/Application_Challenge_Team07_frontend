@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProductListService } from '../product-list.service';
-import { ProductList } from '../productList';
+import { Basket } from '../basket';
+import { BasketItemService } from '../basket-item.service';
+import { BasketItem } from '../basketItem';
 
 @Component({
   selector: 'app-account-order',
@@ -10,14 +11,28 @@ import { ProductList } from '../productList';
 })
 export class AccountOrderComponent implements OnInit {
 
-  @Input() productList: ProductList = { id: 0, userId: 0,isActive: true,orders: [], productInProductLists: []};
-  totalProducts = 0
+  @Input() basket: Basket = { id: '0', userId: '0',orderId: '0',orders: [], basketItems: []};
+  totalProducts = 0;
+  totalCost = 0;
+  basketItems: BasketItem[] = [];
 
-  constructor() { }
+  basketItems$: Subscription = new Subscription();
+
+  constructor(private basketItemService: BasketItemService) { }
 
   ngOnInit(): void {
-    this.productList.productInProductLists.forEach(product => {
-      this.totalProducts += product.amount;
+    this.basket.basketItems.forEach(item => {
+      this.totalProducts += item.amount;
+    });
+
+    this.basketItems$ = this.basketItemService.getBasketItemsByBasketIdWithProduct(+this.basket._id).subscribe(result => {
+      this.basketItems = result
+
+      result.forEach(item => {
+
+          this.totalCost += item.amount * item.product.price;
+
+      });
     });
   }
 

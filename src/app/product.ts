@@ -1,13 +1,13 @@
 import { Category } from "./category";
 
 export interface Product {
-  id: number;
+  _id: string;
   name: string;
   price: number;
   description: string;
   isActive: boolean;
-  amountInStock: number;
+  stockCount: number;
   rating: number;
-  categoryId: number;
-  category?: Category
+  categoryId: string;
+  category?: Category;
 }

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/"
-    ><img src="../../assets/images/logoPlaceholder.png" alt="logoPlaceholder"
-  /></a>
+  <a class="navbar-brand" routerLink="/">
+    <img src="../../assets/images/SportAholic.svg" alt="logoPlaceholder" width="150"/>
+  </a>
   <button
     class="navbar-toggler"
     type="button"
@@ -30,7 +30,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <a class="nav-link" routerLink="/categories">Categories</a>
+        <a class="nav-link" routerLink="/category-management">Categories</a>
       </li>
       <li
         class="nav-item"
@@ -41,38 +41,48 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li
-        class="nav-item"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="nav-link" routerLink="/basket"
-          ><button class="btn btn-secondary px-4">
-            <i class="fas fa-shopping-cart"></i></button
-        ></a>
-      </li>
-      <li
-        class="nav-item"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <button
-          class="btn btn-primary mt-2"
-          id="account"
-          mat-button
-          [matMenuTriggerFor]="menu"
+      <div *ngIf="authService.isLoggedIn()" class="row">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <i class="far fa-user"></i>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="toAccount()">
-            Account (nog hardcoded)
+          <a class="nav-link" routerLink="/basket"
+            ><button class="btn btn-secondary px-4">
+              <i class="fas fa-shopping-cart"></i></button
+          ></a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <button
+            class="btn btn-primary mt-2"
+            id="account"
+            mat-button
+            [matMenuTriggerFor]="menu"
+          >
+            <i class="far fa-user"></i>
           </button>
-          <button mat-menu-item>Settings</button>
-          <button mat-menu-item>Favorites</button>
-          <button mat-menu-item>Logout</button>
-        </mat-menu>
-      </li>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="toAccount()">
+              Account (nog hardcoded)
+            </button>
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item>Favorites</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </li>
+      </div>
+      <div *ngIf="!authService.isLoggedIn()" class="row">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+      </div>
     </ul>
   </div>
 </nav>

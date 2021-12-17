@@ -35,15 +35,15 @@ export class BasketComponent implements OnInit {
       result.forEach(dbBasket => {
         if (dbBasket.orderId == null){
           console.log("basket found")
-          console.log(dbBasket.id)
+          console.log(dbBasket._id)
           this.basket = dbBasket;
           this.basketItems = [];
-          this.basketItemService.getProductsByBasketId(this.basket.id).subscribe((dbBasketItems) => {
+          this.basketItemService.getProductsByBasketId(this.basket._id).subscribe((dbBasketItems) => {
             console.log("basketItems found")
             console.log(dbBasketItems)
             this.basketItems = dbBasketItems;
             this.basketItems.forEach(item => {
-              console.log(item.id)
+              console.log(item._id)
             })
           })
         }

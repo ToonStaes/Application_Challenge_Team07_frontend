@@ -13,7 +13,7 @@ export class ProductFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   isSubmitted: boolean = false;
-  productId: number = 0;
+  productId: string = '';
   errorMessage: string = '';
   product$: Subscription = new Subscription();
   postProduct$: Subscription = new Subscription();
@@ -28,14 +28,14 @@ export class ProductFormComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) {
       this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
       this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === "edit";
-      this.productId = +this.router.getCurrentNavigation()?.extras.state?.id;
-      if (this.productId != null && this.productId > 0){
+      this.productId = this.router.getCurrentNavigation()?.extras.state?.id;
+      if (this.productId != null && this.productId != ''){
         this.product$ = this.productService.getProductById(this.productId).subscribe(result => {
           this.productForm.setValue({
             name: result.name,
             price: result.price,
             description: result.description,
-            amount: result.amountInStock
+            amount: result.stockCount
           });
         });
       }

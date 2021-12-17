@@ -3,30 +3,34 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from './order';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) {
-   }
+  getOrders(): Observable<Order[]> {
+    return this.httpClient.get<Order[]>('http://localhost:3000/orders');
+  }
 
-   getOrders(): Observable<Order[]>{
-     return this.httpClient.get<Order[]>("http://localhost:3000/orders");
-   }
+  getOrderById(id: number | string): Observable<Order> {
+    return this.httpClient.get<Order>('http://localhost:3000/orders/' + id);
+  }
 
-   getOrderById(id: number): Observable<Order>{
-     return this.httpClient.get<Order>("http://localhost:3000/orders/"+ id);
-   }
-
-   putOrder(id: number, order: Order): Observable<Order>{
-     let headers = new HttpHeaders();
-     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-      return this.httpClient.put<Order>("http://localhost:3000/orders/"+id, order, {headers: headers});
-   }
-
-   postOrder(order: Order): Observable<Order>{
+  putOrder(id: number | string, order: Order): Observable<Order> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Order>("http://localhost:3000/orders", order, {headers: headers});
-   }
+    return this.httpClient.put<Order>(
+      'http://localhost:3000/orders/' + id,
+      order,
+      { headers: headers }
+    );
+  }
+
+  postOrder(order: Order): Observable<Order> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<Order>('http://localhost:3000/orders', order, {
+      headers: headers,
+    });
+  }
 }

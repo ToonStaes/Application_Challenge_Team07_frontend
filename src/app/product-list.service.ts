@@ -6,30 +6,40 @@ import { ProductList } from './productList';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductListService {
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getProductLists(): Observable<ProductList[]> {
-    return this.httpClient.get<ProductList[]>("http://localhost:3000/productlists");
+    return this.httpClient.get<ProductList[]>(
+      'http://localhost:3000/productlists'
+    );
   }
 
-  getProductListById(id: number): Observable<ProductList> {
-    return this.httpClient.get<ProductList>("http://localhost:3000/productlists/" + id);
+  getProductListById(id: number | string): Observable<ProductList> {
+    return this.httpClient.get<ProductList>(
+      'http://localhost:3000/productlists/' + id
+    );
   }
 
-  getProductListByIdWithOrders(id: number): Observable<ProductList> {
-    return this.httpClient.get<ProductList>("http://localhost:3000/productlists/" + id + "?_embed=orders");
+  getProductListByIdWithOrders(id: number | string): Observable<ProductList> {
+    return this.httpClient.get<ProductList>(
+      'http://localhost:3000/productlists/' + id + '?_embed=orders'
+    );
   }
 
-  getProductListsByUserId(id: number): Observable<ProductList[]> {
-    return this.httpClient.get<ProductList[]>("http://localhost:3000/productlists?userId=" + id);
+  getProductListsByUserId(id: number | string): Observable<ProductList[]> {
+    return this.httpClient.get<ProductList[]>(
+      'http://localhost:3000/productlists?userId=' + id
+    );
   }
 
-  getProductListsByUserIdWithOrders(id: number): Observable<ProductList[]> {
-    return this.httpClient.get<ProductList[]>("http://localhost:3000/productlists?userId=" + id+ "&_embed=orders&isActive=false&_embed=productsInProductLists");
+  getProductListsByUserIdWithOrders(id:  number | string): Observable<ProductList[]> {
+    return this.httpClient.get<ProductList[]>(
+      'http://localhost:3000/productlists?userId=' +
+        id +
+        '&_embed=orders&isActive=false&_embed=productsInProductLists'
+    );
   }
 }
