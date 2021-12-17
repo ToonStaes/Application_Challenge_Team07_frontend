@@ -16,7 +16,7 @@ export class AccountFormComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
-  userId = '61b70536efeb9804e3a76664'
+  userId = '61b70536efeb9804e3a76664';
 
   @Input() user: User = {
     _id: '',
@@ -26,6 +26,7 @@ export class AccountFormComponent implements OnInit {
     isAdmin: false,
     isSuperAdmin: false,
     token: '',
+    password: '',
   };
 
   user$: Subscription = new Subscription();
@@ -37,13 +38,12 @@ export class AccountFormComponent implements OnInit {
     email: new FormControl('', [Validators.required]),
   });
 
-
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    if (this.user.id != '' && this.user.id != '0') {
+    if (this.user._id != '' && this.user._id != '0') {
       this.accountForm.setValue({
         firstName: this.user.firstName,
         lastName: this.user.lastName,
@@ -97,10 +97,8 @@ export class AccountFormComponent implements OnInit {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-
-  toggleIsEdit(){
+  toggleIsEdit() {
     if (this.user._id != '') {
-
       this.isSubmitted = false;
 
       this.accountForm.setValue({

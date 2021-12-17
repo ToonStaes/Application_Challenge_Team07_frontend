@@ -8,25 +8,26 @@ import { Basket } from './basket';
 })
 export class BasketService {
   constructor(private httpClient: HttpClient) {}
-  url = "https://bitworks-api.herokuapp.com";
-
-  constructor(private httpClient: HttpClient) { }
+  url = 'https://bitworks-api.herokuapp.com';
 
   getBasketsByUserId(userId: string): Observable<Basket[]> {
-    return this.httpClient.get<Basket[]>( this.url + "/baskets/findByUser/" + userId)
-
+    return this.httpClient.get<Basket[]>(
+      this.url + '/baskets/findByUser/' + userId
+    );
   }
 
   getBaskets(): Observable<Basket[]> {
-    return this.httpClient.get<Basket[]>(this.url + "/baskets");
+    return this.httpClient.get<Basket[]>(this.url + '/baskets');
   }
 
   getBasketById(id: number | string): Observable<Basket> {
-    return this.httpClient.get<Basket>(this.url + "/baskets/" + id);
+    return this.httpClient.get<Basket>(this.url + '/baskets/' + id);
   }
 
   getBasketByIdWithOrders(id: number | string): Observable<Basket> {
-    return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id + "?_embed=orders");
+    return this.httpClient.get<Basket>(
+      'http://localhost:3000/baskets/' + id + '?_embed=orders'
+    );
   }
 
   getBasketsByUserIdWithOrders(id: number | string): Observable<Basket[]> {
@@ -37,19 +38,23 @@ export class BasketService {
     );
   }
 
-  postBasket(basket: Basket):  Observable<Basket>{
+  postBasket(basket: Basket): Observable<Basket> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Basket>(this.url + "/baskets", basket, {headers: headers});
+    return this.httpClient.post<Basket>(this.url + '/baskets', basket, {
+      headers: headers,
+    });
   }
 
-  putBasket(id: string, basket: Basket): Observable<Basket>{
+  putBasket(id: string, basket: Basket): Observable<Basket> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.put<Basket>(this.url + "/baskets/"+id , basket, {headers: headers});
+    return this.httpClient.put<Basket>(this.url + '/baskets/' + id, basket, {
+      headers: headers,
+    });
   }
 
   deleteBasket(id: string): Observable<Basket> {
-    return this.httpClient.delete<Basket>(this.url + "/baskets/" + id);
+    return this.httpClient.delete<Basket>(this.url + '/baskets/' + id);
   }
 }

@@ -15,5 +15,5 @@ export interface Product {
   size: string;
   amount: number;
   categoryId: string;
-  category?: Category;
+  category: Category;
 }

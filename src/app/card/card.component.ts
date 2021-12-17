@@ -34,7 +34,6 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
-
   }
 
   getProducts() {
@@ -62,7 +61,7 @@ export class CardComponent implements OnInit {
 
   getProductsByCategory(categoryId: number) {
     this.products$ = this.productService
-      .getProductsByCategory(categoryId)
+      .getProductsByCategoryId(categoryId)
       .subscribe((result) => {
         if (this.showOutOfStock) {
           this.products = result;

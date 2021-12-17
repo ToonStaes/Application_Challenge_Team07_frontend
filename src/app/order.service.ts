@@ -8,29 +8,29 @@ import { Order } from './order';
 export class OrderService {
   constructor(private httpClient: HttpClient) {}
 
-  url = "https://bitworks-api.herokuapp.com";
+  url = 'https://bitworks-api.herokuapp.com';
 
-  constructor(private httpClient: HttpClient) {
-   }
+  getOrders(): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.url + '/orders');
+  }
 
-   getOrders(): Observable<Order[]>{
-     return this.httpClient.get<Order[]>(this.url + "/orders");
-   }
+  getOrderById(id: string): Observable<Order> {
+    return this.httpClient.get<Order>(this.url + '/orders/' + id);
+  }
 
-   getOrderById(id: string): Observable<Order>{
-     return this.httpClient.get<Order>(this.url + "/orders/"+ id);
-   }
-
-   putOrder(id: string, order: Order): Observable<Order>{
-     let headers = new HttpHeaders();
-     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-      return this.httpClient.put<Order>(this.url + "/orders/"+id, order, {headers: headers});
-   }
+  putOrder(id: string, order: Order): Observable<Order> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<Order>(this.url + '/orders/' + id, order, {
+      headers: headers,
+    });
+  }
 
   postOrder(order: Order): Observable<Order> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Order>(this.url + "/orders", order, {headers: headers});
-   }
-
+    return this.httpClient.post<Order>(this.url + '/orders', order, {
+      headers: headers,
+    });
+  }
 }

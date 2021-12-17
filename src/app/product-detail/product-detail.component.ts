@@ -18,28 +18,26 @@ import { User } from '../user';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-
-  category: Category = {_id: '', name: '', isActive: true};
+  category: Category = { _id: '', name: '', isActive: true };
   basket: Basket = {
-    _id:'', 
-    userId:0, 
-    isActive: true, 
-    user: {} as User, 
-    order: {} as Order, 
-    basketItems: []
-    };
+    _id: '',
+    userId: 0,
+    isActive: true,
+    user: {} as User,
+    order: {} as Order,
+    basketItems: [],
+  };
   basketItem: BasketItem = {
-    _id:'', 
-    basketId:' ', 
-    productId:'', 
-    amount:0, 
-    product:{} as Product, 
-    basket: {} as Basket
-    };
+    _id: '',
+    basketId: ' ',
+    productId: '',
+    amount: 0,
+    product: {} as Product,
+    basket: {} as Basket,
+  };
 
   date: Date = new Date();
   @Input() product: Product = {
-
     _id: '0',
     name: '',
     price: 0,
@@ -47,16 +45,16 @@ export class ProductDetailComponent implements OnInit {
     isActive: true,
     stockCount: 0,
     rating: 5,
-    imageLocation: "string",
-    expirationDate: "date",
-    color: "string",
-    size: "string",
+    imageLocation: 'string',
+    expirationDate: 'date',
+    color: 'string',
+    size: 'string',
     amount: 0,
     categoryId: '61b6fd619d7d2a27b9880374',
-    category: this.category
+    category: this.category,
   };
 
-  userId= "61b70536efeb9804e3a76664";
+  userId = '61b70536efeb9804e3a76664';
 
   product$: Subscription = new Subscription();
   basket$: Subscription = new Subscription();
@@ -79,7 +77,6 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId != null) {
-
       this.product$ = this.productService
         .getProductById(productId)
         .subscribe((result) => {
@@ -106,7 +103,7 @@ export class ProductDetailComponent implements OnInit {
 
   onSubmit(): void {
     if (this.addProductToCartForm.value.amount != 0) {
-      this.basketItem.basketId = this.basket.id!;
+      this.basketItem.basketId = this.basket._id;
       this.basketItem.productId = this.product.id!;
       this.basketItem.amount = this.addProductToCartForm.value.amount;
 
