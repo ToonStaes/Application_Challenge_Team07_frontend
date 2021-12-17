@@ -26,6 +26,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { SecurityModule } from './security/security.module';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SharedModule } from './shared/shared.module';
     PaymentFormComponent,
     AccountFormComponent,
     AccountOrderComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ContactFormComponent
   ],
   imports: [
     SharedModule,
