@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     CategoryDetailComponent,
     AccountFormComponent,
     AccountOrderComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +50,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
     ReactiveFormsModule,
     MatMenuModule,
     MatSelectModule,
+    SecurityModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

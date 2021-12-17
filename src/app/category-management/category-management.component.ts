@@ -4,6 +4,7 @@ import {Category} from '../category';
 import {CategoryService} from '../category.service';
 import {Observable, Subscription} from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../security/auth.service';
 
 @Component({
   selector: 'app-category-management',
@@ -18,11 +19,14 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   errorMessage: string = '';
 
-  constructor(private categoryService: CategoryService, private router: Router) {
+  constructor(private categoryService: CategoryService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
     this.getCategories();
+    if (!this.authService.isLoggedIn()){
+      this.router.navigateByUrl('/login')
+    }
   }
 
   ngOnDestroy(): void {
