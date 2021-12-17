@@ -17,16 +17,17 @@ export class AuthService {
   }
 
   getUser(): User | null {
-    if (this.isLoggedIn()){
+    if (this.isLoggedIn()) {
       return {
-        _id : parseInt(localStorage.getItem('id') ?? '0') ,
-        firstName: '',
-        lastName: '',
+        id: localStorage.getItem('id') ?? '0',
         email: localStorage.getItem('email') ?? '',
         password: '',
+        token: this.getToken(),
+        firstName: '',
+        lastName: '',
         isAdmin: false,
-        isSuperAdmin: false,
-        token: this.getToken()  };
+        isSuperAdmin: false
+      };
     } else {
       return null;
     }
@@ -41,10 +42,16 @@ export class AuthService {
   }
 
   authenticate(user: User): Observable<UserResponse> {
-    return this.httpClient.post<UserResponse>('http://localhost:3000/login', user);
+    return this.httpClient.post<UserResponse>(
+      'https://bitworks-api.herokuapp.com/auth/login',
+      user
+    );
   }
 
   register(user: User): Observable<UserResponse> {
-    return this.httpClient.post<UserResponse>('http://localhost:3000/register', user);
+    return this.httpClient.post<UserResponse>(
+      'https://bitworks-api.herokuapp.com/auth/register',
+      user
+    );
   }
 }

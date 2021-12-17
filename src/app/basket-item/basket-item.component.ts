@@ -15,11 +15,11 @@ import { ProductService } from '../product.service';
 })
 export class BasketItemComponent implements OnInit {
   @Input() basketItem: BasketItem = {
-    _id: '',
+    id: '',
     basketId: '',
     productId: '',
     amount: 0,
-    product: {} as Product
+    product: {} as Product,
   };
 
   @Output() sendItemAmountEvent: EventEmitter<any> = new EventEmitter();
@@ -27,7 +27,7 @@ export class BasketItemComponent implements OnInit {
   product?: Product;
   category?: Category;
   isLoading: Boolean = true;
-  itemTotal: ItemTotal = {productId: '0', total: 0};
+  itemTotal: ItemTotal = { productId: '0', total: 0 };
 
   constructor(
     private productService: ProductService,
@@ -46,7 +46,10 @@ export class BasketItemComponent implements OnInit {
 
         this.itemTotal.productId = this.product._id;
 
-        this.itemTotal.total = Math.round((this.product.price * this.basketItem.amount + Number.EPSILON) * 100) / 100;
+        this.itemTotal.total =
+          Math.round(
+            (this.product.price * this.basketItem.amount + Number.EPSILON) * 100
+          ) / 100;
         this.sendItemAmountEvent.emit(this.itemTotal);
 
         this.categoryService
@@ -68,9 +71,12 @@ export class BasketItemComponent implements OnInit {
     console.log(this.basketItem._id);
     this.basketItem.amount = this.amountForm.value.amount;
 
-    this.itemTotal.total = Math.round((this.product!.price * this.basketItem.amount + Number.EPSILON) * 100) / 100;
+    this.itemTotal.total =
+      Math.round(
+        (this.product!.price * this.basketItem.amount + Number.EPSILON) * 100
+      ) / 100;
 
-    this.sendItemAmountEvent.emit(this.itemTotal)
+    this.sendItemAmountEvent.emit(this.itemTotal);
 
     this.basketItemService
       .updateBasketItem(this.basketItem._id, this.basketItem)

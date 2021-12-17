@@ -16,6 +16,19 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+  category: Category = {id: '', name: "", isActive: true};
+  basket: Basket = {id:'', userId:'', orders: [], basketItems: []};
+  basketItem: BasketItem = {id:'', basketId:'', productId:'', amount:0, product: {} as Product};
+  @Input() product: Product = {
+    _id: '0',
+    name: "",
+    price: 0,
+    description: "",
+    // isActive: true,
+    stockCount: 0,
+    rating: 0,
+    categoryId: 0,
+  };
 
   category: Category = {_id: '', name: "test category", isActive: true};
   basket: Basket = {_id:'', userId:0, orders: [], basketItems: []};
@@ -31,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
     categoryId: '61b6fd619d7d2a27b9880374',
     category: this.category
   };
+
 
 
   userId= 1;
@@ -74,7 +88,7 @@ export class ProductDetailComponent implements OnInit {
 
 
     if (this.addProductToCartForm.value.amount != 0) {
-      this.basketItem.basketId = this.basket._id;
+      this.basketItem.basketId = this.basket.id;
       this.basketItem.productId = this.product._id;
       this.basketItem.amount = this.addProductToCartForm.value.amount;
 

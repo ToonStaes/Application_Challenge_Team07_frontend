@@ -1,13 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
@@ -21,9 +12,10 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+
+import { SecurityModule } from './security/security.module';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [
@@ -38,13 +30,10 @@ import { SharedModule } from './shared/shared.module';
     PaymentFormComponent,
     AccountFormComponent,
     AccountOrderComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
-  imports: [
-    SharedModule,
-    AdminModule
-  ],
+  imports: [SharedModule, AdminModule, SecurityModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

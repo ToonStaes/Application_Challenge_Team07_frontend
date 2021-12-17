@@ -1,5 +1,5 @@
 export interface Order{
-  _id: string,
+  id: string,
   address : string,
   city: string,
   postalCode: string,
