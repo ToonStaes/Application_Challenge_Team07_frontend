@@ -241,6 +241,21 @@
       "basketId": 5,
       "productId": 6,
       "amount": 1
+    },
+    {
+      "id": 10,
+      "basketId": 5,
+      "productId": "61b851d24cfca36337954265",
+      "amount": 1,
+      "product": {
+        "_id": "0",
+        "name": "",
+        "price": 0,
+        "description": "",
+        "stockCount": 0,
+        "rating": 0,
+        "categoryId": 0
+      }
     }
   ],
   "favorites": [
