@@ -28,7 +28,15 @@ export class BasketItemService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<BasketItem>( this.url + "/basket-items", basketItem, {headers: headers});
+    return this.httpClient.post<BasketItem>(
+      this.url + '/basket-items',
+      {
+        headers: headers,
+        product: basketItem.productId,
+        basket: basketItem.basketId,
+        amount: basketItem.amount
+      }
+    );
   }
 
   // getProductsByBasketId(basketId: string): Observable<BasketItem[]> {

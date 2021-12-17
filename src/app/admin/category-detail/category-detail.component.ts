@@ -30,10 +30,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private categoryService: CategoryService
   ) {
-    this.isAdd =
-      this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
-    this.isEdit =
-      this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
+    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
+    this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
     if (this.categoryId != null && 0) {

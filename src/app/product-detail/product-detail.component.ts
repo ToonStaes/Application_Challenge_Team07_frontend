@@ -104,8 +104,9 @@ export class ProductDetailComponent implements OnInit {
   onSubmit(): void {
     if (this.addProductToCartForm.value.amount != 0) {
       this.basketItem.basketId = this.basket._id;
-      this.basketItem.productId = this.product.id!;
+      this.basketItem.productId = this.product._id!;
       this.basketItem.amount = this.addProductToCartForm.value.amount;
+      console.log(this.basketItem)
 
       this.postBasketItem$ = this.basketItemService
         .addBasketItem(this.basketItem)
