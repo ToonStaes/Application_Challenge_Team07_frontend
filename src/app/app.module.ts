@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     SharedModule,
-    AdminModule
+    AdminModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

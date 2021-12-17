@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-card',
@@ -19,6 +20,9 @@ export class CardComponent implements OnInit {
   products$: Subscription = new Subscription();
   categories: Category[] = [];
   categories$: Subscription = new Subscription();
+  showOutOfStock: boolean = false
+
+
 
   constructor(
     private productService: ProductService,
@@ -38,19 +42,18 @@ export class CardComponent implements OnInit {
     this.products$ = this.productService
       .getProducts()
       .subscribe((result) => {
-        this.products = []
-        result.forEach(item => {
-          if (item.amountInStock > 0){
-            this.products.push(item)
-          }
-        });
+        if (this.showOutOfStock) {
+          this.products = result
+        }
+        else{
+          this.products = []
+          result.forEach(item => {
+            if (item.amountInStock > 0){
+              this.products.push(item)
+            }
+          });
+        }
       });
-  }
-
-  getProductsInclWithoutStock() {
-    this.products$ = this.productService
-      .getProducts()
-      .subscribe((result) => (this.products = result));
   }
 
   getCategories() {
@@ -63,25 +66,42 @@ export class CardComponent implements OnInit {
     this.products$ = this.productService
       .getProductsByCategory(categoryId)
       .subscribe((result) => {
-        this.products = []
-        result.forEach(item => {
-          if (item.amountInStock > 0){
-            this.products.push(item)
-          }
-        });
-
+        if (this.showOutOfStock) {
+          this.products = result
+        }
+        else{
+          this.products = []
+          result.forEach(item => {
+            if (item.amountInStock > 0){
+              this.products.push(item)
+            }
+          });
+        }
       });
   }
 
   onFilter() {
     if (this.selectedCategory != 0) {
       this.getProductsByCategory(this.selectedCategory);
-    } if (this.selectedCategory == -1) {
-      this.getProductsInclWithoutStock();
     } else {
       this.getProducts();
     }
   }
+
+  onShowOutOfStock(){
+    if (this.showOutOfStock) {
+      this.showOutOfStock = false;
+
+    }
+    else{
+      this.showOutOfStock = true;
+
+    }
+    this.onFilter();
+
+  }
+
+
 
   toDetail(id: number) {
     this.router.navigateByUrl("/product/" + id)
