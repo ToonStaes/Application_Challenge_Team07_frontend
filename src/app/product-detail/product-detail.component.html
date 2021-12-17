@@ -1,40 +1,62 @@
-<div class="container">
+<div *ngIf="product.id == '0' && product._id == '0'">
+  Loading
+</div>
+<div class="container" *ngIf="product.id != '0' || product._id != '0'">
   <div class="d-flex flex-wrap-reverse">
-    <div class="product-image left p-4 d-flex justify-content-center"><img src="../../assets/images/aquarius.jpg" alt="Aquarius"></div>
+    <div class="product-image left p-4 d-flex justify-content-center">
+      <img src="../../assets/images/aquarius.jpg" alt="Aquarius" />
+    </div>
 
     <div class="product-detail right p-4">
-      <p class="font-weight-bold name">{{product.name}}</p>
-      <p class="font-italic">{{product.category!.name}}</p>
-      <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
+      <p class="font-weight-bold name">{{ product.name }}</p>
+      <p class="font-italic">{{ product.category!.name }}</p>
+      <p class="price">
+        Prijs: <span class="redBold">€{{ product.price }}</span>
+      </p>
 
-      <p *ngIf="product.amountInStock>0" class="stock">In Stock: {{product.amountInStock}}</p>
-      <p *ngIf="product.amountInStock<=0" class="notinstock">Out of stock!</p>
-
+      <p *ngIf="product.stockCount > 0" class="green">
+        In Stock: {{ product.stockCount }}
+      </p>
+      <p *ngIf="product.stockCount <= 0" class="notinstock">Out of stock!</p>
     </div>
   </div>
 
   <div class="d-flex flex-wrap">
     <div class="product-description left p-4">
       <p class="font-weight-bold">Over dit product:</p>
-      <p>{{product.description}}</p>
-
+      <p>{{ product.description }}</p>
     </div>
 
-    <div class="product-buttons right p-4 d-flex flex-column justify-content-end">
-      <p class="green">{{addedToCartMessage}}</p>
-      <p class="red">{{errorMessage}}</p>
+    <div
+      class="product-buttons right p-4 d-flex flex-column justify-content-end"
+    >
+      <p class="green">{{ addedToCartMessage }}</p>
+      <p class="red">{{ errorMessage }}</p>
       <form (ngSubmit)="onSubmit()" [formGroup]="addProductToCartForm">
         <label for="amount">Aantal</label>
-        <input type="number" class="form-control m-2" id="amount" name="amount" value="1" formControlName="amount" min="1" step="1">
-        <button type="submit" class="btn btn-primary m-2" [disabled]="!addProductToCartForm.valid || product.stockCount == 0">In Winkelmand</button>
+        <input
+          type="number"
+          class="form-control m-2"
+          id="amount"
+          name="amount"
+          value="1"
+          formControlName="amount"
+          min="1"
+          [max]="product.stockCount"
+          step="1"
+        />
+        <button
+          type="submit"
+          class="btn btn-primary m-2"
+          [disabled]="!addProductToCartForm.valid || product.stockCount == 0"
+        >
+          In Winkelmand
+        </button>
       </form>
-
     </div>
   </div>
 </div>
 
-
 <ng-template #outOfStock>
-  <p class="red"> Niet in Stock </p>
+  <p class="red">Niet in Stock</p>
 </ng-template>
-

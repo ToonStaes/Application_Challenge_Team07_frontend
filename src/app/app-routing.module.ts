@@ -13,14 +13,14 @@ import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'category-management', component: CategoryManagementComponent},
-  {path: 'category-detail', component: CategoryDetailComponent},
-  {path: 'contact', component: ContactFormComponent},
-  {path: 'basket', component: BasketComponent},
-  {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'account', component: AccountOverviewComponent},
-  {path: 'payment-form', component: PaymentFormComponent}
+  { path: '', component: HomeComponent },
+  { path: 'category-management', component: CategoryManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'category-detail', component: CategoryDetailComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'contact', component: ContactFormComponent },
+  { path: 'basket', component: BasketComponent },
+  { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'account', component: AccountOverviewComponent },
+  { path: 'payment-form', component: PaymentFormComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'register', component: SecurityComponent },
   { path: 'logout', component: SecurityComponent },
@@ -28,6 +28,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

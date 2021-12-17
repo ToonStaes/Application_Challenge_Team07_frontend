@@ -20,9 +20,7 @@ export class CardComponent implements OnInit {
   products$: Subscription = new Subscription();
   categories: Category[] = [];
   categories$: Subscription = new Subscription();
-  showOutOfStock: boolean = false
-
-
+  showOutOfStock: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -36,24 +34,24 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+
   }
 
   getProducts() {
-    this.products$ = this.productService
-      .getProducts()
-      .subscribe((result) => {
-        if (this.showOutOfStock) {
-          this.products = result
-        }
-        else{
-          this.products = []
-          result.forEach(item => {
-            if (item.amountInStock > 0){
-              this.products.push(item)
-            }
-          });
-        }
-      });
+    this.products$ = this.productService.getProducts().subscribe((result) => {
+      if (this.showOutOfStock) {
+        this.products = result;
+      } else {
+        this.products = [];
+        result.forEach((item) => {
+          if (item.stockCount > 0) {
+            this.products.push(item);
+          }
+        });
+      }
+
+      console.log(this.products);
+    });
   }
 
   getCategories() {
@@ -67,13 +65,12 @@ export class CardComponent implements OnInit {
       .getProductsByCategory(categoryId)
       .subscribe((result) => {
         if (this.showOutOfStock) {
-          this.products = result
-        }
-        else{
-          this.products = []
-          result.forEach(item => {
-            if (item.amountInStock > 0){
-              this.products.push(item)
+          this.products = result;
+        } else {
+          this.products = [];
+          result.forEach((item) => {
+            if (item.stockCount > 0) {
+              this.products.push(item);
             }
           });
         }
@@ -88,22 +85,16 @@ export class CardComponent implements OnInit {
     }
   }
 
-  onShowOutOfStock(){
+  onShowOutOfStock() {
     if (this.showOutOfStock) {
       this.showOutOfStock = false;
-
-    }
-    else{
+    } else {
       this.showOutOfStock = true;
-
     }
     this.onFilter();
-
   }
 
-
-
-  toDetail(id: number) {
-    this.router.navigateByUrl("/product/" + id)
+  toDetail(id: string) {
+    this.router.navigateByUrl('/product/' + id);
   }
 }

@@ -1,10 +1,11 @@
-export interface User{
-  id: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  isAdmin: boolean,
-  isSuperAdmin: boolean,
-  token: string
+export interface User {
+  _id?: string;
+  id?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+  isSuperAdmin: boolean;
+  token: string;
 }

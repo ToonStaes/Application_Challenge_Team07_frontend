@@ -1,7 +1,8 @@
 import { Product } from "./product";
 
 export interface BasketItem {
-  id: string;
+  _id?: string;
+  id?: string;
   basketId: string;
   productId: string;
   amount: number;

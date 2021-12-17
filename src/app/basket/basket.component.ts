@@ -16,7 +16,7 @@ import { OrderService } from '../order.service';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.scss']
+  styleUrls: ['./basket.component.scss'],
 })
 export class BasketComponent implements OnInit {
   basket?: Basket;
@@ -24,57 +24,65 @@ export class BasketComponent implements OnInit {
   products: Product[] = [];
   total: number = 0;
   totalRounded: number = 0;
-  itemTotals: ItemTotal[] = []
-  orders: Order[] = []
+  itemTotals: ItemTotal[] = [];
+  orders: Order[] = [];
   orders$: Subscription = new Subscription();
 
-  constructor(private basketService: BasketService, private basketItemService: BasketItemService, private productService: ProductService, private orderService: OrderService, private router: Router) { }
+  constructor(
+    private basketService: BasketService,
+    private basketItemService: BasketItemService,
+    private productService: ProductService,
+    private orderService: OrderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.basketService.getBasketsByUserId(1).subscribe((result) => {
-      result.forEach(dbBasket => {
-        if (dbBasket.orderId == null){
-          console.log("basket found")
-          console.log(dbBasket._id)
+      result.forEach((dbBasket) => {
+        if (dbBasket.orderId == null) {
+          console.log('basket found');
+          console.log(dbBasket.id);
           this.basket = dbBasket;
           this.basketItems = [];
-          this.basketItemService.getProductsByBasketId(this.basket._id).subscribe((dbBasketItems) => {
-            console.log("basketItems found")
-            console.log(dbBasketItems)
-            this.basketItems = dbBasketItems;
-            this.basketItems.forEach(item => {
-              console.log(item._id)
-            })
-          })
+          this.basketItemService
+            .getProductsByBasketId(this.basket.id!)
+            .subscribe((dbBasketItems) => {
+              console.log('basketItems found');
+              console.log(dbBasketItems);
+              this.basketItems = dbBasketItems;
+              this.basketItems.forEach((item) => {
+                console.log(item.id);
+              });
+            });
         }
       });
-    })
+    });
   }
 
-  updateTotal(itemTotal: ItemTotal){
+  updateTotal(itemTotal: ItemTotal) {
     let inserted = false;
-    this.itemTotals.forEach(item => {
-      if (item.productId == itemTotal.productId){
+    this.itemTotals.forEach((item) => {
+      if (item.productId == itemTotal.productId) {
         item.total = itemTotal.total;
-        inserted = true
+        inserted = true;
       }
-    })
+    });
 
     if (inserted === false) {
-      this.itemTotals.push(itemTotal)
+      this.itemTotals.push(itemTotal);
     }
 
     this.total = 0;
 
-    this.itemTotals.forEach(item => {
-      this.total += item.total
-    })
+    this.itemTotals.forEach((item) => {
+      this.total += item.total;
+    });
     this.totalRounded = Math.round((this.total + Number.EPSILON) * 100) / 100;
   }
 
-  getOrders(){
-    this.orders$ = this.orderService.getOrders().subscribe(result => this.orders = result);
+  getOrders() {
+    this.orders$ = this.orderService
+      .getOrders()
+      .subscribe((result) => (this.orders = result));
   }
-
-
 }

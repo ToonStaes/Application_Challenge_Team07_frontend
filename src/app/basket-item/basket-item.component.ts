@@ -16,6 +16,7 @@ import { ProductService } from '../product.service';
 export class BasketItemComponent implements OnInit {
   @Input() basketItem: BasketItem = {
     id: '',
+    _id: '',
     basketId: '',
     productId: '',
     amount: 0,
@@ -42,9 +43,10 @@ export class BasketItemComponent implements OnInit {
     this.productService
       .getProductById(this.basketItem.productId)
       .subscribe((dbProduct) => {
+        console.log(dbProduct)
         this.product = dbProduct;
 
-        this.itemTotal.productId = this.product._id;
+        this.itemTotal.productId = this.product._id!;
 
         this.itemTotal.total =
           Math.round(
@@ -53,10 +55,13 @@ export class BasketItemComponent implements OnInit {
         this.sendItemAmountEvent.emit(this.itemTotal);
 
         this.categoryService
-          .getCategoryById(this.product.categoryId)
+          .getCategoryById(this.product.category!._id!)
           .subscribe((dbCategory) => {
+            console.log("category")
             this.category = dbCategory;
             this.isLoading = false;
+          }, (error) => {
+            console.log(error)
           });
       });
   }
@@ -68,7 +73,7 @@ export class BasketItemComponent implements OnInit {
 
   amountChanged() {
     console.log('onChange werkt, amount: ' + this.amountForm.value.amount);
-    console.log(this.basketItem._id);
+    console.log(this.basketItem.id);
     this.basketItem.amount = this.amountForm.value.amount;
 
     this.itemTotal.total =
@@ -79,7 +84,7 @@ export class BasketItemComponent implements OnInit {
     this.sendItemAmountEvent.emit(this.itemTotal);
 
     this.basketItemService
-      .updateBasketItem(this.basketItem._id, this.basketItem)
+      .updateBasketItem(this.basketItem.id!, this.basketItem)
       .subscribe(
         (result) => {
           console.log(result);
