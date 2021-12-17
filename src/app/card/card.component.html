@@ -2,6 +2,7 @@
   <mat-label>Filter on category</mat-label>
   <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
     <mat-option value="0">All categories</mat-option>
+    <mat-option value="-1">Toon Items Zonder Stock</mat-option>
     <mat-option *ngFor="let category of categories" [value]="category.id">
       {{ category.name }}
     </mat-option>

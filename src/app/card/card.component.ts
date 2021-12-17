@@ -37,6 +37,19 @@ export class CardComponent implements OnInit {
   getProducts() {
     this.products$ = this.productService
       .getProducts()
+      .subscribe((result) => {
+        this.products = []
+        result.forEach(item => {
+          if (item.amountInStock > 0){
+            this.products.push(item)
+          }
+        });
+      });
+  }
+
+  getProductsInclWithoutStock() {
+    this.products$ = this.productService
+      .getProducts()
       .subscribe((result) => (this.products = result));
   }
 
@@ -49,12 +62,22 @@ export class CardComponent implements OnInit {
   getProductsByCategory(categoryId: number) {
     this.products$ = this.productService
       .getProductsByCategory(categoryId)
-      .subscribe((result) => (this.products = result));
+      .subscribe((result) => {
+        this.products = []
+        result.forEach(item => {
+          if (item.amountInStock > 0){
+            this.products.push(item)
+          }
+        });
+
+      });
   }
 
   onFilter() {
     if (this.selectedCategory != 0) {
       this.getProductsByCategory(this.selectedCategory);
+    } if (this.selectedCategory == -1) {
+      this.getProductsInclWithoutStock();
     } else {
       this.getProducts();
     }
