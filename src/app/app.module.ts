@@ -45,9 +45,9 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     SharedModule,
     AdminModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    SecurityModule
   ],
-  imports: [SharedModule, AdminModule, SecurityModule],
   providers: [],
   bootstrap: [AppComponent],
 })

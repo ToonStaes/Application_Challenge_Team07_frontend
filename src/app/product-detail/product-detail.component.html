@@ -4,9 +4,12 @@
 
     <div class="product-detail right p-4">
       <p class="font-weight-bold name">{{product.name}}</p>
-      <!-- <p class="font-italic">{{product.category.name}}</p> -->
+      <p class="font-italic">{{product.category!.name}}</p>
       <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
-      <p class="green" *ngIf="product.stockCount != 0; else outOfStock">In Stock: {{product.stockCount}}</p>
+
+      <p *ngIf="product.amountInStock>0" class="stock">In Stock: {{product.amountInStock}}</p>
+      <p *ngIf="product.amountInStock<=0" class="notinstock">Out of stock!</p>
+
     </div>
   </div>
 

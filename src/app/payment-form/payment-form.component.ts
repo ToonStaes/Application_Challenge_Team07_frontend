@@ -53,24 +53,15 @@ export class PaymentFormComponent implements OnInit {
     this.isSubmitted = true;
     this.paymentForm.patchValue({
       basket_id: this.basketId,
-      isPaid: false
+      isPaid: true
     });
-    if(this.isAdd){
-      this.postPayment$ = this.orderService.postOrder(this.paymentForm.value).subscribe(result=> {
-        this.router.navigateByUrl("/");
-      },
-      error => {
-        this.errorMessage = error.message;
-      });
-    }
-    if(this.isEdit){
-      this.postPayment$ = this.orderService.putOrder(this.orderId, this.paymentForm.value).subscribe(result=> {
-        this.router.navigateByUrl("/");
-      },
-      error => {
-        this.errorMessage = error.message;
-      });
-    }
+    console.log(this.paymentForm.value);
+    this.postPayment$ = this.orderService.postOrder(this.paymentForm.value).subscribe(result=> {
+      this.router.navigateByUrl("/");
+  },
+  error => {
+    this.errorMessage = error.message;
+  });
   }
-
 }
+
