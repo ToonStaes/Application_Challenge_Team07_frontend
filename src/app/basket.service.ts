@@ -11,8 +11,8 @@ export class BasketService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBasketsByUserId(userId: number): Observable<Basket[]> {
-    return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + userId.toString())
+  getBasketsByUserId(userId: string): Observable<Basket[]> {
+    return this.httpClient.get<Basket[]>( this.url + "/baskets/findByUser/" + userId)
   }
 
   getBaskets(): Observable<Basket[]> {
@@ -23,13 +23,13 @@ export class BasketService {
     return this.httpClient.get<Basket>(this.url + "/baskets/" + id);
   }
 
-  getBasketByIdWithOrders(id: string): Observable<Basket> {
-    return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id + "?_embed=orders");
-  }
+  // getBasketByIdWithOrders(id: string): Observable<Basket> {
+  //   return this.httpClient.get<Basket>("http://localhost:3000/baskets/" + id + "?_embed=orders");
+  // }
 
-  getBasketsByUserIdWithOrders(id: number): Observable<Basket[]> {
-    return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + id+ "&_embed=orders&_embed=basketItems");
-  }
+  // getBasketsByUserIdWithOrders(id: number): Observable<Basket[]> {
+  //   return this.httpClient.get<Basket[]>("http://localhost:3000/baskets?userId=" + id+ "&_embed=orders&_embed=basketItems");
+  // }
 
   postBasket(basket: Basket):  Observable<Basket>{
     let headers = new HttpHeaders();

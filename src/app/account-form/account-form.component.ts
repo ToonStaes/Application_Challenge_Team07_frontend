@@ -17,9 +17,9 @@ export class AccountFormComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
-  userId = 1
+  userId = '61b70536efeb9804e3a76664'
 
-  @Input() user: User = { _id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
+  @Input() user: User = { _id: '', firstName: "firstname",lastName: "lastname",email: "email@test.com",isAdmin: false,isSuperAdmin: false, token: ''};
 
   user$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
@@ -32,7 +32,7 @@ export class AccountFormComponent implements OnInit {
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
-    if (this.user._id != 0) {
+    if (this.user._id != '') {
 
         this.accountForm.setValue({
           firstName: this.user.firstName,
@@ -44,7 +44,7 @@ export class AccountFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUserById(+this.userId).subscribe(result => this.user = result);
+    this.user$ = this.userService.getUserById(this.userId).subscribe(result => this.user = result);
   }
 
   ngOnDestroy(): void {
@@ -84,7 +84,7 @@ export class AccountFormComponent implements OnInit {
   }
 
   toggleIsEdit(){
-    if (this.user._id != 0) {
+    if (this.user._id != '') {
       this.isSubmitted = false;
 
       this.accountForm.setValue({

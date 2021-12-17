@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ApiTestsComponent } from './api-tests/api-tests.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'category-detail', component: CategoryDetailComponent},
   {path: 'basket', component: BasketComponent},
   {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'account', component: AccountOverviewComponent}
+  {path: 'account', component: AccountOverviewComponent},
+  {path: 'apitests', component: ApiTestsComponent}
 ];
 
 @NgModule({

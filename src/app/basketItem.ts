@@ -1,3 +1,4 @@
+import { Basket } from "./basket";
 import { Product } from "./product";
 
 export interface BasketItem {
@@ -6,4 +7,5 @@ export interface BasketItem {
   productId: string;
   amount: number;
   product: Product;
+  basket: Basket;
 }

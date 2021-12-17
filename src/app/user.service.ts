@@ -9,37 +9,40 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  url = "https://bitworks-api.herokuapp.com";
+
   constructor(private httpClient: HttpClient) {
   }
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>("http://localhost:3000/users");
+    return this.httpClient.get<User[]>(this.url + "/users");
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.httpClient.get<User>("http://localhost:3000/users/" + id);
+  getUserById(id: string): Observable<User> {
+    return this.httpClient.get<User>(this.url + "/users/" + id);
   }
 
-  getUserByIdWithProductLists(id: number): Observable<User> {
-    return this.httpClient.get<User>("http://localhost:3000/users/" + id + "?_embed=productLists");
-  }
+  // getUserByIdWithProductLists(id: string): Observable<User> {
+  //   return this.httpClient.get<User>("http://localhost:3000/users/" + id + "?_embed=productLists");
+  // }
+  // doesn't work with api
 
   postUser(user: User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<User>("http://localhost:3000/users", user, {headers: headers});
+    return this.httpClient.post<User>(this.url + "/users", user, {headers: headers});
   }
 
-  putUser(id:number, user: User): Observable<User> {
+  putUser(id:string, user: User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.put<User>("http://localhost:3000/users/" + id, user, {headers: headers});
+    return this.httpClient.put<User>(this.url + "/users/" + id, user, {headers: headers});
   }
 
-  deleteUser(id: number): Observable<User> {
-    return this.httpClient.delete<User>("http://localhost:3000/users/" + id);
+  deleteUser(id: string): Observable<User> {
+    return this.httpClient.delete<User>(this.url + "/users/" + id);
   }
 
   getToken(email: string, password: string): Observable<string>{

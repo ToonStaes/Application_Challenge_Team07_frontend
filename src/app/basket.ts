@@ -1,10 +1,13 @@
 import { BasketItem } from "./basketItem";
 import { Order } from "./order";
+import { User } from "./user";
 
 export interface Basket {
   _id: string;
   userId: number;
   orderId?: number;
-  orders: Array<Order>;
+  isActive: boolean;
+  order: Order;
+  user: User;
   basketItems: Array<BasketItem>;
 }

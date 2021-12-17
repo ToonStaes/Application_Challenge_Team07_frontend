@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Basket } from '../basket';
 import { BasketItemService } from '../basket-item.service';
 import { BasketItem } from '../basketItem';
+import { Order } from '../order';
+import { User } from '../user';
 
 @Component({
   selector: 'app-account-order',
@@ -11,7 +13,7 @@ import { BasketItem } from '../basketItem';
 })
 export class AccountOrderComponent implements OnInit {
 
-  @Input() basket: Basket = { _id: '', userId: 0,orderId: 0,orders: [], basketItems: []};
+  @Input() basket: Basket = { _id: '', userId: 0,orderId: 0, isActive: true, user: { } as User, order: {} as Order, basketItems: []};
   totalProducts = 0;
   totalCost = 0;
   basketItems: BasketItem[] = [];
@@ -25,7 +27,7 @@ export class AccountOrderComponent implements OnInit {
       this.totalProducts += item.amount;
     });
 
-    this.basketItems$ = this.basketItemService.getBasketItemsByBasketIdWithProduct(+this.basket._id).subscribe(result => {
+    this.basketItems$ = this.basketItemService.getBasketItemsByBasketId(this.basket._id).subscribe(result => {
       this.basketItems = result
 
       result.forEach(item => {

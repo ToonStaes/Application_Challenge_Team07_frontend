@@ -14,10 +14,10 @@ import { UserService } from '../user.service';
 export class AccountOverviewComponent implements OnInit {
 
 
-  isEdit = false
-  userId = 1
+  isEdit = false;
+  userId = "61b70536efeb9804e3a76664";
 
-  @Input() user: User = { _id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
+  @Input() user: User = { _id: '', firstName: "firstname",lastName: "lastname",email: "email@test.com",isAdmin: false,isSuperAdmin: false, token: ''};
 
   baskets:Basket[] = []
   newBaskets:Basket[] = []
@@ -30,16 +30,13 @@ export class AccountOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUserById(+this.userId).subscribe(result => this.user = result);
-    this.baskets$ = this.basketService.getBasketsByUserId(+this.userId).subscribe(result => this.newBaskets = result);
-
-    this.user$ = this.userService.getUserById(+this.userId).subscribe(result => {
+    this.user$ = this.userService.getUserById(this.userId).subscribe(result => {
       this.user = result
-      this.baskets$ = this.basketService.getBasketsByUserIdWithOrders(+this.userId).subscribe(result => {
+      this.baskets$ = this.basketService.getBasketsByUserId(this.userId).subscribe(result => {
         this.newBaskets = result
         if (this.newBaskets.length != 0) {
           this.newBaskets.forEach(basket => {
-            if (basket.orderId != null) {
+            if (basket.order != null) {
               this.baskets.push(basket);
             }
           });

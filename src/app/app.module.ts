@@ -23,6 +23,7 @@ import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
+import { ApiTestsComponent } from './api-tests/api-tests.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
     PaymentFormComponent,
     AccountFormComponent,
     AccountOrderComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ApiTestsComponent
   ],
   imports: [
     SharedModule,

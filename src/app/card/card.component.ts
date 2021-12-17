@@ -48,7 +48,7 @@ export class CardComponent implements OnInit {
 
   getProductsByCategory(categoryId: number) {
     this.products$ = this.productService
-      .getProductsByCategory(categoryId)
+      .getProductsByCategoryId(categoryId)
       .subscribe((result) => (this.products = result));
   }
 

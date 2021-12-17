@@ -7,8 +7,10 @@ import { BasketItemService } from '../basket-item.service';
 import { BasketService } from '../basket.service';
 import { BasketItem } from '../basketItem';
 import { Category } from '../category';
+import { Order } from '../order';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,8 +20,10 @@ import { ProductService } from '../product.service';
 export class ProductDetailComponent implements OnInit {
 
   category: Category = {_id: '', name: "test category", isActive: true};
-  basket: Basket = {_id:'', userId:0, orders: [], basketItems: []};
-  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0, product:{} as Product};
+  basket: Basket = {_id:'', userId:0, isActive: true, user: {} as User, order: {} as Order, basketItems: []};
+  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0, product:{} as Product, basket: {} as Basket};
+
+  date: Date = new Date();
   @Input() product: Product = {
     _id: '0',
     name: "Test Product",
@@ -28,12 +32,17 @@ export class ProductDetailComponent implements OnInit {
     isActive: true,
     stockCount: 0,
     rating: 5,
+    imageLocation: "string",
+    expirationDate: "date",
+    color: "string",
+    size: "string",
+    amount: 0,
     categoryId: '61b6fd619d7d2a27b9880374',
     category: this.category
   };
 
 
-  userId= 1;
+  userId= "61b70536efeb9804e3a76664";
 
   product$: Subscription = new Subscription();
   basket$: Subscription = new Subscription();
@@ -52,7 +61,7 @@ export class ProductDetailComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId != null) {
       this.product$ = this.productService.getProductById(productId).subscribe(result => this.product = result);
-      this.basket$ = this.basketService.getBasketsByUserId(+this.userId).subscribe(result => {
+      this.basket$ = this.basketService.getBasketsByUserId(this.userId).subscribe(result => {
         result.forEach(list => {
           if (list.orderId == null) {
             this.basket = list;

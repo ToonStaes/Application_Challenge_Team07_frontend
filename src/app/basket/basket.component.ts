@@ -24,14 +24,14 @@ export class BasketComponent implements OnInit {
   constructor(private basketService: BasketService, private basketItemService: BasketItemService, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.basketService.getBasketsByUserId(1).subscribe((result) => {
+    this.basketService.getBasketsByUserId("61b70536efeb9804e3a76664").subscribe((result) => {
       result.forEach(dbBasket => {
         if (dbBasket.orderId == null){
           console.log("basket found")
           console.log(dbBasket._id)
           this.basket = dbBasket;
           this.basketItems = [];
-          this.basketItemService.getProductsByBasketId(this.basket._id).subscribe((dbBasketItems) => {
+          this.basketItemService.getBasketItemsByBasketId(this.basket._id).subscribe((dbBasketItems) => {
             console.log("basketItems found")
             console.log(dbBasketItems)
             this.basketItems = dbBasketItems;
