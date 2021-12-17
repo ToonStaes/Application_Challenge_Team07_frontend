@@ -1,35 +1,36 @@
-.left, .right{
+.left,
+.right {
   width: 400px;
 }
 
-p{
+p {
   margin: 0;
 }
 
-.price, .name{
-  font-size: 20px;;
+.price,
+.name {
+  font-size: 20px;
 }
 
-.green{
+.green {
   color: forestgreen;
 }
 
-.red{
+.red {
   color: rgb(202, 60, 60);
 }
 
-.redBold{
+.redBold {
   color: rgb(202, 60, 60);
   font-weight: bold;
   font-size: 18px;
 }
 
-.notinstock{
+.notinstock {
   color: rgb(202, 60, 60);
 }
 
-
-img{
+img {
   width: 70px;
   height: auto;
 }

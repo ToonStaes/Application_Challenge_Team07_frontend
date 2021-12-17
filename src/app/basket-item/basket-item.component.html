@@ -38,7 +38,7 @@
             </div>
             <div class="col-7">
                 <div (change)="amountChanged()" [formGroup]="amountForm" class="form-outline">
-                <input class="form-control align-self-center" type="number" id="basketItemAmount" formControlName="amount">
+                <input class="form-control align-self-center" type="number" id="basketItemAmount" formControlName="amount" min="1" [max]="product!.stockCount">
                 </div>
             </div>
 
