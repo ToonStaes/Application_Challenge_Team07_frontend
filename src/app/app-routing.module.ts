@@ -9,6 +9,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { SecurityComponent } from './security/security/security.component';
+import { AuthGuard } from './security/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,7 +19,11 @@ const routes: Routes = [
   {path: 'contact', component: ContactFormComponent},
   {path: 'basket', component: BasketComponent},
   {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'account', component: AccountOverviewComponent}
+  {path: 'account', component: AccountOverviewComponent},
+  {path: 'payment-form', component: PaymentFormComponent}
+  { path: 'login', component: SecurityComponent },
+  { path: 'register', component: SecurityComponent },
+  { path: 'logout', component: SecurityComponent },
 ];
 
 @NgModule({

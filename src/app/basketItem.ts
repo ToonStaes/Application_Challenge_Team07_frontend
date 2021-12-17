@@ -1,9 +1,9 @@
 import { Product } from "./product";
 
 export interface BasketItem {
-  id: number;
-  basketId: number;
-  productId: number;
+  id: string;
+  basketId: string;
+  productId: string;
   amount: number;
   product: Product;
 }

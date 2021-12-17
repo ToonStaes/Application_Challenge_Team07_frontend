@@ -5,37 +5,41 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  url = "https://bitworks-api.herokuapp.com";
 
   constructor(private httpClient: HttpClient) {
   }
 
   getCategories(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>("http://localhost:3000/categories");
+    return this.httpClient.get<Category[]>(this.url + "/categories");
   }
 
-  getCategoryById(id: number): Observable<Category> {
-    return this.httpClient.get<Category>("http://localhost:3000/categories/" + id);
+  getCategoryById(id: number | string): Observable<Category> {
+    return this.httpClient.get<Category>(this.url + "/categories/" + id);
   }
 
   postCategory(category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
-    return this.httpClient.post<Category>("http://localhost:3000/categories", category, {headers: headers});
+    
+    return this.httpClient.post<Category>(this.url + "/categories", category, {headers: headers});
   }
 
-  putCategory(id:number, category: Category): Observable<Category> {
+  putCategory(id: number | string, category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.put<Category>("http://localhost:3000/categories/" + id, category, {headers: headers});
+    return this.httpClient.put<Category>(this.url + "/categories/" + id, category, {headers: headers});
   }
 
+  deleteCategory(id: number | string): Observable<Category> {
+    return this.httpClient.delete<Category>(this.url + "/categories/" + id);
+  }
 
-  toNonActiveCategory(id: number): Observable<Category> {
+  toNonActiveCategory(id: number | string): Observable<Category> {
     return this.httpClient.delete<Category>("http://localhost:3000/categories/" + id);
   }
 }

@@ -5,9 +5,8 @@
     <input type="text" class="form-control" id="address" name="address" placeholder="Streetname + number" formControlName="address" minlength="2">
     <label for="city">City</label>
     <input type="text" class="form-control" id="city" name="city" placeholder="City" formControlName="city" minlength="2">
-    <label for="postalcode">Postal Code</label>
-    <input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="Postal Code" formControlName="postalcode" minlength="4">
+    <label for="postalCode">Postal Code</label>
+    <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postal Code" formControlName="postalCode" minlength="4">
   </div>
-  <button  type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!paymentForm.valid || isSubmitted" >Add</button>
-    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!paymentForm.valid || isSubmitted" >Save</button>
+  <button  type="submit" class="btn btn-primary" (click)="onSubmit" [disabled]="!paymentForm.valid || isSubmitted" >Confirm payment</button>
 </form>

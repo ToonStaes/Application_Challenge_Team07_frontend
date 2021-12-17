@@ -2,6 +2,38 @@ p {
   font-size: 25px;
 
   .bedrag {
-    color: red;
+    color: rgb(202, 60, 60);
+    white-space: nowrap;
   }
 }
+
+.card{
+  box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3);
+  margin-bottom: 20px;
+}
+
+.card-title{
+  background-color: #f7f8f9;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.125);
+  font-style: italic;
+}
+
+.width{
+  min-width: 230px;
+}
+button{
+  width: 100%;
+}
+
+@media screen  and (min-width: 730px){
+  .align{
+    float: right;
+  }
+}
+
+
+
+
+
+

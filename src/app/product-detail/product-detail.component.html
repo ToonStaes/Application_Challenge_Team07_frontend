@@ -2,12 +2,14 @@
   <div class="d-flex flex-wrap-reverse">
     <div class="product-image left p-4 d-flex justify-content-center"><img src="../../assets/images/aquarius.jpg" alt="Aquarius"></div>
 
-
     <div class="product-detail right p-4">
       <p class="font-weight-bold name">{{product.name}}</p>
-      <p class="font-italic">{{product.category.name}}</p>
+      <p class="font-italic">{{product.category!.name}}</p>
       <p class="price">Prijs: <span class="redBold">€{{product.price}}</span></p>
-      <p class="green" *ngIf="product.amountInStock != 0; else outOfStock">In Stock: {{product.amountInStock}}</p>
+
+      <p *ngIf="product.amountInStock>0" class="stock">In Stock: {{product.amountInStock}}</p>
+      <p *ngIf="product.amountInStock<=0" class="notinstock">Out of stock!</p>
+
     </div>
   </div>
 
@@ -24,7 +26,7 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="addProductToCartForm">
         <label for="amount">Aantal</label>
         <input type="number" class="form-control m-2" id="amount" name="amount" value="1" formControlName="amount" min="1" step="1">
-        <button type="submit" class="btn btn-primary m-2" [disabled]="!addProductToCartForm.valid || product.amountInStock == 0">In Winkelmand</button>
+        <button type="submit" class="btn btn-primary m-2" [disabled]="!addProductToCartForm.valid || product.stockCount == 0">In Winkelmand</button>
       </form>
 
     </div>
