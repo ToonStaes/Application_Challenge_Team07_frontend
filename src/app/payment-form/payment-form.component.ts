@@ -10,7 +10,6 @@ import { OrderService } from '../order.service';
 })
 export class PaymentFormComponent implements OnInit {
   isAdd: boolean = false;
-  isEdit: boolean = false;
   orderId: number=0;
   basketId: number=0;
   isSubmitted: boolean = false;
@@ -29,7 +28,6 @@ export class PaymentFormComponent implements OnInit {
 
   constructor(private router: Router, private orderService: OrderService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
-    this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.orderId = +this.router.getCurrentNavigation()?.extras.state?.id;
     this.basketId = +this.router.getCurrentNavigation()?.extras.state?.basket_id;
     if (this.orderId != null && this.orderId>0){
@@ -53,24 +51,15 @@ export class PaymentFormComponent implements OnInit {
     this.isSubmitted = true;
     this.paymentForm.patchValue({
       basket_id: this.basketId,
-      isPaid: false
+      isPaid: true
     });
-    if(this.isAdd){
-      this.postPayment$ = this.orderService.postOrder(this.paymentForm.value).subscribe(result=> {
-        this.router.navigateByUrl("/");
-      },
-      error => {
-        this.errorMessage = error.message;
-      });
-    }
-    if(this.isEdit){
-      this.postPayment$ = this.orderService.putOrder(this.orderId, this.paymentForm.value).subscribe(result=> {
-        this.router.navigateByUrl("/");
-      },
-      error => {
-        this.errorMessage = error.message;
-      });
-    }
+    console.log(this.paymentForm.value);
+    this.postPayment$ = this.orderService.postOrder(this.paymentForm.value).subscribe(result=> {
+      this.router.navigateByUrl("/");
+  },
+  error => {
+    this.errorMessage = error.message;
+  });
   }
-
 }
+
