@@ -17,7 +17,7 @@
           <td *ngIf="cat.isActive == false">Not Active</td>
           <td *ngIf="cat.isActive == true">Active</td>
           <td>
-              <button type="button" class="btn py-0  align-self-center" (click)="edit(cat.id)"><i class="fas fa-edit edit"></i></button>
+              <button type="button" class="btn py-0  align-self-center" (click)="edit(cat._id)"><i class="fas fa-edit edit"></i></button>
               <button type="button" class="btn py-0  align-self-center" (click)="toNonActive(cat)"><i class="far fa-trash-alt delete"></i></button>
               <!-- <button class="btn col-md-2 py-0  align-self-center"><i class="fas fa-trash-alt"></i></button> -->
           </td>
@@ -27,6 +27,3 @@
 <div class="col-md-12 text-center">
 <button type="button" class="btn btn-success  m-auto" (click)="add()"><i class="fas fa-plus"></i></button>
 </div>
-<!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-  <mat-icon>delete</mat-icon>
-</button> -->

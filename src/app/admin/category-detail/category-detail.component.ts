@@ -15,9 +15,6 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   isEdit: boolean = false;
   categoryId: number = 0;
 
-
-  // category: Category = { id: 0, name: "" };
-
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
@@ -34,10 +31,9 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
-    this.categoryId = +this.router.getCurrentNavigation()?.extras.state?.id;
+    this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-
-    if (this.categoryId != null && this.categoryId > 0) {
+    if (this.categoryId != null && this.categoryId != '') {
       this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => {
         this.categoryForm.setValue({
           name: result.name,
@@ -52,12 +48,6 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
         isActive: true
       });
     }
-
-    // if (this.isAdd){
-    //   this.categoryForm.setValue({
-    //     isActive: true
-    //   });
-    // }
   }
 
   ngOnInit(): void {

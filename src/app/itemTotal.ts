@@ -1,4 +1,4 @@
 export interface ItemTotal {
-  productId: number,
+  productId: string,
   total: number
 }
