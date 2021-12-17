@@ -20,7 +20,7 @@ export class UserService {
     return this.httpClient.get<User>("http://localhost:3000/users/" + id);
   }
 
-  getUserByIdWithProductLists(id: number): Observable<User> {
+  getUserByIdWithProductLists(id: number | string): Observable<User> {
     return this.httpClient.get<User>("http://localhost:3000/users/" + id + "?_embed=productLists");
   }
 
@@ -31,14 +31,14 @@ export class UserService {
     return this.httpClient.post<User>("http://localhost:3000/users", user, {headers: headers});
   }
 
-  putUser(id:number, user: User): Observable<User> {
+  putUser(id:number | string, user: User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.put<User>("http://localhost:3000/users/" + id, user, {headers: headers});
   }
 
-  deleteUser(id: number): Observable<User> {
+  deleteUser(id: number | string): Observable<User> {
     return this.httpClient.delete<User>("http://localhost:3000/users/" + id);
   }
 

@@ -11,7 +11,7 @@ import { BasketItem } from '../basketItem';
 })
 export class AccountOrderComponent implements OnInit {
 
-  @Input() basket: Basket = { id: 0, userId: 0,orderId: 0,orders: [], basketItems: []};
+  @Input() basket: Basket = { id: '0', userId: '0',orderId: '0',orders: [], basketItems: []};
   totalProducts = 0;
   totalCost = 0;
   basketItems: BasketItem[] = [];

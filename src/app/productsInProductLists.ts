@@ -1,8 +1,8 @@
 import { Product } from "./product";
 
 export interface ProductsInProductLists{
-  productId:number,
-  productListId:number,
+  productId: string,
+  productListId: string,
   amount: number,
   product: Product
 }

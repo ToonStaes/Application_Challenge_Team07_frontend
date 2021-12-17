@@ -1,9 +1,9 @@
 export interface Order{
-  id: number,
+  id: string,
   address : string,
   city: string,
   postalCode: string,
   date: string,
   isPaid: boolean,
-  basketId: number
+  basketId: string
 }

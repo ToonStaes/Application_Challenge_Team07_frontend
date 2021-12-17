@@ -17,7 +17,7 @@ export class AccountOverviewComponent implements OnInit {
   isEdit = false
   userId = 1
 
-  @Input() user: User = { id: 0, firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
+  @Input() user: User = { id: '0', firstName: "firstname",lastName: "lastname",email: "email@test.com",password: "password",isAdmin: false,isSuperAdmin: false, token: ''};
 
   baskets:Basket[] = []
   newBaskets:Basket[] = []

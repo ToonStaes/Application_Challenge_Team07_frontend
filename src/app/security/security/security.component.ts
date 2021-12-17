@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SecurityComponent implements OnInit {
   user: User = {
-    id: 0,
+    id: '0',
     firstName: '',
     lastName: '',
     email: '',
