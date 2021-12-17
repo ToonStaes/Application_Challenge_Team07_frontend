@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import '../../assets/e-mail/smtp.js';
 declare let Email: any;
 
+
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
@@ -15,13 +16,9 @@ export class ContactFormComponent implements OnInit {
   errorMessage: string = '';
   nameChangeMessage: string = '';
 
-  // status$: Subscription = new Subscription();
-  // postStatus$: Subscription = new Subscription();
-  // putStatus$: Subscription = new Subscription();
-
-  // reactive form
   emailForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
   });
@@ -32,35 +29,57 @@ export class ContactFormComponent implements OnInit {
   }
 
   // onSubmit(firstName: String, lastName: String, email: String, message: String ) {
-    onSubmit() {
+    sendMail(firstName: string, lastName: string, email: string, message:string) {
 
-    Email.send({
-    Host : 'smtp.elasticemail.com',
-    Username : 'SportAholic.test@email.com',
-    Password : 'E897EC137FB391E0553EF27F1BEE92DFF7E5',
-    To : 'jo.naulaerts.tm@gmail.com',
-    From : `SportAholic.test@email.com`,
-    Subject : 'this.model.subject',
-    Body :
-    `
-    <i>This is sent as a feedback from my resume page.</i>
-    <br/>
-    <b>Name: </b>
+    console.log(firstName)
+    console.log(lastName)
+    console.log(email)
+    console.log(message)
 
-    <br />
-    <b>Email: </b>
-    <br />
-    <b>Subject: </b>
-    <br />
-    <b>Message:</b>
-    <br />
-    <br>
-    <br>
-    <b>~End of Message.~</b>
-    `
-    })
+    // Email.send({
+    // Host : 'smtp.elasticemail.com',
+    // Username : 'SportAholic.test@email.com',
+    // Password : 'E897EC137FB391E0553EF27F1BEE92DFF7E5',
+    // To : email,
+    // From : `SportAholic.test@email.com`,
+    // Subject : 'this.model.subject',
+    // Body :
+    // `
+    // <i>This is sent as a feedback from my resume page.</i>
+    // <br/>
+    // <b>Name: </b>
+    // ${firstName}${lastName}
 
-    this.router.navigateByUrl("/");
+    // <br />
+    // <b>Email: </b>
+    // <br />
+    // <b>Subject: </b>
+    // <br />
+    // <b>Message:</b>
+    // ${message}
+    // <br />
+    // <br>
+    // <br>
+    // <b>~End of Message.~</b>
+    // `
+    // })
+
+    // console.log("sendmail gelukt, ga naar " + email + " om de test te bekijken")
+    // this.router.navigateByUrl("/");
+    }
+
+    onSubmit(): void{
+      var firstName = this.emailForm.value.firstName;
+      var lastName = this.emailForm.value.lastName;
+      var email = this.emailForm.value.email;
+      var message = this.emailForm.value.message;
+
+      // console.log(firstName)
+      // console.log(lastName)
+      // console.log(email)
+      // console.log(message)
+
+      this.sendMail(firstName, lastName, email, message);
     }
 
 }

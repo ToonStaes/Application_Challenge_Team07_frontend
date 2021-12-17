@@ -9,17 +9,17 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="emailForm">
   <div class="form-group">
     <label for="firstname">First name</label>
-    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" formControlName="firstname" minlength="2">
+    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="John" formControlName="firstName" minlength="2">
   </div>
 
   <div class="form-group">
     <label for="lastname">Last name</label>
-    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" formControlName="lastname" minlength="2">
+    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe" formControlName="lastName" minlength="2">
   </div>
 
   <div class="form-group">
     <label for="email">E-mail</label>
-    <input type="text" class="form-control" id="email" name="email" placeholder="foo.bar@e-mail.com" formControlName="email" minlength="2">
+    <input type="text" class="form-control" id="email" name="email" placeholder="John.Doe@e-mail.com" formControlName="email" minlength="2">
   </div>
 
   <!-- <div class="form-group">
@@ -31,7 +31,7 @@
     <label for="message">Message</label>
     <!-- <input type="text" class="form-control" id="message" name="message" placeholder="Write your message here." formControlName="emmessageail" minlength="2"> -->
 
-    <textarea rows="4" cols="50" class="form-control" id="message" name="message" placeholder="Write your message here." formControlName="emmessageail" minlength="2" form="emailForm"></textarea>
+    <textarea rows="4" cols="50" class="form-control" id="message" name="message" placeholder="Write your message here." formControlName="message" minlength="2" form="emailForm"></textarea>
   </div>
 
 
@@ -40,7 +40,7 @@
 
 </form>
 
-<script src="https://smtpjs.com/v3/smtp.js">
+<!-- <script src="https://smtpjs.com/v3/smtp.js">
 </script>
 <script>
   // Email.send({
@@ -62,4 +62,4 @@
 // }).then(
 //   message => alert(message)
 // );
-</script>
+</script> -->
