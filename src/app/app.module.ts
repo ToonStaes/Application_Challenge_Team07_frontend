@@ -1,4 +1,14 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
@@ -30,7 +40,12 @@ import { SharedModule } from './shared/shared.module';
     PaymentFormComponent,
     AccountFormComponent,
     AccountOrderComponent,
-    ProductFormComponent,
+    ProductFormComponent
+  ],
+  imports: [
+    SharedModule,
+    AdminModule,
+    MatCheckboxModule
   ],
   imports: [SharedModule, AdminModule, SecurityModule],
   providers: [],
