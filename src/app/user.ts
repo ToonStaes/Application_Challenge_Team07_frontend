@@ -6,4 +6,3 @@ export interface User{
   isAdmin: boolean,
   isSuperAdmin: boolean,
   token: string
-}

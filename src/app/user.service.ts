@@ -22,10 +22,10 @@ export class UserService {
     return this.httpClient.get<User>(this.url + "/users/" + id);
   }
 
-  // getUserByIdWithProductLists(id: string): Observable<User> {
-  //   return this.httpClient.get<User>("http://localhost:3000/users/" + id + "?_embed=productLists");
-  // }
-  // doesn't work with api
+
+  getUserByIdWithProductLists(id: number | string): Observable<User> {
+    return this.httpClient.get<User>("http://localhost:3000/users/" + id + "?_embed=productLists");
+  }
 
   postUser(user: User): Observable<User> {
     let headers = new HttpHeaders();
@@ -43,7 +43,7 @@ export class UserService {
 
   deleteUser(id: string): Observable<User> {
     return this.httpClient.delete<User>(this.url + "/users/" + id);
-  }
+
 
   getToken(email: string, password: string): Observable<string>{
     let obj = ""

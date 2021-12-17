@@ -1,6 +1,29 @@
 <p>In Winkelmandje</p>
 <p>(momenteel hard coded van user met id 1)</p>
+<div class="container">
 <div class="row">
-  <app-basket-item *ngFor="let basketItem of basketItems" [basketItem]="basketItem" class="col-12" (sendItemAmountEvent)="updateTotal($event)"></app-basket-item>
-  <p class="pt-4 col-12 text-right">Totaal: <span class="bedrag">€ {{ totalRounded }}</span></p>
+  <div class="col-12 col-lg-9 ">
+    <div class="card">
+      <div class="card-body">
+        <app-basket-item *ngFor="let basketItem of basketItems" [basketItem]="basketItem" class="col-12" (sendItemAmountEvent)="updateTotal($event)"></app-basket-item>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-3 col-md-12 col-sm-12"   >
+    <div class="align">
+    <div class="card width">
+      <div class="card-title">
+        <h4 class="text-center">Bestelling</h4>
+      </div>
+      <div class="card-body">
+        <p class=" col-12 text-center">Totaal: <span class="bedrag">€ {{ totalRounded }}</span></p>
+      </div>
+      <a  routerLink="/payment-form">
+        <button type="button" class="btn btn-success w">Bestellen</button>
+      </a>
+    </div>
+  </div>
+  </div>
+  </div>
 </div>
+

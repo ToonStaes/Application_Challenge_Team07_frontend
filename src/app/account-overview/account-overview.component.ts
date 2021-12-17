@@ -19,6 +19,7 @@ export class AccountOverviewComponent implements OnInit {
 
   @Input() user: User = { _id: '', firstName: "firstname",lastName: "lastname",email: "email@test.com",isAdmin: false,isSuperAdmin: false, token: ''};
 
+
   baskets:Basket[] = []
   newBaskets:Basket[] = []
 

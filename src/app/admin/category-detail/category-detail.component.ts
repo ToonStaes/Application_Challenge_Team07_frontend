@@ -1,24 +1,21 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from '../../category.service';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.scss']
+  styleUrls: ['./category-detail.component.scss'],
 })
 export class CategoryDetailComponent implements OnInit, OnDestroy {
-
   isAdd: boolean = false;
   isEdit: boolean = false;
-  categoryId: string = '';
-
-  // category: Category = { id: 0, name: "" };
+  categoryId: number = 0;
 
   isSubmitted: boolean = false;
-  errorMessage: string = "";
+  errorMessage: string = '';
 
   category$: Subscription = new Subscription();
   postCategory$: Subscription = new Subscription();
@@ -26,42 +23,39 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   categoryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    isActive: new FormControl('')
+    isActive: new FormControl(''),
   });
 
-  constructor(private router: Router, private categoryService: CategoryService) {
-
-    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
-    this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
+  constructor(
+    private router: Router,
+    private categoryService: CategoryService
+  ) {
+    this.isAdd =
+      this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
+    this.isEdit =
+      this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-
-
-    if (this.categoryId != null && this.categoryId != '') {
-      this.category$ = this.categoryService.getCategoryById(this.categoryId).subscribe(result => {
-        this.categoryForm.setValue({
-          name: result.name,
-          isActive: result.isActive
+    if (this.categoryId != null && 0) {
+      this.category$ = this.categoryService
+        .getCategoryById(this.categoryId)
+        .subscribe((result) => {
+          this.categoryForm.setValue({
+            name: result.name,
+            isActive: result.isActive,
+          });
         });
-      });
     }
 
     if (this.isAdd) {
       this.categoryForm.setValue({
-        name: "",
-        isActive: true
+        name: '',
+        isActive: true,
       });
     }
-
-    // if (this.isAdd){
-    //   this.categoryForm.setValue({
-    //     isActive: true
-    //   });
-    // }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.category$.unsubscribe();
@@ -72,22 +66,30 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.isSubmitted = true;
     if (this.isAdd) {
-      this.postCategory$ = this.categoryService.postCategory(this.categoryForm.value).subscribe(result => {
-                //all went well
-                this.router.navigateByUrl("category-management");
-              },
-              error => {
-                this.errorMessage = error.message;
-              });
+      this.postCategory$ = this.categoryService
+        .postCategory(this.categoryForm.value)
+        .subscribe(
+          (result) => {
+            //all went well
+            this.router.navigateByUrl('category-management');
+          },
+          (error) => {
+            this.errorMessage = error.message;
+          }
+        );
     }
     if (this.isEdit) {
-      this.putCategory$ = this.categoryService.putCategory(this.categoryId, this.categoryForm.value).subscribe(result => {
-                //all went well
-                this.router.navigateByUrl("category-management");
-              },
-              error => {
-                this.errorMessage = error.message;
-              });
+      this.putCategory$ = this.categoryService
+        .putCategory(this.categoryId, this.categoryForm.value)
+        .subscribe(
+          (result) => {
+            //all went well
+            this.router.navigateByUrl('category-management');
+          },
+          (error) => {
+            this.errorMessage = error.message;
+          }
+        );
     }
   }
 }

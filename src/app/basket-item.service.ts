@@ -10,7 +10,10 @@ export class BasketItemService {
   url = "https://bitworks-api.herokuapp.com";
   constructor(private httpClient: HttpClient) {}
 
-  updateBasketItem(id: string, basketItem: BasketItem): Observable<BasketItem> {
+  updateBasketItem(
+    id: number | string,
+    basketItem: BasketItem
+  ): Observable<BasketItem> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -21,7 +24,7 @@ export class BasketItemService {
     );
   }
 
-  addBasketItem( basketItem: BasketItem): Observable<BasketItem> {
+  addBasketItem(basketItem: BasketItem): Observable<BasketItem> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -45,6 +48,5 @@ export class BasketItemService {
   // getBasketItemsByBasketIdWithProduct(id: string): Observable<BasketItem[]> {
   //   return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id + "&_expand=product");
   // }
-
 
 }

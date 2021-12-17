@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from './order';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
+  constructor(private httpClient: HttpClient) {}
 
   url = "https://bitworks-api.herokuapp.com";
 
@@ -26,9 +27,10 @@ export class OrderService {
       return this.httpClient.put<Order>(this.url + "/orders/"+id, order, {headers: headers});
    }
 
-   postOrder(order: Order): Observable<Order>{
+  postOrder(order: Order): Observable<Order> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.post<Order>(this.url + "/orders", order, {headers: headers});
    }
+
 }

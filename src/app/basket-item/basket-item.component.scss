@@ -5,9 +5,43 @@
 }
 
 i {
-  color: red;
+  color: rgb(202, 60, 60);
 
   &:hover{
     color: black;
   }
+}
+
+img{
+  width: 40px;
+  height: auto;
+  margin: auto;
+}
+
+
+
+.p{
+  padding-top: 1.6rem;
+  width: 100%;
+  padding-bottom: 1.6rem;
+}
+
+.form-outline{
+  width: 100%;
+}
+
+.bt{
+  border-top: 0.1rem solid #eff1f3;
+}
+.bold{
+  font-weight: bold;
+}
+
+.italic{
+  font-style: italic;
+  font-size: 15px;
+}
+
+.nowrap{
+  white-space: nowrap;
 }
