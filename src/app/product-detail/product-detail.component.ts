@@ -30,6 +30,21 @@ export class ProductDetailComponent implements OnInit {
     categoryId: 0,
   };
 
+  category: Category = {_id: '', name: "test category", isActive: true};
+  basket: Basket = {_id:'', userId:0, orders: [], basketItems: []};
+  basketItem: BasketItem = {_id:'', basketId:' ', productId:'', amount:0, product:{} as Product};
+  @Input() product: Product = {
+    _id: '0',
+    name: "Test Product",
+    price: 0.00,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    isActive: true,
+    stockCount: 0,
+    rating: 5,
+    categoryId: '61b6fd619d7d2a27b9880374',
+    category: this.category
+  };
+
 
 
   userId= 1;

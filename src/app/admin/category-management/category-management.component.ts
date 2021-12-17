@@ -48,7 +48,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
     category.isActive = false
 
-    this.deleteCategorie$ = this.categoryService.putCategory(category.id , category).subscribe(result => {
+    this.deleteCategorie$ = this.categoryService.putCategory(category._id , category).subscribe(result => {
       //all went well
       this.getCategories();
       // this.router.navigateByUrl("category-management");

@@ -5,9 +5,9 @@ export interface Product {
   name: string;
   price: number;
   description: string;
-  // isActive: boolean;
+  isActive: boolean;
   stockCount: number;
   rating: number;
-  categoryId: number;
-  // category: Category
+  categoryId: string;
+  category: Category
 }

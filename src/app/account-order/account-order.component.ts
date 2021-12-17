@@ -25,7 +25,7 @@ export class AccountOrderComponent implements OnInit {
       this.totalProducts += item.amount;
     });
 
-    this.basketItems$ = this.basketItemService.getBasketItemsByBasketIdWithProduct(+this.basket.id).subscribe(result => {
+    this.basketItems$ = this.basketItemService.getBasketItemsByBasketIdWithProduct(+this.basket._id).subscribe(result => {
       this.basketItems = result
 
       result.forEach(item => {

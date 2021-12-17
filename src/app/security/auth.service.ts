@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../user';
-import { Observable } from 'rxjs';
-import { UserResponse } from './userResponse';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../user';
+import {Observable} from 'rxjs';
+import {UserResponse} from './userResponse';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   getToken(): string {
     return localStorage.getItem('token') ?? '';

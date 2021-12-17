@@ -32,8 +32,7 @@ export class AccountFormComponent implements OnInit {
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
-    if (this.user.id != '') {
-
+    if (this.user.id != '' || this.user.id != '0') {
         this.accountForm.setValue({
           firstName: this.user.firstName,
           lastName: this.user.lastName,
@@ -84,7 +83,7 @@ export class AccountFormComponent implements OnInit {
   }
 
   toggleIsEdit(){
-    if (this.user.id != '') {
+    if (this.user.id != '' || this.user.id != '0') {
       this.isSubmitted = false;
 
       this.accountForm.setValue({

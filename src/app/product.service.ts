@@ -23,18 +23,23 @@ export class ProductService {
   }
 
   getProductsByCategory(categoryId: number): Observable<Product[]>{
-    return this.httpClient.get<Product[]>("http://localhost:3000/products?categoryId="+ categoryId);
+    return this.httpClient.get<Product[]>("http://localhost:3000/products?categoryId="+ categoryId); //waiting for specific call
   }
 
-  postProduct(products: Product):  Observable<Product>{
+  postProduct(product: Product):  Observable<Product>{
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Product>("http://localhost:3000/products", products, {headers: headers});
+    return this.httpClient.post<Product>(this.url + "/products", product, {headers: headers});
   }
 
   putProduct(id: string, product: Product): Observable<Product>{
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.put<Product>("http://localhost:3000/products/"+id , product, {headers: headers});
+    return this.httpClient.put<Product>(this.url + "/products/"+id , product, {headers: headers});
   }
+
+  deleteProduct(id: string): Observable<Product> {
+    return this.httpClient.delete<Product>(this.url + "/products/" + id);
+  }
+
 }
