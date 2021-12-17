@@ -44,15 +44,19 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['category-detail'], {state: {id: id, mode: 'edit'}});
   }
 
-  // delete(id: number) {
-  //   this.deleteCategorie$ = this.categoryService.toNonActiveCate(id).subscribe(result => {
-  //     //all went well
-  //     this.getCategories();
-  //   }, error => {
-  //     //error
-  //     this.errorMessage = error.message;
-  //   });
-  // }
+  toNonActive(category: Category) {
+
+    category.isActive = false
+
+    this.deleteCategorie$ = this.categoryService.putCategory(category.id , category).subscribe(result => {
+      //all went well
+      this.getCategories();
+      // this.router.navigateByUrl("category-management");
+    }, error => {
+      //error
+      this.errorMessage = error.message;
+    });
+  }
 
   getCategories() {
     this.categories$ = this.categoryService.getCategories().subscribe(result => this.categories = result);

@@ -1,0 +1,37 @@
+.item {
+  border:2px solid #000;
+  // border-collapse: collapse;
+  // padding: 4px;
+}
+
+// i {
+//   color: red;
+
+//   &:hover{
+//     color: black;
+//   }
+// }
+
+i {
+  &.edit{
+    color: #5cb85c ;
+
+    &:hover{
+      color: black;
+    }
+  }
+  &.delete{
+    color: red;
+
+    &:hover{
+      color: black;
+    }
+  }
+
+
+
+}
+
+.btn-success{
+border-radius: 50%;
+}
