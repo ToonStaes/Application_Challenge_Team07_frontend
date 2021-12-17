@@ -1,13 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
@@ -18,12 +9,15 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
 import { CardComponent } from './card/card.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { CategoryManagementComponent } from './category-management/category-management.component';
-import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { CategoryManagementComponent } from './admin/category-management/category-management.component';
+import { CategoryDetailComponent } from './admin/category-detail/category-detail.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+
 import { SecurityModule } from './security/security.module';
+import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,22 +30,11 @@ import { SecurityModule } from './security/security.module';
     AccountOverviewComponent,
     CardComponent,
     PaymentFormComponent,
-    CategoryManagementComponent,
-    CategoryDetailComponent,
     AccountFormComponent,
     AccountOrderComponent,
     ProductFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatMenuModule,
-    MatSelectModule,
-    SecurityModule,
-  ],
+  imports: [SharedModule, AdminModule, SecurityModule],
   providers: [],
   bootstrap: [AppComponent],
 })

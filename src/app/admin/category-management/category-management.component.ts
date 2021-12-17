@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Category} from '../category';
-import {CategoryService} from '../category.service';
+import {Category} from '../../category';
+import {CategoryService} from '../../category.service';
 import {Observable, Subscription} from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../security/auth.service';
+import { AuthService } from '../../security/auth.service';
 
 @Component({
   selector: 'app-category-management',
