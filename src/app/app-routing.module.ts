@@ -12,6 +12,7 @@ import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
+import { ProductOverviewComponent } from './admin/product-overview/product-overview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,7 +26,9 @@ const routes: Routes = [
   { path: 'login', component: SecurityComponent },
   { path: 'register', component: SecurityComponent },
   { path: 'logout', component: SecurityComponent },
-  {path: 'apitests', component: ApiTestsComponent}
+  { path: 'apitests', component: ApiTestsComponent },
+  { path: 'products', component: ProductOverviewComponent},
+  { path: 'productForm', component: ProductFormComponent}
 ];
 
 @NgModule({

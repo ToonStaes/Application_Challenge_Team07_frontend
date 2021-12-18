@@ -39,7 +39,7 @@ export class ProductFormComponent implements OnInit {
           });
         });
       }
-   }
+  }
 
   ngOnInit(): void {
   }

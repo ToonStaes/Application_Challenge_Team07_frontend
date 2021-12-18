@@ -39,6 +39,13 @@
       >
         <a class="nav-link" routerLink="/contact">Contact</a>
       </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" routerLink="/products">Products</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <div *ngIf="authService.isLoggedIn()" class="row">
