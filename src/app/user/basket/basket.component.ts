@@ -6,11 +6,11 @@ import { Basket } from './basket';
 import { BasketItemService } from './basket-item/basket-item.service';
 import { BasketService } from './basket.service';
 import { BasketItem } from './basket-item/basketItem';
-import { ItemTotal } from '../../itemTotal';
-import { Order } from '../../order';
+import { ItemTotal } from './itemTotal';
+import { Order } from '../order';
 import { Product } from '../../admin/product/product';
 import { ProductService } from '../../admin/product/product.service';
-import { OrderService } from '../../order.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-basket',

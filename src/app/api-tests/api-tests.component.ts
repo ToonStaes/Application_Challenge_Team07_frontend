@@ -5,10 +5,10 @@ import { Category } from '../admin/category/category';
 import { CategoryService } from '../admin/category/category.service';
 import { Product } from '../admin/product/product';
 import { ProductService } from '../admin/product/product.service';
-import { Order } from '../order';
-import { OrderService } from '../order.service';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { Order } from '../user/order';
+import { OrderService } from '../user/order.service';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 import { BasketItem } from '../user/basket/basket-item/basketItem';
 import { BasketItemService } from '../user/basket/basket-item/basket-item.service';
 

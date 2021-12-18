@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from '../../../user';
-import { UserService } from '../../../user.service';
+import { User } from '../../user';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-account-form',

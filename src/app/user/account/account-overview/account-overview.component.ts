@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 import { Basket } from '../../basket/basket';
 import { BasketService } from '../../basket/basket.service';
 import { AuthService } from '../../../security/auth.service';
-import { User } from '../../../user';
-import { UserService } from '../../../user.service';
+import { User } from '../../user';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-account-overview',

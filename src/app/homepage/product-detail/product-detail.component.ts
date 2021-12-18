@@ -7,10 +7,10 @@ import { BasketItemService } from '../../user/basket/basket-item/basket-item.ser
 import { BasketService } from '../../user/basket/basket.service';
 import { BasketItem } from '../../user/basket/basket-item/basketItem';
 import { Category } from '../../admin/category/category';
-import { Order } from '../../order';
+import { Order } from '../../user/order';
 import { Product } from '../../admin/product/product';
 import { ProductService } from '../../admin/product/product.service';
-import { User } from '../../user';
+import { User } from '../../user/user';
 
 @Component({
   selector: 'app-product-detail',

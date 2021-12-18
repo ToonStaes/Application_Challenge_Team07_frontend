@@ -4,12 +4,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BasketService } from './basket.service';
 import { BasketItemModule } from './basket-item/basket-item.module';
 import { BasketComponent } from './basket.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 
 
 @NgModule({
   declarations: [
-    BasketComponent
+    BasketComponent,
+    PaymentFormComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { BasketComponent } from './basket.component';
   ],
   exports: [
     BasketItemModule,
-    BasketComponent
+    BasketComponent,
+    PaymentFormComponent
   ],
   providers: [
     BasketService

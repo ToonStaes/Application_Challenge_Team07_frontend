@@ -6,7 +6,7 @@ import { BasketComponent } from './user/basket/basket.component';
 import { AccountOverviewComponent } from './user/account/account-overview/account-overview.component';
 import { HomeComponent } from './homepage/home/home.component';
 import { ProductDetailComponent } from './homepage/product-detail/product-detail.component';
-import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { PaymentFormComponent } from './user/basket/payment-form/payment-form.component';
 import { ProductFormComponent } from './admin/product/product-form/product-form.component';
 import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './homepage/contact-form/contact-form.component';
