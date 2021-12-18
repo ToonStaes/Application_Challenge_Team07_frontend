@@ -9,10 +9,8 @@ import { OrderService } from '../order.service';
   styleUrls: ['./payment-form.component.scss'],
 })
 export class PaymentFormComponent implements OnInit {
-  isAdd: boolean = false;
-  isEdit: boolean = false;
   orderId: string = '';
-  basketId: number = 0;
+  basketId: string = '';
   isSubmitted: boolean = false;
   errorMessage: string = '';
   order$: Subscription = new Subscription();
@@ -22,32 +20,15 @@ export class PaymentFormComponent implements OnInit {
     address: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     postalCode: new FormControl('', [Validators.required]),
-    date: new FormControl(''),
+    date: new FormControl(new Date().toISOString().substring(0,16)),
     isPaid: new FormControl(''),
-    basketId: new FormControl(this.basketId),
+    basket: new FormControl(this.basketId),
   });
 
   constructor(private router: Router, private orderService: OrderService) {
-    this.isAdd =
-      this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
-    this.isEdit =
-      this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
-    this.orderId = this.router.getCurrentNavigation()?.extras.state?.id;
-    this.basketId = +this.router.getCurrentNavigation()?.extras.state?.basketid;
-    if (this.orderId != null && this.orderId != '') {
-      this.order$ = this.orderService
-        .getOrderById(this.orderId)
-        .subscribe((result) => {
-          this.paymentForm.setValue({
-            address: result.address,
-            city: result.city,
-            postalCode: result.postalCode,
-            date: Date.now(),
-            isPaid: false,
-            basketid: this.basketId,
-          });
-        });
-    }
+    console.log(this.router.getCurrentNavigation());
+    this.basketId = this.router.getCurrentNavigation()?.extras.state?.basketId;
+    console.log(this.basketId);
   }
 
   ngOnInit(): void {}
@@ -55,7 +36,7 @@ export class PaymentFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     this.paymentForm.patchValue({
-      basketid: this.basketId,
+      basket: this.basketId,
       isPaid: true,
     });
     console.log(this.paymentForm.value);

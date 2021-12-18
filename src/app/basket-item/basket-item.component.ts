@@ -26,11 +26,13 @@ export class BasketItemComponent implements OnInit {
   };
 
   @Output() sendItemAmountEvent: EventEmitter<any> = new EventEmitter();
+  @Output() deleteBasketItemEvent: EventEmitter<any> = new EventEmitter();
 
   product?: Product;
   category?: Category;
   isLoading: Boolean = true;
   itemTotal: ItemTotal = { productId: '0', total: 0 };
+
 
   constructor(
     private productService: ProductService,
@@ -95,5 +97,11 @@ export class BasketItemComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  removeFromBasket(basketItemId: string){
+    this.basketItemService.deleteBasketItem(basketItemId).subscribe(result => {
+      this.deleteBasketItemEvent.emit(basketItemId)
+    })
   }
 }

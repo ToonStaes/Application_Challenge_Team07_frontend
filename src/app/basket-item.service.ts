@@ -53,6 +53,10 @@ export class BasketItemService {
     return this.httpClient.get<BasketItem[]>(this.url + '/basket-items/findByBasket/'  + id);
   }
 
+  deleteBasketItem(id: string): Observable<BasketItem>{
+    return this.httpClient.delete<BasketItem>(this.url + '/basket-items/' + id);
+  }
+
   // getBasketItemsByBasketIdWithProduct(id: string): Observable<BasketItem[]> {
   //   return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id + "&_expand=product");
   // }
