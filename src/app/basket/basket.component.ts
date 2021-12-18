@@ -9,7 +9,6 @@ import { BasketItem } from '../basketItem';
 import { ItemTotal } from '../itemTotal';
 import { Order } from '../order';
 import { Product } from '../product';
-import { ProductInBasketService } from '../product-in-basket.service';
 import { ProductService } from '../product.service';
 import { OrderService } from '../order.service';
 
