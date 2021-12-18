@@ -43,7 +43,7 @@ export class BasketItemComponent implements OnInit {
       amount: this.basketItem.amount,
     });
     this.productService
-      .getProductById(this.basketItem.productId)
+      .getProductById(this.basketItem.product!._id!)
       .subscribe((dbProduct) => {
         console.log(dbProduct)
         this.product = dbProduct;
