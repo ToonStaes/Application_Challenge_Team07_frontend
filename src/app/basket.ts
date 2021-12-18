@@ -9,5 +9,4 @@ export interface Basket {
   isActive: boolean;
   order: Order;
   user: User;
-  basketItems: Array<BasketItem>;
 }

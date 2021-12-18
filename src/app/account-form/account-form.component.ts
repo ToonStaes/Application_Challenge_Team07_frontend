@@ -16,8 +16,6 @@ export class AccountFormComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
-  userId = '61b70536efeb9804e3a76664';
-
   @Input() user: User = {
     _id: '',
     firstName: 'firstname',
@@ -53,9 +51,6 @@ export class AccountFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService
-      .getUserById(this.userId)
-      .subscribe((result) => (this.user = result));
   }
 
   ngOnDestroy(): void {
@@ -78,10 +73,9 @@ export class AccountFormComponent implements OnInit {
 
       if (this.isEdit) {
         this.putUser$ = this.userService
-          .putUser(this.userId, this.user)
+          .putUser(this.user._id, this.user)
           .subscribe(
             (result) => {
-              //all went well
               this.toggleIsEdit();
             },
             (error) => {
@@ -92,10 +86,6 @@ export class AccountFormComponent implements OnInit {
     }
   }
 
-  //delay method to give api methods some additional time to complete
-  delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
 
   toggleIsEdit() {
     if (this.user._id != '') {

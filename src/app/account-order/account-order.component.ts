@@ -18,9 +18,10 @@ export class AccountOrderComponent implements OnInit {
     orderId: 0,
     isActive: true,
     user: {} as User,
-    order: {} as Order,
-    basketItems: [],
+    order: {} as Order
   };
+
+  debugMessage: string = "test ";
 
   totalProducts = 0;
   totalCost = 0;
@@ -31,17 +32,20 @@ export class AccountOrderComponent implements OnInit {
   constructor(private basketItemService: BasketItemService) {}
 
   ngOnInit(): void {
-    this.basket.basketItems.forEach((item) => {
-      this.totalProducts += item.amount;
-    });
-
     this.basketItems$ = this.basketItemService
       .getBasketItemsByBasketId(this.basket._id)
       .subscribe((result) => {
+        this.basket.order.date = this.basket.order.date.slice(0, -14)
+        this.debugMessage += result.length;
         this.basketItems = result;
-        result.forEach((item) => {
+
+
+        this.basketItems.forEach(item => {
+          this.totalProducts += item.amount;
           this.totalCost += item.amount * item.product.price;
         });
+
+
       });
   }
 }
