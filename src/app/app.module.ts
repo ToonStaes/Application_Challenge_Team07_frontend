@@ -41,14 +41,14 @@ import { HomepageModule } from './homepage/homepage.module';
     PaymentFormComponent,
     ProductFormComponent,
     ApiTestsComponent,
-    ContactFormComponent,
+    ContactFormComponent
   ],
   imports: [
     SharedModule,
     AdminModule,
     SecurityModule,
     UserModule,
-    HomepageModule,
+    HomepageModule
   ],
   providers: [],
   bootstrap: [AppComponent],
