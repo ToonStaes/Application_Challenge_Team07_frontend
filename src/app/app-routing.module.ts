@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryDetailComponent } from './admin/category-detail/category-detail.component';
 import { CategoryManagementComponent } from './admin/category-management/category-management.component';
-import { BasketComponent } from './basket/basket.component';
+import { BasketComponent } from './user/basket/basket.component';
 import { AccountOverviewComponent } from './user/account/account-overview/account-overview.component';
 import { HomeComponent } from './homepage/home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';

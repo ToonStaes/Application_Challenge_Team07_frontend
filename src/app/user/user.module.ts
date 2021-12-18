@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountModule } from './account/account.module';
 import { SharedModule } from '../shared/shared.module';
+import { BasketModule } from './basket/basket.module';
 
 
 
@@ -10,10 +11,12 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AccountModule,
-    SharedModule
+    SharedModule,
+    BasketModule
   ],
   exports: [
-    AccountModule
+    AccountModule,
+    BasketModule
   ]
 })
 export class UserModule { }

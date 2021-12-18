@@ -11,16 +11,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HomeComponent } from './homepage/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BasketComponent } from './basket/basket.component';
-import { BasketItemComponent } from './basket-item/basket-item.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { AccountOverviewComponent } from './user/account/account-overview/account-overview.component';
-import { CardComponent } from './homepage/card/card.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { AccountFormComponent } from './user/account/account-form/account-form.component';
-import { AccountOrderComponent } from './user/account/account-order/account-order.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 
 import { SecurityModule } from './security/security.module';
@@ -35,8 +28,6 @@ import { HomepageModule } from './homepage/homepage.module';
   declarations: [
     AppComponent,
     NavbarComponent,
-    BasketComponent,
-    BasketItemComponent,
     ProductDetailComponent,
     PaymentFormComponent,
     ProductFormComponent,

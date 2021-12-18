@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Basket } from '../basket';
-import { BasketItemService } from '../basket-item.service';
-import { BasketItem } from '../basketItem';
-import { Category } from '../category';
-import { CategoryService } from '../category.service';
-import { ItemTotal } from '../itemTotal';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { BasketItemService } from './basket-item.service';
+import { BasketItem } from './basketItem';
+import { Category } from '../../../category';
+import { CategoryService } from '../../../category.service';
+import { ItemTotal } from '../../../itemTotal';
+import { Product } from '../../../product';
+import { ProductService } from '../../../product.service';
 
 @Component({
   selector: 'app-basket-item',
