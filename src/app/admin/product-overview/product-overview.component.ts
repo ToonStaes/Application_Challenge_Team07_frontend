@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/product';
+import { ProductFormComponent } from 'src/app/product-form/product-form.component';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { ProductService } from 'src/app/product.service';
 export class ProductOverviewComponent implements OnInit {
   products: Product[] = []
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((result) => {
@@ -22,10 +24,23 @@ export class ProductOverviewComponent implements OnInit {
   }
 
   edit(product: Product){
-    console.log(product)
+    this.router.navigateByUrl('editProduct/' + product._id)
   }
 
   toggleActive(product: Product){
-    console.log(product)
+    product.isActive = !product.isActive
+
+    this.productService.putProduct(product._id!, product).subscribe(result => {
+      product = result;
+      this.products.forEach(item => {
+        if (item._id! === product._id!){
+          item = product
+        }
+      })
+    })
+  }
+
+  addProduct(){
+    this.router.navigateByUrl('newProduct')
   }
 }

@@ -1,0 +1,35 @@
+<div mat-dialog-content [formGroup]="formGroup" class="text-center">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Stock</mat-label>
+    <input matInput formControlName="stockCount">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Is active</mat-label>
+    <input matInput formControlName="isActive">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions class="row">
+  <button mat-button (click)="onNoClick()" class="btn btn-danger col-6 text-center">Cancel</button>
+  <button mat-button [mat-dialog-close]="formGroup.value" class="btn btn-success col-6 text-center">Submit</button>
+</div>

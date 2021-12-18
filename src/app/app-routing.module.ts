@@ -13,6 +13,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
 import { ProductOverviewComponent } from './admin/product-overview/product-overview.component';
+import { AddProductFormComponent } from './admin/add-product-form/add-product-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +29,9 @@ const routes: Routes = [
   { path: 'logout', component: SecurityComponent },
   { path: 'apitests', component: ApiTestsComponent },
   { path: 'products', component: ProductOverviewComponent},
-  { path: 'productForm', component: ProductFormComponent}
+  { path: 'productForm', component: ProductFormComponent},
+  { path: 'newProduct', component: AddProductFormComponent, canActivate: [AuthGuard]},
+  { path: 'editProduct/:id', component: AddProductFormComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
