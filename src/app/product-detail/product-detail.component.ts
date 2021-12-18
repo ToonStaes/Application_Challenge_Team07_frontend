@@ -24,8 +24,7 @@ export class ProductDetailComponent implements OnInit {
     userId: 0,
     isActive: true,
     user: {} as User,
-    order: {} as Order,
-    basketItems: [],
+    order: {} as Order
   };
   basketItem: BasketItem = {
     _id: '',

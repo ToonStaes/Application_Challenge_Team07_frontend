@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Basket } from '../basket';
 import { BasketService } from '../basket.service';
+import { AuthService } from '../security/auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -13,7 +14,7 @@ import { UserService } from '../user.service';
 })
 export class AccountOverviewComponent implements OnInit {
   isEdit = false;
-  userId = '61b70536efeb9804e3a76664';
+  userId = '';
 
   @Input() user: User = {
     _id: '',
@@ -29,6 +30,8 @@ export class AccountOverviewComponent implements OnInit {
   baskets: Basket[] = [];
   newBaskets: Basket[] = [];
 
+  debugMessage: string = 'test '
+
   baskets$: Subscription = new Subscription();
   user$: Subscription = new Subscription();
   putUser$: Subscription = new Subscription();
@@ -37,27 +40,38 @@ export class AccountOverviewComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private basketService: BasketService
+    private basketService: BasketService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.user$ = this.userService
-      .getUserById(this.userId)
-      .subscribe((result) => {
-        this.user = result;
+    this.user = this.authService.getUser()!;
+    this.debugMessage += this.user._id;
+
+    if (this.user._id != '') {
+      this.user$ = this.userService
+        .getUserById(this.user._id)
+        .subscribe((result) => {
+          this.user = result;
+        });
+
         this.baskets$ = this.basketService
-          .getBasketsByUserId(this.userId)
-          .subscribe((result) => {
-            this.newBaskets = result;
-            if (this.newBaskets.length != 0) {
-              this.newBaskets.forEach((basket) => {
-                if (basket.order != null) {
-                  this.baskets.push(basket);
-                }
-              });
-            }
-          });
-      });
+            .getBasketsByUserId(this.user._id)
+            .subscribe((result) => {
+              this.newBaskets = result;
+              if (this.newBaskets.length != 0) {
+                this.newBaskets.forEach((basket) => {
+                  if (basket.order != null) {
+                    this.baskets.push(basket);
+                  }
+                });
+              }
+            });
+            this.debugMessage += this.baskets.length;
+    }
+
+
+
   }
 
   toggleIsEdit() {

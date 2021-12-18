@@ -53,9 +53,9 @@ export class AccountFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService
-      .getUserById(this.userId)
-      .subscribe((result) => (this.user = result));
+    // this.user$ = this.userService
+    //   .getUserById(this.userId)
+    //   .subscribe((result) => (this.user = result));
   }
 
   ngOnDestroy(): void {
