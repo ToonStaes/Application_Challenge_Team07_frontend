@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Basket } from '../user/basket/basket';
-import { BasketItemService } from '../user/basket/basket-item/basket-item.service';
-import { BasketService } from '../user/basket/basket.service';
-import { BasketItem } from '../user/basket/basket-item/basketItem';
-import { Category } from '../category';
-import { Order } from '../order';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
-import { User } from '../user';
+import { Basket } from '../../user/basket/basket';
+import { BasketItemService } from '../../user/basket/basket-item/basket-item.service';
+import { BasketService } from '../../user/basket/basket.service';
+import { BasketItem } from '../../user/basket/basket-item/basketItem';
+import { Category } from '../../admin/category/category';
+import { Order } from '../../order';
+import { Product } from '../../product';
+import { ProductService } from '../../product.service';
+import { User } from '../../user';
 
 @Component({
   selector: 'app-product-detail',

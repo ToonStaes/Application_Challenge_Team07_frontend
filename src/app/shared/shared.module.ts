@@ -7,9 +7,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -18,7 +21,7 @@ import { AppRoutingModule } from '../app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { AppRoutingModule } from '../app-routing.module';
     ReactiveFormsModule,
     MatMenuModule,
     MatSelectModule,
+    NavbarComponent
   ],
 })
 export class SharedModule {}

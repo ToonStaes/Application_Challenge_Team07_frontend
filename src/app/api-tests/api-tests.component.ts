@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Basket } from '../user/basket/basket';
 import { BasketService } from '../user/basket/basket.service';
-import { Category } from '../category';
-import { CategoryService } from '../category.service';
+import { Category } from '../admin/category/category';
+import { CategoryService } from '../admin/category/category.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { Order } from '../order';
