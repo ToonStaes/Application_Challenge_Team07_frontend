@@ -69,10 +69,14 @@ export class AccountOverviewComponent implements OnInit {
             });
             this.debugMessage += this.baskets.length;
     }
-
-
-
   }
+
+  ngOnDestroy(): void {
+    this.user$.unsubscribe();
+    this.putUser$.unsubscribe();
+    this.baskets$.unsubscribe();
+  }
+
 
   toggleIsEdit() {
     if (this.isEdit) {

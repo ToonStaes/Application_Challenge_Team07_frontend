@@ -43,7 +43,6 @@ export class AccountOrderComponent implements OnInit {
         this.basketItems.forEach(item => {
           this.totalProducts += item.amount;
           this.totalCost += item.amount * item.product.price;
-          // this.debugMessage += item.product.price;
         });
 
 
