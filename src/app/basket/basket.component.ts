@@ -37,26 +37,28 @@ export class BasketComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.basketService.getBasketsByUserId("61b70536efeb9804e3a76664").subscribe((result) => {
-      result.forEach((dbBasket) => {
-        if (dbBasket.orderId == null) {
-          console.log('basket found');
-          console.log(dbBasket.id);
-          this.basket = dbBasket;
-          this.basketItems = [];
-          this.basketItemService
-            .getProductsByBasketId(this.basket.id!)
-            .subscribe((dbBasketItems) => {
-              console.log('basketItems found');
-              console.log(dbBasketItems);
-              this.basketItems = dbBasketItems;
-              this.basketItems.forEach((item) => {
-                console.log(item.id);
+    this.basketService
+      .getBasketsByUserId('61b70536efeb9804e3a76664')
+      .subscribe((result) => {
+        result.forEach((dbBasket) => {
+          if (dbBasket.orderId == null) {
+            console.log('basket found');
+            console.log(dbBasket._id);
+            this.basket = dbBasket;
+            this.basketItems = [];
+            this.basketItemService
+              .getBasketItemsByBasketId(this.basket._id)
+              .subscribe((dbBasketItems) => {
+                console.log('basketItems found');
+                console.log(dbBasketItems);
+                this.basketItems = dbBasketItems;
+                this.basketItems.forEach((item) => {
+                  console.log(item.id);
+                });
               });
-            });
-        }
+          }
+        });
       });
-    });
   }
 
   updateTotal(itemTotal: ItemTotal) {

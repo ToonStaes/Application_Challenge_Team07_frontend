@@ -51,7 +51,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     category.isActive = false;
 
     this.deleteCategorie$ = this.categoryService
-      .putCategory(category.id!, category)
+      .putCategory(category._id!, category)
       .subscribe(
         (result) => {
           //all went well

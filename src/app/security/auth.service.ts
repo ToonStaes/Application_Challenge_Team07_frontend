@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {User} from '../user';
-import {Observable} from 'rxjs';
-import {UserResponse} from './userResponse';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../user';
+import { Observable } from 'rxjs';
+import { UserResponse } from './userResponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getToken(): string {
     return localStorage.getItem('token') ?? '';
@@ -19,14 +17,14 @@ export class AuthService {
   getUser(): User | null {
     if (this.isLoggedIn()) {
       return {
-        id: localStorage.getItem('id') ?? '0',
+        _id: localStorage.getItem('id') ?? '0',
         email: localStorage.getItem('email') ?? '',
         password: '',
         token: this.getToken(),
         firstName: '',
         lastName: '',
         isAdmin: false,
-        isSuperAdmin: false
+        isSuperAdmin: false,
       };
     } else {
       return null;
