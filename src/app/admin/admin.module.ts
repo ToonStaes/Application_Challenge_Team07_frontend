@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryModule } from './category/category.module';
-import { ProductOverviewComponent } from './product-overview/product-overview.component';
+import { ProductModule } from './product/product.module';
 
 
 
 @NgModule({
   declarations: [
-    ProductOverviewComponent
+
   ],
   imports: [
     SharedModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ],
   exports:[
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ]
 })
 export class AdminModule { }

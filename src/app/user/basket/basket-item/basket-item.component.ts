@@ -6,8 +6,8 @@ import { BasketItem } from './basketItem';
 import { Category } from '../../../admin/category/category';
 import { CategoryService } from '../../../admin/category/category.service';
 import { ItemTotal } from '../../../itemTotal';
-import { Product } from '../../../product';
-import { ProductService } from '../../../product.service';
+import { Product } from '../../../admin/product/product';
+import { ProductService } from '../../../admin/product/product.service';
 
 @Component({
   selector: 'app-basket-item',

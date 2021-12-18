@@ -7,12 +7,12 @@ import { AccountOverviewComponent } from './user/account/account-overview/accoun
 import { HomeComponent } from './homepage/home/home.component';
 import { ProductDetailComponent } from './homepage/product-detail/product-detail.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFormComponent } from './admin/product/product-form/product-form.component';
 import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './homepage/contact-form/contact-form.component';
 import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
-import { ProductOverviewComponent } from './admin/product-overview/product-overview.component';
+import { ProductOverviewComponent } from './admin/product/product-overview/product-overview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

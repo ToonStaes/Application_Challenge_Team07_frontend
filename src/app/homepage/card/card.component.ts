@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
-import { Product } from '../../product';
+import { ProductService } from '../../admin/product/product.service';
+import { Product } from '../../admin/product/product';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Category } from '../../admin/category/category';

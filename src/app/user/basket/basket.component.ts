@@ -8,8 +8,8 @@ import { BasketService } from './basket.service';
 import { BasketItem } from './basket-item/basketItem';
 import { ItemTotal } from '../../itemTotal';
 import { Order } from '../../order';
-import { Product } from '../../product';
-import { ProductService } from '../../product.service';
+import { Product } from '../../admin/product/product';
+import { ProductService } from '../../admin/product/product.service';
 import { OrderService } from '../../order.service';
 
 @Component({

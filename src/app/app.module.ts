@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ProductDetailComponent } from './homepage/product-detail/product-detail.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { ProductFormComponent } from './product-form/product-form.component';
 
 import { SecurityModule } from './security/security.module';
 import { AdminModule } from './admin/admin.module';
@@ -28,8 +27,7 @@ import { HomepageModule } from './homepage/homepage.module';
   declarations: [
     AppComponent,
     PaymentFormComponent,
-    ProductFormComponent,
-    ApiTestsComponent,
+    ApiTestsComponent
   ],
   imports: [
     SharedModule,
