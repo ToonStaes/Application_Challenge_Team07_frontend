@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { Product } from '../product';
+import { ProductService } from '../../product.service';
+import { Product } from '../../product';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { Category } from '../category';
-import { CategoryService } from '../category.service';
+import { Category } from '../../category';
+import { CategoryService } from '../../category.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({

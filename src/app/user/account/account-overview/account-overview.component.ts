@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Basket } from '../basket';
-import { BasketService } from '../basket.service';
-import { AuthService } from '../security/auth.service';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { Basket } from '../../../basket';
+import { BasketService } from '../../../basket.service';
+import { AuthService } from '../../../security/auth.service';
+import { User } from '../../../user';
+import { UserService } from '../../../user.service';
 
 @Component({
   selector: 'app-account-overview',
