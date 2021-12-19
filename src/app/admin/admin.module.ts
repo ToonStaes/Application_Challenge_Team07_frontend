@@ -4,6 +4,7 @@ import { CategoryManagementComponent } from './category-management/category-mana
 import { SharedModule } from '../shared/shared.module';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
 
 
 
@@ -12,7 +13,8 @@ import { AdminManagementComponent } from './admin-management/admin-management.co
     CategoryDetailComponent,
     CategoryManagementComponent,
     ProductOverviewComponent,
-    AdminManagementComponent
+    AdminManagementComponent,
+    AdminFormComponent,
   ],
   imports: [
     SharedModule

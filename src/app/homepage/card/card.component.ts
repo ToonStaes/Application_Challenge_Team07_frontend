@@ -13,7 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  selectedCategory: number = 0;
+  selectedCategory: string = '';
   isCategory1: boolean = false;
   productCategory: Product[] = [];
   products: Product[] = [];
@@ -59,7 +59,7 @@ export class CardComponent implements OnInit {
       .subscribe((result) => (this.categories = result));
   }
 
-  getProductsByCategory(categoryId: number) {
+  getProductsByCategory(categoryId: string) {
     this.products$ = this.productService
       .getProductsByCategoryId(categoryId)
       .subscribe((result) => {
@@ -77,7 +77,7 @@ export class CardComponent implements OnInit {
   }
 
   onFilter() {
-    if (this.selectedCategory != 0) {
+    if (this.selectedCategory != '') {
       this.getProductsByCategory(this.selectedCategory);
     } else {
       this.getProducts();

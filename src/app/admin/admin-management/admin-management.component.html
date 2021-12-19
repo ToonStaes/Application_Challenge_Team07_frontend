@@ -1,1 +1,48 @@
-<p>admin-management works!</p>
+<h1>Administrators</h1>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div class="col-md-12 pb-3 pt-2">
+  <button type="button" class="btn btn-success addBtn" (click)="add()">
+    <i class="fas fa-plus"></i></button>
+</div>
+
+<table class="table table-hover" *ngIf="admins && admins.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Admin?</th>
+      <th scope="col">SuperAdmin?</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let admin of admins">
+      <td scope="row">{{ admin.email }}</td>
+
+      <td *ngIf="!admin.isAdmin">
+        <i class="fas fa-times"></i>
+      </td>
+      <td *ngIf="admin.isAdmin">
+          <i class="fas fa-check"></i>
+      </td>
+
+        <td *ngIf="!admin.isSuperAdmin">
+          <i class="fas fa-times"></i>
+        </td>
+        <td *ngIf="admin.isSuperAdmin">
+            <i class="fas fa-check"></i>
+        </td>
+
+        <td>
+        <button type="button" class="btn py-0 align-self-center" (click)="edit(admin._id)" >
+          <i class="fas fa-edit edit"></i>
+        </button>
+        <button type="button" class="btn py-0 align-self-center" (click)="delete(admin._id)" >
+          <i class="fas fa-trash-alt delete"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
