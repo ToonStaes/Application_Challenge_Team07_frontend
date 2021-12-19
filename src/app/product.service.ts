@@ -42,4 +42,8 @@ export class ProductService {
     return this.httpClient.delete<Product>(this.url + "/products/" + id);
   }
 
+  filterByProductName(search: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(this.url + "/products/filterByProductName/"+ search.search);
+  }
+
 }
