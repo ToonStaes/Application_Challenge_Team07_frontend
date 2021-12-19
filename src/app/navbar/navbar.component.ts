@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../product.service';
 import { AuthService } from '../security/auth.service';
 
 @Component({
@@ -9,7 +12,7 @@ import { AuthService } from '../security/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(private router: Router, public authService: AuthService, public productService: ProductService) { }
 
   ngOnInit(): void {
   }
