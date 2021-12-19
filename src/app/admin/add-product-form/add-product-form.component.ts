@@ -11,6 +11,7 @@ import { Category } from 'src/app/category';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product';
+import { log } from 'console';
 
 @Component({
   selector: 'app-add-product-form',
@@ -60,36 +61,52 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   uploadProgress: number | undefined;
 
   // categories for select
+  categoriesFromDB: Category[] = [];
   categories: Category[] = [];
+  selected: string = '';
 
   ngOnInit(): void {
     if (this.isEdit) {
       const id = this.route.snapshot.paramMap.get('id');
-      if (id != null) {
+      if (id != null && id != '') {
         this.productId = id;
         this.productService
           .getProductById(this.productId)
           .subscribe((result) => {
+            console.log(result)
             this.inputProduct = result;
             this.imageSrc = result.imageLocation;
+            this.selected = result.category._id!;
             this.productForm.patchValue({
               name: result.name,
               description: result.description,
               stockCount: result.stockCount,
               imageUrl: result.imageLocation,
-              categoryId: result.categoryId,
+              categoryId: result.category._id!,
               price: result.price,
             });
+            this.getCategories()
           });
       }
+    } else {
+      this.getCategories()
     }
 
-    // get categories
-    this.categories$ = this.categoryService
-      .getCategories()
-      .subscribe((result) => {
-        this.categories = result;
+  }
+
+  getCategories() {
+    this.categories$ = this.categoryService.getCategories().subscribe((result) => {
+      this.categoriesFromDB = result;
+      this.categoriesFromDB.forEach((category) => {
+        console.log(category);
+        console.log("selected:" + this.selected)
+        if (category.isActive) {
+          console.log("is active");
+          this.categories.push(category);
+        }
       });
+      console.log(this.categories);
+});
   }
 
   ngOnDestroy(): void {
