@@ -23,22 +23,16 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   categoryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    isActive: new FormControl(''),
+    isActive: new FormControl('')
   });
 
-  constructor(
-    private router: Router,
-    private categoryService: CategoryService
-  ) {
-    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
+  constructor(private router: Router, private categoryService: CategoryService) {
+    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-    console.log(this.categoryId)
-    console.log(this.isEdit)
-    console.log(this.isAdd)
 
-    if (this.categoryId != '') {
+    if (this.categoryId != null && this.categoryId != '') {
       this.category$ = this.categoryService
         .getCategoryById(this.categoryId)
         .subscribe((result) => {
@@ -66,7 +60,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.putCategory$.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.isSubmitted = true;
     if (this.isAdd) {
       this.postCategory$ = this.categoryService

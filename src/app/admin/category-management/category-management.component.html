@@ -3,47 +3,39 @@
   {{ errorMessage }}
 </div>
 
-<div class="m-2 d-flex justify-content-between">
-  <button type="button" class="btn btn-success" (click)="add()"> <i class="fas fa-plus"></i> Categorie</button>
+
+<div class="col-md-12 pb-3 pt-2">
+  <button type="button" class="btn btn-success addBtn" (click)="add()">
+    <i class="fas fa-plus"></i></button>
   <mat-checkbox (change)="onShowNonActive()">Toon categoriën die niet actief zijn.</mat-checkbox>
 </div>
 
-
-<table class="table" *ngIf="categories && categories.length > 0">
+<table class="table table-hover" *ngIf="categories && categories.length > 0">
   <thead>
     <tr>
-      <th scope="col">Naam</th>
-      <th scope="col">Actief?</th>
-      <th scope="col">Acties</th>
+      <th scope="col">Name</th>
+      <th scope="col">Active?</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let cat of categories">
-      <td>{{ cat.name }}</td>
-      <td class="active" *ngIf="cat.isActive == false"><i class="far fa-square"></i></td>
-      <td class="active" *ngIf="cat.isActive == true"><i class="far fa-check-square"></i></td>
-      <td>
 
-          <button
-            type="button"
-            class="btn py-0 align-self-center "
-            (click)="edit(cat._id)">
-            <i class="fas fa-edit edit"></i>
-          </button>
-
-        <button
-          type="button"
-          class="btn py-0 align-self-center"
-          (click)="toNonActive(cat)">
-          <i class="far fa-trash-alt delete"></i>
+      <td scope="row">{{ cat.name }}</td>
+      <td *ngIf="cat.isActive == false">
+        <button type="button" class="btn py-0 align-self-center" (click)="toggleActive(cat)" >
+        <i class="fas fa-times"></i>
         </button>
-        <!-- <button class="btn col-md-2 py-0  align-self-center"><i class="fas fa-trash-alt"></i></button> -->
+      </td>
+      <td *ngIf="cat.isActive == true">
+        <button type="button" class="btn py-0 align-self-center" (click)="toggleActive(cat)" >
+          <i class="fas fa-check"></i>
+        </button></td>
+      <td>
+        <button type="button" class="btn py-0 align-self-center" (click)="edit(cat._id!)" >
+          <i class="fas fa-edit edit"></i>
+        </button>
       </td>
     </tr>
   </tbody>
 </table>
-<!-- <div class="col-md-12 text-center">
-  <button type="button" class="btn btn-success m-auto" (click)="add()">
-    <i class="fas fa-plus"></i>
-  </button>
-</div> -->
