@@ -23,6 +23,7 @@ export class ProductService {
   }
 
   getProductsByCategoryId(categoryId: number): Observable<Product[]>{
+    console.log("categories get", this.url+ "/products/findByCategory/"+ categoryId);
     return this.httpClient.get<Product[]>(this.url+ "/products/findByCategory/"+ categoryId); //waiting for specific call
   }
 
@@ -40,6 +41,10 @@ export class ProductService {
 
   deleteProduct(id: string): Observable<Product> {
     return this.httpClient.delete<Product>(this.url + "/products/" + id);
+  }
+
+  filterByProductName(search: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(this.url + "/products/filterByProductName/"+ search.search);
   }
 
 }
