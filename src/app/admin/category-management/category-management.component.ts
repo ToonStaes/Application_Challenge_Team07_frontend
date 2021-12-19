@@ -58,7 +58,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
         (result) => {
           console.log(result);
           //all went well
-          //this.getCategories();
+          this.getCategories();
           // this.router.navigateByUrl("category-management");
 
         },
