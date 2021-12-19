@@ -16,7 +16,7 @@ import { ProductOverviewComponent } from './admin/product-overview/product-overv
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'category-management', component: CategoryManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'categories', component: CategoryManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
   { path: 'category-detail', component: CategoryDetailComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'contact', component: ContactFormComponent },
   { path: 'basket', component: BasketComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
