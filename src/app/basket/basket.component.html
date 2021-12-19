@@ -1,10 +1,9 @@
-<p>In Winkelmandje</p>
-<p>(momenteel hard coded van user met id 1)</p>
+<h1>Winkelmandje</h1>
 <div class="container">
 <div class="row">
   <div class="col-12 col-lg-9 ">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body mh">
         <app-basket-item *ngFor="let basketItem of basketItems" [basketItem]="basketItem" class="col-12" (sendItemAmountEvent)="updateTotal($event)" (deleteBasketItemEvent)="deleteBasketItem($event)"></app-basket-item>
       </div>
     </div>
