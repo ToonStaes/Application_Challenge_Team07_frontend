@@ -1,8 +1,8 @@
-.item {
-  border:2px solid #000;
-  // border-collapse: collapse;
-  // padding: 4px;
-}
+// .item {
+//   border:2px solid #000;
+//   border-collapse: collapse;
+//   padding: 4px;
+// }
 
 // i {
 //   color: red;
@@ -11,6 +11,10 @@
 //     color: black;
 //   }
 // }
+
+.active{
+  padding-left: 2vw;
+}
 
 i {
   &.edit{
@@ -32,6 +36,6 @@ i {
 
 }
 
-.btn-success{
-border-radius: 50%;
-}
+// .btn-success{
+// border-radius: 50%;
+// }

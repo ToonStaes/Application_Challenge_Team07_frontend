@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CategoryDetailComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
-  categoryId: number = 0;
+  categoryId: string = '';
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
@@ -34,7 +34,11 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-    if (this.categoryId != null && 0) {
+    console.log(this.categoryId)
+    console.log(this.isEdit)
+    console.log(this.isAdd)
+
+    if (this.categoryId != '') {
       this.category$ = this.categoryService
         .getCategoryById(this.categoryId)
         .subscribe((result) => {
@@ -42,6 +46,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
             name: result.name,
             isActive: result.isActive,
           });
+          console.log(this.categoryForm.value.name)
         });
     }
 

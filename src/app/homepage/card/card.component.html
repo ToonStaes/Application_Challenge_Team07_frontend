@@ -4,16 +4,14 @@
     <mat-label>Filter on category</mat-label>
     <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
       <mat-option value="0">All categories</mat-option>
-      <mat-option *ngFor="let category of categories" [value]="category.id">
+      <mat-option *ngFor="let category of categories" [value]="category._id">
         {{ category.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <section>
-    <mat-checkbox (change)="onShowOutOfStock()"
-      >Toon items die niet op vooraad zijn.</mat-checkbox
-    >
+    <mat-checkbox (change)="onShowOutOfStock()">Toon items die niet op vooraad zijn.</mat-checkbox>
     <!-- <input formControlName="showOutOfStock"  type="checkbox" (change)="onShowOutOfStock()"/> -->
   </section>
 </div>

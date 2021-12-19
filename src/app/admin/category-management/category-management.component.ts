@@ -14,9 +14,11 @@ import { AuthService } from 'src/app/security/auth.service';
 export class CategoryManagementComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   categories$: Subscription = new Subscription();
-  deleteCategorie$: Subscription = new Subscription();
+  putCategory$: Subscription = new Subscription();
 
   errorMessage: string = '';
+
+  showNonActive: boolean = false;
 
   constructor(
     private categoryService: CategoryService,
@@ -32,7 +34,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.categories$.unsubscribe();
-    this.deleteCategorie$.unsubscribe();
+    this.putCategory$.unsubscribe();
   }
 
   add() {
@@ -40,7 +42,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['category-detail'], { state: { mode: 'add' } });
   }
 
-  edit(id: number | string) {
+  edit(id: string) {
     //Navigate to form in edit mode
     this.router.navigate(['category-detail'], {
       state: { id: id, mode: 'edit' },
@@ -50,16 +52,13 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
   toNonActive(category: Category) {
     category.isActive = false;
 
-    this.deleteCategorie$ = this.categoryService
-      .putCategory(category._id!, category)
+    this.putCategory$ = this.categoryService
+      .putCategory(category._id, category)
       .subscribe(
         (result) => {
-          //all went well
           this.getCategories();
-          // this.router.navigateByUrl("category-management");
         },
         (error) => {
-          //error
           this.errorMessage = error.message;
         }
       );
@@ -68,6 +67,30 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
-      .subscribe((result) => (this.categories = result));
+      .subscribe((result) => {
+
+        if (this.showNonActive) {
+          this.categories = result;
+        }
+        else{
+          this.categories = [];
+          result.forEach(cat => {
+            if (cat.isActive) {
+              this.categories.push(cat);
+            }
+          });
+        }
+      });
+  }
+
+  onShowNonActive(){
+    if (this.showNonActive) {
+      this.showNonActive = false;
+
+    }
+    else{
+      this.showNonActive = true;
+    }
+    this.getCategories();
   }
 }

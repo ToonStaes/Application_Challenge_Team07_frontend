@@ -1,34 +1,40 @@
-<h1>Categories</h1>
+<h1>Categoriën</h1>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{ errorMessage }}
 </div>
 
+<div class="m-2 d-flex justify-content-between">
+  <button type="button" class="btn btn-success" (click)="add()"> <i class="fas fa-plus"></i> Categorie</button>
+  <mat-checkbox (change)="onShowNonActive()">Toon categoriën die niet actief zijn.</mat-checkbox>
+</div>
+
+
 <table class="table" *ngIf="categories && categories.length > 0">
   <thead>
-    <tr class="item">
-      <th scope="col">Name</th>
-      <th scope="col">Active?</th>
-      <th scope="col">Actions</th>
+    <tr>
+      <th scope="col">Naam</th>
+      <th scope="col">Actief?</th>
+      <th scope="col">Acties</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cat of categories" class="item">
+    <tr *ngFor="let cat of categories">
       <td>{{ cat.name }}</td>
-      <td *ngIf="cat.isActive == false">Not Active</td>
-      <td *ngIf="cat.isActive == true">Active</td>
+      <td class="active" *ngIf="cat.isActive == false"><i class="far fa-square"></i></td>
+      <td class="active" *ngIf="cat.isActive == true"><i class="far fa-check-square"></i></td>
       <td>
+
+          <button
+            type="button"
+            class="btn py-0 align-self-center "
+            (click)="edit(cat._id)">
+            <i class="fas fa-edit edit"></i>
+          </button>
+
         <button
           type="button"
           class="btn py-0 align-self-center"
-          (click)="edit(cat._id!)"
-        >
-          <i class="fas fa-edit edit"></i>
-        </button>
-        <button
-          type="button"
-          class="btn py-0 align-self-center"
-          (click)="toNonActive(cat)"
-        >
+          (click)="toNonActive(cat)">
           <i class="far fa-trash-alt delete"></i>
         </button>
         <!-- <button class="btn col-md-2 py-0  align-self-center"><i class="fas fa-trash-alt"></i></button> -->
@@ -36,8 +42,8 @@
     </tr>
   </tbody>
 </table>
-<div class="col-md-12 text-center">
+<!-- <div class="col-md-12 text-center">
   <button type="button" class="btn btn-success m-auto" (click)="add()">
     <i class="fas fa-plus"></i>
   </button>
-</div>
+</div> -->

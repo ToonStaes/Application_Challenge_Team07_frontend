@@ -16,7 +16,7 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(this.url + '/categories');
   }
 
-  getCategoryById(id: number | string): Observable<Category> {
+  getCategoryById(id: string): Observable<Category> {
     return this.httpClient.get<Category>(this.url + '/categories/' + id);
   }
 
@@ -31,28 +31,26 @@ export class CategoryService {
     });
   }
 
-  putCategory(id: number | string, category: Category): Observable<Category> {
+  putCategory(id: string, category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     console.log('id: ' + id)
     console.log(category);
     return this.httpClient.put<Category>(
-      this.url + '/categories/' + id,
-      {
+      this.url + '/categories/' + id,{
         headers: headers,
         name: category.name,
-        Active: category.isActive
-      }
-    );
+        isActive: category.isActive
+      });
   }
 
-  deleteCategory(id: number | string): Observable<Category> {
+  deleteCategory(id: string): Observable<Category> {
     return this.httpClient.delete<Category>(this.url + '/categories/' + id);
   }
 
-  toNonActiveCategory(id: number | string): Observable<Category> {
-    return this.httpClient.delete<Category>(
-      'http://localhost:3000/categories/' + id
-    );
-  }
+  // toNonActiveCategory(id: number | string): Observable<Category> {
+  //   return this.httpClient.delete<Category>(
+  //     'http://localhost:3000/categories/' + id
+  //   );
+  // }
 }
