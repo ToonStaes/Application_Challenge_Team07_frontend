@@ -36,20 +36,15 @@
       >
         <a class="nav-link" routerLink="/contact">Contact</a>
       </li>
-      <li
-        class="nav-item"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="nav-link" routerLink="/products">Products</a>
-      </li>
-      <li
+
+
+      <!-- <li
         class="nav-item"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <a class="nav-link" routerLink="/admin-management">Administrators</a>
-      </li>
+      </li> -->
     </ul>
     <ul class="navbar-nav ml-auto">
       <div *ngIf="authService.isLoggedIn()" class="row">
@@ -91,6 +86,13 @@
               (click)="toProducts()"
             >
               Products
+            </button>
+            <button
+              mat-menu-item
+              *ngIf="user?.isAdmin || user?.isSuperAdmin"
+              (click)="toAdmins()"
+            >
+              Administrators
             </button>
             <button mat-menu-item (click)="logout()">Logout</button>
           </mat-menu>

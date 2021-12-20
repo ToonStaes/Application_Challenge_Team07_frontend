@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../user';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-security',
@@ -52,7 +53,7 @@ export class SecurityComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  onSubmit(e: Event): void {
     this.isSubmitted = true;
 
     if (this.isLogin) {
@@ -72,7 +73,39 @@ export class SecurityComponent implements OnInit {
         }
       );
     } else {
-      alert('work in progress');
+      this.authService.register(this.user).subscribe(
+        (result) => {
+          this.errorMessage = '';
+          // send registration email
+          e.preventDefault()
+          emailjs
+            .sendForm(
+              'bitworks',
+              'registered',
+              e.target as HTMLFormElement,
+              'user_woIu3evAgyCU440BeG15g'
+            )
+            .then(
+              (result: EmailJSResponseStatus) => {
+                console.log(result.text);
+              },
+              (error) => {
+                this.errorMessage = error;
+              }
+            );
+
+          // save access token localstorage
+          localStorage.setItem('token', result.access_token);
+          localStorage.setItem('id', result.user_id);
+          localStorage.setItem('email', this.user.email);
+          this.router.navigate(['']);
+        },
+        (error) => {
+          console.log(error)
+          this.errorMessage = 'You were not able to register. Maybe try again with a different email';
+          this.isSubmitted = false;
+        }
+      );
     }
   }
 }

@@ -79,7 +79,7 @@ export class AdminFormComponent implements OnInit {
         .subscribe(
           (result) => {
             //all went well
-            this.router.navigateByUrl('admin-management');
+            this.router.navigateByUrl('admins');
           },
           (error) => {
             this.errorMessage = error.message;
@@ -98,7 +98,7 @@ export class AdminFormComponent implements OnInit {
         .putUser(this.adminId, this.submitForm.value)
         .subscribe(
           (result) => {
-            this.router.navigateByUrl('admin-management');
+            this.router.navigateByUrl('admins');
           },
           (error) => {
             this.errorMessage = error.message;
@@ -111,7 +111,7 @@ export class AdminFormComponent implements OnInit {
         .subscribe(
           (result) => {
             //all went well
-            this.router.navigateByUrl('admin-management');
+            this.router.navigateByUrl('admins');
           },
           (error) => {
             this.errorMessage = error.message;

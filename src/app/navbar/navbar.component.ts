@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
     if (userId != null && userId != ''){
       this.userService.getUserById(userId).subscribe(userFromDB => {
         this.user = userFromDB;
+        console.log(this.user!)
       })
     }
   }
@@ -36,6 +37,10 @@ export class NavbarComponent implements OnInit {
 
   toProducts() {
     this.router.navigateByUrl("/products")
+  }
+
+  toAdmins(){
+    this.router.navigateByUrl('/admins')
   }
 
   logout() {

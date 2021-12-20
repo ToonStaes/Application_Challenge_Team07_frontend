@@ -6,7 +6,7 @@
     <div class="card-body">
   <div class="d-flex flex-wrap-reverse">
     <div class="product-image left p-4 d-flex justify-content-center">
-      <img src="../../assets/images/aquarius.jpg" alt="Aquarius" />
+      <img src={{product.imageLocation}} alt="Product Image" />
     </div>
 
     <div class="product-detail right p-4">
@@ -14,7 +14,7 @@
       <p class="font-weight-bold name">{{ product.name }}</p>
       <p class="font-italic">{{ product.category!.name }}</p>
       <p class="price">
-        Prijs: <span class="redBold">€{{ product.price }}</span>
+        Price: <span class="redBold">€{{ product.price }}</span>
       </p>
 
       <p *ngIf="product.stockCount > 0" class="green">
@@ -26,17 +26,16 @@
 
   <div class="d-flex flex-wrap">
     <div class="product-description left p-4">
-      <p class="font-weight-bold">Over dit product:</p>
+      <p class="font-weight-bold">About this product:</p>
       <p>{{ product.description }}</p>
     </div>
 
-    <div
-      class="product-buttons right p-4 d-flex flex-column justify-content-end"
-    >
+    <div class="product-buttons right p-4 d-flex flex-column justify-content-end">
       <p class="green">{{ addedToCartMessage }}</p>
+      <p class="yellow">{{ confirmMessage }}</p>
       <p class="red">{{ errorMessage }}</p>
       <form (ngSubmit)="onSubmit()" [formGroup]="addProductToCartForm">
-        <label for="amount">Aantal</label>
+        <label for="amount">Amount</label>
         <input
           type="number"
           class="form-control m-2"
@@ -46,15 +45,24 @@
           formControlName="amount"
           min="1"
           [max]="product.stockCount"
-          step="1"
-        />
+          step="1"/>
         <button
-          type="submit"
           class="btn btn-primary m-2"
+          type="submit"
           [disabled]="!addProductToCartForm.valid || product.stockCount == 0"
-        >
-          In Winkelmand
+          *ngIf="!showConfirmButton">
+          <span>Add to basket</span>
+
         </button>
+        <button
+          class="btn btn-success m-2"
+          type="submit"
+          [disabled]="!addProductToCartForm.valid || product.stockCount == 0"
+          *ngIf="showConfirmButton">
+          <span>Confirm</span>
+
+        </button>
+
       </form>
     </div>
   </div>

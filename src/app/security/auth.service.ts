@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../user';
 import { Observable } from 'rxjs';
 import { UserResponse } from './userResponse';
@@ -33,6 +33,7 @@ export class AuthService {
 
   deleteToken(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
   }
 
   isLoggedIn(): boolean {
@@ -40,6 +41,7 @@ export class AuthService {
   }
 
   authenticate(user: User): Observable<UserResponse> {
+
     return this.httpClient.post<UserResponse>(
       'https://bitworks-api.herokuapp.com/auth/login',
       user
@@ -47,9 +49,17 @@ export class AuthService {
   }
 
   register(user: User): Observable<UserResponse> {
+    console.log(user)
     return this.httpClient.post<UserResponse>(
-      'https://bitworks-api.herokuapp.com/auth/register',
-      user
+      'https://bitworks-api.herokuapp.com/users',
+      {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        isAdmin: false,
+        isSuperAdmin: false,
+      }
     );
   }
 }
