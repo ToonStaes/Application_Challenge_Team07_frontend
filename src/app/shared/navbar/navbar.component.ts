@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductService } from '../admin/product/product.service';
+import { ProductService } from '../../admin/product/product.service';
 
-import { AuthService } from '../security/auth.service';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { AuthService } from '../../security/auth.service';
+import { User } from '../../user';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-navbar',

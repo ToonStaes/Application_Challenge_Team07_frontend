@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { OrderService } from '../order.service';
+import { OrderService } from '../../../order.service';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { User } from '../../../user';
+import { UserService } from '../../../user.service';
 
 @Component({
   selector: 'app-payment-form',

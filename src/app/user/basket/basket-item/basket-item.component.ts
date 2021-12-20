@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Category } from '../admin/category/category';
-import { CategoryService } from '../admin/category/category.service';
+import { Category } from '../../../admin/category/category';
+import { CategoryService } from '../../../admin/category/category.service';
 import { Basket } from '../basket';
 import { BasketItemService } from '../basket-item.service';
 import { BasketItem } from '../basketItem';
 
 import { ItemTotal } from '../itemTotal';
-import { Product } from '../admin/product/product';
-import { ProductService } from '../admin/product/product.service';
+import { Product } from '../../../admin/product/product';
+import { ProductService } from '../../../admin/product/product.service';
 
 
 @Component({

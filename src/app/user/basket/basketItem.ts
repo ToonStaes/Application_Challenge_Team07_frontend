@@ -1,5 +1,5 @@
+import { Product } from "src/app/admin/product/product";
 import { Basket } from "./basket";
-import { Product } from "./admin/product/product";
 
 export interface BasketItem {
   _id?: string;

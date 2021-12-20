@@ -3,16 +3,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from '../../admin/category/category';
-import { Basket } from '../../basket';
-import { BasketItemService } from '../../basket-item.service';
-import { BasketService } from '../../basket.service';
-import { BasketItem } from '../../basketItem';
+
 import { Order } from '../../order';
 import { Product } from '../../admin/product/product';
 
 import { AuthService } from '../../security/auth.service';
 import { User } from '../../user';
 import { ProductService } from 'src/app/admin/product/product.service';
+import { Basket } from 'src/app/user/basket/basket';
+import { BasketItem } from 'src/app/user/basket/basketItem';
+import { BasketService } from 'src/app/user/basket/basket.service';
+import { BasketItemService } from 'src/app/user/basket/basket-item.service';
 
 @Component({
   selector: 'app-product-detail',

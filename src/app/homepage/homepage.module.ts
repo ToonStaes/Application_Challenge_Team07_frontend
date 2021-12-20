@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 
 
@@ -12,7 +13,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   declarations: [
     CardComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ContactFormComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   exports: [
     CardComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ContactFormComponent
   ]
 })
 export class HomepageModule { }

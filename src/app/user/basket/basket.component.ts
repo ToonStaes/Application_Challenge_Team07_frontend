@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Basket } from '../basket';
-import { BasketItemService } from '../basket-item.service';
-import { BasketService } from '../basket.service';
-import { BasketItem } from '../basketItem';
-import { ItemTotal } from '../itemTotal';
+import { Basket } from './basket';
+import { BasketItemService } from './basket-item.service';
+import { BasketService } from './basket.service';
+import { BasketItem } from './basketItem';
+import { ItemTotal } from './itemTotal';
 
 @Component({
   selector: 'app-basket',

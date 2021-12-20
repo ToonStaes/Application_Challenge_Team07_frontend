@@ -1,6 +1,6 @@
-import { BasketItem } from "./basketItem";
-import { Order } from "./order";
-import { User } from "./user";
+import { Order } from "src/app/order";
+import { User } from "src/app/user";
+
 
 export interface Basket {
   _id: string;

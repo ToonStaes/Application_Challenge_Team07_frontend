@@ -13,9 +13,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -44,7 +47,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatFormFieldModule,
     AngularFireModule,
     AngularFireStorageModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NavbarComponent
   ],
 })
 export class SharedModule {}
