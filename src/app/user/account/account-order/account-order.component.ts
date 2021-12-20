@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Basket } from '../../../basket';
-import { BasketItemService } from '../../../basket-item.service';
-import { BasketItem } from '../../../basketItem';
-import { Order } from '../../../order';
-import { User } from '../../../user';
+import { Order } from '../../../shared/services/order';
+
 import * as moment from 'moment';
+import { BasketItemService } from '../../basket/basket-item.service';
+import { BasketItem } from '../../basket/basketItem';
+import { Basket } from '../../basket/basket';
+import { User } from 'src/app/shared/services/user';
 
 @Component({
   selector: 'app-account-order',
