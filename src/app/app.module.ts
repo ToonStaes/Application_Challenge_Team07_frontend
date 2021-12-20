@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 
-import { HomeComponent } from './homepage/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BasketComponent } from './basket/basket.component';
 import { BasketItemComponent } from './basket-item/basket-item.component';
@@ -16,7 +17,7 @@ import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { UserModule } from './user/user.module';
 import { HomepageModule } from './homepage/homepage.module';
-
+import { SecurityInterceptor } from './security/security.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,17 +30,21 @@ import { HomepageModule } from './homepage/homepage.module';
     ProductFormComponent,
     ApiTestsComponent,
     ContactFormComponent,
-
-
   ],
   imports: [
     SharedModule,
     AdminModule,
     SecurityModule,
     UserModule,
-    HomepageModule
+    HomepageModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
