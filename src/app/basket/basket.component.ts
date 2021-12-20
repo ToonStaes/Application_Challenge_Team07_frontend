@@ -18,19 +18,24 @@ import { OrderService } from '../order.service';
   styleUrls: ['./basket.component.scss'],
 })
 export class BasketComponent implements OnInit {
+
+  //basketItem
   basket?: Basket;
+  //lists
   basketItems: BasketItem[] = [];
-  products: Product[] = [];
-  total: number = 0;
-  totalRounded: number = 0;
   itemTotals: ItemTotal[] = [];
   orders: Order[] = [];
+
+  //totals
+  total: number = 0;
+  totalRounded: number = 0;
+
+  //subscriptions
   orders$: Subscription = new Subscription();
 
   constructor(
     private basketService: BasketService,
     private basketItemService: BasketItemService,
-    private productService: ProductService,
     private orderService: OrderService,
     private router: Router
   ) {}
@@ -39,19 +44,15 @@ export class BasketComponent implements OnInit {
     var userId = localStorage.getItem('id');
     if (userId != null && userId!= ''){
       this.basketService
-        .getBasketsByUserId(userId)
+        .getBasketsByUserId(userId) //find the active basket
         .subscribe((result) => {
           result.forEach((dbBasket) => {
-            if (dbBasket.orderId == null) {
-              console.log('basket found');
-              console.log(dbBasket._id);
+            if (dbBasket.orderId == null) { // active basket doesn't have an order
               this.basket = dbBasket;
               this.basketItems = [];
               this.basketItemService
-                .getBasketItemsByBasketId(this.basket._id)
+                .getBasketItemsByBasketId(this.basket._id) // get basketItems from basket
                 .subscribe((dbBasketItems) => {
-                  console.log('basketItems found');
-                  console.log(dbBasketItems);
                   this.basketItems = dbBasketItems;
                   this.basketItems.forEach((item) => {
                     console.log(item.id);
@@ -62,7 +63,12 @@ export class BasketComponent implements OnInit {
         });
     }
   }
+    // unsubscribe from any subscriptions on destroy
+    ngOnDestroy(): void {
+      this.orders$.unsubscribe();
+    }
 
+    // updates the total amount of an object
   updateTotal(itemTotal: ItemTotal) {
     let inserted = false;
     this.itemTotals.forEach((item) => {
@@ -84,6 +90,7 @@ export class BasketComponent implements OnInit {
     this.totalRounded = Math.round((this.total + Number.EPSILON) * 100) / 100;
   }
 
+  // deletes a basket Item
   deleteBasketItem(id: string){
     var index: number = this.basketItems.findIndex(function(o){
       return o._id === 'myid';
@@ -95,12 +102,7 @@ export class BasketComponent implements OnInit {
     })
   }
 
-  getOrders() {
-    this.orders$ = this.orderService
-      .getOrders()
-      .subscribe((result) => (this.orders = result));
-  }
-
+  // navigates to payment form
   goToPayment(basketId: number | string){
     this.router.navigate(['payment-form'], {state: {basketId: basketId}});
   }
