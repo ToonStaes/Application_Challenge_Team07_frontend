@@ -130,14 +130,26 @@ export class ProductDetailComponent implements OnInit {
     else{
       if (this.addProductToCartForm.value.amount != 0) {
         // Make the basketItem object
-        this.basketItem.basketId = this.basket._id;
-        this.basketItem.productId = this.product._id!;
-        this.basketItem.amount = this.addProductToCartForm.value.amount;
-        console.log(this.basketItem)
+        this.makeBasketItem(this.basket._id, this.product._id!, this.addProductToCartForm.value.amount)
 
         // post the new basketItem
-      this.postBasketItem$ = this.basketItemService
-        .addBasketItem(this.basketItem)
+        this.saveBasketItem(this.basketItem)
+    }
+    }
+
+  }
+
+  makeBasketItem(id: string, productId: string, amount: number){
+    this.basketItem.basketId = id;
+      this.basketItem.productId = productId;
+      this.basketItem.amount = amount;
+      console.log(this.basketItem)
+  }
+
+
+  saveBasketItem(basketItem: BasketItem){
+    this.postBasketItem$ = this.basketItemService
+        .addBasketItem(basketItem)
         .subscribe(
           (result) => {
             // show a success message, remove the confirmation text & turn the bool to false
@@ -153,8 +165,5 @@ export class ProductDetailComponent implements OnInit {
             this.errorMessage = error.message;
           }
         );
-    }
-    }
-
   }
 }
