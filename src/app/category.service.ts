@@ -47,10 +47,4 @@ export class CategoryService {
   deleteCategory(id: string): Observable<Category> {
     return this.httpClient.delete<Category>(this.url + '/categories/' + id);
   }
-
-  // toNonActiveCategory(id: number | string): Observable<Category> {
-  //   return this.httpClient.delete<Category>(
-  //     'http://localhost:3000/categories/' + id
-  //   );
-  // }
 }

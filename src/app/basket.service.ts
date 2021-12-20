@@ -24,20 +24,6 @@ export class BasketService {
     return this.httpClient.get<Basket>(this.url + '/baskets/' + id);
   }
 
-  getBasketByIdWithOrders(id: number | string): Observable<Basket> {
-    return this.httpClient.get<Basket>(
-      'http://localhost:3000/baskets/' + id + '?_embed=orders'
-    );
-  }
-
-  getBasketsByUserIdWithOrders(id: number | string): Observable<Basket[]> {
-    return this.httpClient.get<Basket[]>(
-      'http://localhost:3000/baskets?userId=' +
-        id +
-        '&_embed=orders&_embed=basketItems'
-    );
-  }
-
   postBasket(basket: Basket): Observable<Basket> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');

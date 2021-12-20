@@ -39,12 +39,6 @@ export class BasketItemService {
     );
   }
 
-  // getProductsByBasketId(basketId: string): Observable<BasketItem[]> {
-  //   return this.httpClient.get<BasketItem[]>(
-  //     'http://localhost:3000/basketItems?basketId=' + basketId.toString()
-  //   );
-  // }
-
   getBasketItems(): Observable<BasketItem[]> {
     return this.httpClient.get<BasketItem[]>(this.url + "/basket-items");
   }
@@ -57,8 +51,5 @@ export class BasketItemService {
     return this.httpClient.delete<BasketItem>(this.url + '/basket-items/' + id);
   }
 
-  // getBasketItemsByBasketIdWithProduct(id: string): Observable<BasketItem[]> {
-  //   return this.httpClient.get<BasketItem[]>("http://localhost:3000/basketitems?basketId=" + id + "&_expand=product");
-  // }
 
 }
