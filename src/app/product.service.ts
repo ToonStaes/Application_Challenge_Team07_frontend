@@ -15,7 +15,7 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url + "/products");
+    return this.httpClient.get<Product[]>(this.url + "/products?page=0&limit=9&pagination=false");
   }
 
   getProductById(id: string | number): Observable<Product> {
