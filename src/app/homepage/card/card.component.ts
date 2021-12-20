@@ -63,7 +63,6 @@ export class CardComponent implements OnInit {
   getProducts() {
     this.products$ = this.productService.getActiveProducts().subscribe((result) => {
       this.checkOutOfStock(result);
-      console.log(this.products);
     });
   }
 
@@ -134,11 +133,8 @@ export class CardComponent implements OnInit {
 
   //filters products based on name
   filterProductsByName(search: string){
-    console.log("search", search);
     this.products$ = this.productService.filterByProductName(search).subscribe((result => {
-      console.log(this.products$);
       this.checkOutOfStock(result);
-      console.log(this.products);
     }));
   }
 

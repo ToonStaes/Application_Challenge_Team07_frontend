@@ -47,7 +47,6 @@ export class PaymentFormComponent implements OnInit {
     if (userId != null && userId != ''){
       userService.getUserById(userId).subscribe(result => {
         this.user = result
-        console.log(this.user)
         this.isLoading = false
       })
     }
@@ -65,7 +64,6 @@ export class PaymentFormComponent implements OnInit {
       isPaid: true,
     });
 
-    console.log(this.paymentForm.value);
     emailjs
       .sendForm(
         'bitworks',
@@ -75,13 +73,12 @@ export class PaymentFormComponent implements OnInit {
       )
       .then(
         (result: EmailJSResponseStatus) => {
-          console.log(result.text);
         },
         (error) => {
           console.log(error)
         }
       );
-    
+
     this.postPayment$ = this.orderService
       .postOrder(this.paymentForm.value)
       .subscribe(
