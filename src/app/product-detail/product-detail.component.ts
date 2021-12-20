@@ -10,6 +10,7 @@ import { Category } from '../category';
 import { Order } from '../order';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { AuthService } from '../security/auth.service';
 import { User } from '../user';
 
 @Component({
@@ -51,6 +52,16 @@ export class ProductDetailComponent implements OnInit {
     categoryId: '61b6fd619d7d2a27b9880374',
     category: this.category,
   };
+  user: User = {
+    _id: '',
+    firstName: 'firstname',
+    lastName: 'lastname',
+    email: 'email@test.com',
+    isAdmin: false,
+    isSuperAdmin: false,
+    token: '',
+    password: '',
+  };
 
   // subscriptions
   product$: Subscription = new Subscription();
@@ -62,26 +73,29 @@ export class ProductDetailComponent implements OnInit {
     amount: new FormControl(0, [Validators.required]),
   });
 
+   //various messages that may appear on the page.
+   debugMessage: string = '';
+   errorMessage: string = '';
+   confirmMessage: string = '';
+   addedToCartMessage: string = '';
+
+   //booleans
+   showConfirmButton: boolean = false;
+
+
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private basketService: BasketService,
-    private basketItemService: BasketItemService
+    private basketItemService: BasketItemService,
+    private authService: AuthService
   ) {}
 
-  //various messages that may appear on the page.
-  debugMessage: string = '';
-  errorMessage: string = '';
-  confirmMessage: string = '';
-  addedToCartMessage: string = '';
 
-  //booleans
-  showConfirmButton: boolean = false;
-
-  //seperate id's
-  userId = '61b70536efeb9804e3a76664';
 
   ngOnInit(): void {
+    // get user from authservice
+    this.user = this.authService.getUser()!;
     // get product ID from route parameter
     const productId = this.route.snapshot.paramMap.get('id');
 
@@ -95,9 +109,9 @@ export class ProductDetailComponent implements OnInit {
     }
 
     //if userID isn't null, call the user's active basket
-    if (this.userId != null) {
+    if (this.user._id != '' || this.user._id != null) {
       this.basket$ = this.basketService
-        .getBasketsByUserId(this.userId)
+        .getBasketsByUserId(this.user._id)
         .subscribe((result) => {
           //find the active basket
           result.forEach((list) => {
@@ -139,8 +153,8 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-  makeBasketItem(id: string, productId: string, amount: number){
-    this.basketItem.basketId = id;
+  makeBasketItem(basketId: string, productId: string, amount: number){
+    this.basketItem.basketId = basketId;
       this.basketItem.productId = productId;
       this.basketItem.amount = amount;
       console.log(this.basketItem)
