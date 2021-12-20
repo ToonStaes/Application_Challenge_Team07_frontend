@@ -42,7 +42,7 @@ export class BasketComponent implements OnInit {
         .getBasketsByUserId(userId) //find the active basket
         .subscribe((result) => {
           result.forEach((dbBasket) => {
-            if (dbBasket.orderId == null) { // active basket doesn't have an order
+            if (dbBasket.order == null) { // active basket doesn't have an order
               this.basket = dbBasket;
               this.basketItems = [];
               this.basketItemService
