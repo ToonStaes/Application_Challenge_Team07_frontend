@@ -13,7 +13,7 @@ export interface Product {
   expirationDate: string;
   color: string;
   size: string;
-  amount: number;
+  amount: string;
   categoryId: string;
   category: Category;
 }

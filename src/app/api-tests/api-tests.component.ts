@@ -34,7 +34,7 @@ export class ApiTestsComponent implements OnInit {
     expirationDate: "date",
     color: "string",
     size: "string",
-    amount: 0,
+    amount: '0',
     categoryId: '61b6fd619d7d2a27b9880374',
     category: {} as Category
   };
