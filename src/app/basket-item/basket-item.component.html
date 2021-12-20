@@ -1,12 +1,12 @@
 <p *ngIf="isLoading">Loading data</p>
 <div class="row bt" *ngIf="!isLoading">
       <div class="row p ">
-        <div style="text-align: center;" class="col-3">
+        <div style="text-align: center;" class="col-12 col-md-3">
           <img src={{product!.imageLocation}} alt="Product image" />
         </div>
-        <div class="col-8">
-          <p class="bold">{{product!.name}}</p>
-          <p class="italic">{{category!.name}}</p>
+        <div class="col-12 col-md-8 ml-3">
+          <p class="bold text-center text-md-left">{{product!.name}}</p>
+          <p class="italic text-center text-md-left">{{category!.name}}</p>
           <div class="row">
             <div class="col-2">
               <button (click)="removeFromBasket(basketItem._id!)" class="btn align-self-center"><i class="fas fa-trash-alt"></i></button>
@@ -18,7 +18,9 @@
             </div>
 
             <div class="col-3">
-              <p class="align-self-center align-right bold nowrap">€ {{ itemTotal.total }}</p>
+              <div class="va">
+                <p class="align-self-center align-right bold nowrap">€ {{ itemTotal.total }}</p>
+              </div>
             </div>
           </div>
         </div>
