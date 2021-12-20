@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import { User } from '../../../security/user';
-import { UserService } from '../../../security/user.service';
-import { OrderService } from '../../account/order.service';
+import { UserService } from '../../../shared/services/user.service';
+import { OrderService } from '../../../shared/services/order.service';
+import { User } from 'src/app/shared/services/user';
 
 @Component({
   selector: 'app-payment-form',

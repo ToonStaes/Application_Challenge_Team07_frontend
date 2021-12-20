@@ -1,4 +1,4 @@
-import { Basket } from "../basket/basket";
+import { Basket } from "../../user/basket/basket";
 
 
 export interface Order{

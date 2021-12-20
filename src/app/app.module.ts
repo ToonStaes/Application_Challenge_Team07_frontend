@@ -16,6 +16,7 @@ import { ContactFormComponent } from './homepage/contact-form/contact-form.compo
 import { UserModule } from './user/user.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { SecurityInterceptor } from './security/security.interceptor';
+import { ServicesModule } from './shared/services/services.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { SecurityInterceptor } from './security/security.interceptor';
     AdminModule,
     SecurityModule,
     UserModule,
-    HomepageModule,
+    HomepageModule
   ],
   providers: [
     {
