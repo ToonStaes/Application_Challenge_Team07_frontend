@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OrderService } from '../order.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { User } from '../user';
+import { UserService } from '../user.service';
+
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
@@ -15,6 +19,7 @@ export class PaymentFormComponent implements OnInit {
 
   // state boolean
   isSubmitted: boolean = false;
+    isLoading: boolean = true;
 
   // messages that could appear on the page
   errorMessage: string = '';
@@ -22,6 +27,7 @@ export class PaymentFormComponent implements OnInit {
   // subscriptions
   order$: Subscription = new Subscription();
   postPayment$: Subscription = new Subscription();
+  user?: User;
 
   // reactive from formcontrol
   paymentForm = new FormGroup({
@@ -33,28 +39,49 @@ export class PaymentFormComponent implements OnInit {
     basket: new FormControl(this.basketId),
   });
 
-  constructor(private router: Router, private orderService: OrderService) {
-    // get basket id from router state
+
+  constructor(private router: Router, private orderService: OrderService, private userService: UserService) {
+  // get basket id from router state
     this.basketId = this.router.getCurrentNavigation()?.extras.state?.basketId;
+    var userId = localStorage.getItem('id')
+    if (userId != null && userId != ''){
+      userService.getUserById(userId).subscribe(result => {
+        this.user = result
+        console.log(this.user)
+        this.isLoading = false
+      })
+    }
   }
 
   ngOnInit(): void {}
 
-   // unsubscribe from all subscriptions on destroy
-   ngOnDestroy(): void
-   {
-     this.order$.unsubscribe();
-     this.postPayment$.unsubscribe();
-   }
 
-   // post the order & navigate to homepage
-  onSubmit(): void {
+  onSubmit(e: Event): void {
+    e.preventDefault()
     this.isSubmitted = true;
     //update values
     this.paymentForm.patchValue({
       basket: this.basketId,
       isPaid: true,
     });
+
+    console.log(this.paymentForm.value);
+    emailjs
+      .sendForm(
+        'bitworks',
+        'order',
+        e.target as HTMLFormElement,
+        'user_oFkMjTJpruoMijXStUN1J'
+      )
+      .then(
+        (result: EmailJSResponseStatus) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error)
+        }
+      );
+    
     this.postPayment$ = this.orderService
       .postOrder(this.paymentForm.value)
       .subscribe(

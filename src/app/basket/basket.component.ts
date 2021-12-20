@@ -14,12 +14,14 @@ import { Order } from '../order';
   styleUrls: ['./basket.component.scss'],
 })
 export class BasketComponent implements OnInit {
-
+  basketEmpty: boolean = true;
+  
   //basketItem
   basket?: Basket;
+  
   //lists
   basketItems: BasketItem[] = [];
-  itemTotals: ItemTotal[] = [];
+  products: Product[] = [];
 
   //totals
   total: number = 0;
@@ -48,14 +50,36 @@ export class BasketComponent implements OnInit {
                 .getBasketItemsByBasketId(this.basket._id) // get basketItems from basket
                 .subscribe((dbBasketItems) => {
                   this.basketItems = dbBasketItems;
+
+
+                  // controleer of het winkelmandje gevuld is
+                  // console.log(this.basketItems.length)
+                  if  (this.basketItems.length == 0){
+                    this.basketEmpty = true;
+                    // console.log("WINKELMANDJE LEEG")
+                    // console.log(this.basketEmpty)
+                  }
+
+                  if (this.basketItems.length > 0){
+                    this.basketEmpty = false;
+                    // console.log("WINKELMANDJE GEVULD")
+                    // console.log(this.basketEmpty)
+                  }
+                  console.log(this.basketItems.length)
+
                   this.basketItems.forEach((item) => {
                     console.log(item.id);
                   });
                 });
+
             }
           });
         });
+
     }
+
+
+
   }
     // unsubscribe from any subscriptions on destroy
     ngOnDestroy(): void {
@@ -94,6 +118,22 @@ export class BasketComponent implements OnInit {
         this.basketItems.splice(index, 1);
       }
     })
+
+
+    // controleer of het winkelmandje gevuld is
+    // console.log(this.basketItems.length)
+    if  (this.basketItems.length == 0){
+      this.basketEmpty = true;
+      // console.log("WINKELMANDJE LEEG")
+      // console.log(this.basketEmpty)
+    }
+
+    if (this.basketItems.length > 0){
+      this.basketEmpty = false;
+      // console.log("WINKELMANDJE GEVULD")
+      // console.log(this.basketEmpty)
+    }
+    console.log(this.basketItems.length)
   }
 
   // navigates to payment form
