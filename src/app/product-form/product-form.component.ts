@@ -10,11 +10,18 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
+  // state booleans
   isAdd: boolean = false;
   isEdit: boolean = false;
   isSubmitted: boolean = false;
+
+  // id
   productId: string = '';
+
+    // message that could show on page
   errorMessage: string = '';
+
+  //subscriptions
   product$: Subscription = new Subscription();
   postProduct$: Subscription = new Subscription();
   putProduct$: Subscription = new Subscription();
@@ -44,8 +51,17 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // unsubscribe from all subscriptions on destroy
+  ngOnDestroy(): void
+  {
+    this.product$.unsubscribe();
+    this.postProduct$.unsubscribe();
+    this.putProduct$.unsubscribe();
+  }
+
   onSubmit(): void{
     this.isSubmitted = true;
+    // post new product
     if(this.isAdd){
       this.postProduct$ = this.productService.postProduct(this.productForm.value).subscribe(result => {
         this.router.navigateByUrl("/");
@@ -54,6 +70,7 @@ export class ProductFormComponent implements OnInit {
         this.errorMessage = error.message;
       });
     }
+    // put edited product
     if (this.isEdit){
       this.putProduct$ = this.productService.putProduct(this.productId, this.productForm.value).subscribe(result => {
         this.router.navigateByUrl("/");

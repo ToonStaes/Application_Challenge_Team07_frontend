@@ -13,7 +13,7 @@ i {
 }
 
 img{
-  width: 40px;
+  max-height: 170px;
   height: auto;
   margin: auto;
 }
@@ -45,3 +45,10 @@ img{
 .nowrap{
   white-space: nowrap;
 }
+
+.va{
+  padding: 5px 0;
+}
+
+
+
