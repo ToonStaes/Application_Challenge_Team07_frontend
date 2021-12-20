@@ -7,7 +7,6 @@ import { AccountOverviewComponent } from './user/account/account-overview/accoun
 import { HomeComponent } from './homepage/home/home.component';
 import { ProductDetailComponent } from './homepage/product-detail/product-detail.component';
 import { PaymentFormComponent } from './user/basket/payment-form/payment-form.component';
-import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './homepage/contact-form/contact-form.component';
 import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: 'login', component: SecurityComponent },
   { path: 'register', component: SecurityComponent },
   { path: 'logout', component: SecurityComponent },
-  { path: 'apitests', component: ApiTestsComponent },
   { path: 'admins', component: AdminManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'admin-form', component: AdminFormComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'products', component: ProductOverviewComponent, canActivate: [AuthGuard]},

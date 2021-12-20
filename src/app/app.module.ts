@@ -11,7 +11,6 @@ import { PaymentFormComponent } from './user/basket/payment-form/payment-form.co
 import { SecurityModule } from './security/security.module';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
-import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './homepage/contact-form/contact-form.component';
 import { UserModule } from './user/user.module';
 import { HomepageModule } from './homepage/homepage.module';
@@ -21,7 +20,6 @@ import { ServicesModule } from './shared/services/services.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ApiTestsComponent,
   ],
   imports: [
     SharedModule,
