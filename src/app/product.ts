@@ -1,4 +1,5 @@
-import { Category } from './category';
+import { Category } from "./admin/category/category";
+
 
 export interface Product {
   _id?: string;

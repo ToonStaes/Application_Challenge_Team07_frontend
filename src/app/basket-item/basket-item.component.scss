@@ -14,6 +14,7 @@ i {
 
 img{
   max-height: 170px;
+  max-width: 200px;
   height: auto;
   margin: auto;
 }
@@ -49,6 +50,19 @@ img{
 .va{
   padding: 5px 0;
 }
+
+
+ @media only screen and (min-width: 600px) {
+  img{
+    max-width: 170px;
+  }
+ }
+
+ @media only screen and (min-width: 992px) {
+  img{
+    max-width: 200px;
+  }
+ }
 
 
 

@@ -7,11 +7,11 @@ import {
   AngularFireStorageReference,
   AngularFireUploadTask,
 } from '@angular/fire/compat/storage';
-import { Category } from 'src/app/category';
-import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product';
 import { log } from 'console';
+import { CategoryService } from '../category/category.service';
+import { Category } from '../category/category';
 
 @Component({
   selector: 'app-add-product-form',
