@@ -18,6 +18,7 @@ import { User } from '../user';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
+  // all objects
   category: Category = { _id: '', name: '', isActive: true };
   basket: Basket = {
     _id: '',
@@ -34,9 +35,7 @@ export class ProductDetailComponent implements OnInit {
     product: {} as Product,
     basket: {} as Basket,
   };
-
-  date: Date = new Date();
-  @Input() product: Product = {
+  product: Product = {
     _id: '0',
     name: '',
     price: 0,
@@ -53,12 +52,12 @@ export class ProductDetailComponent implements OnInit {
     category: this.category,
   };
 
-  userId = '61b70536efeb9804e3a76664';
-
+  // subscriptions
   product$: Subscription = new Subscription();
   basket$: Subscription = new Subscription();
   postBasketItem$: Subscription = new Subscription();
 
+  // to keep track of the amount in the reactive from
   addProductToCartForm = new FormGroup({
     amount: new FormControl(0, [Validators.required]),
   });
@@ -69,58 +68,93 @@ export class ProductDetailComponent implements OnInit {
     private basketService: BasketService,
     private basketItemService: BasketItemService
   ) {}
+
+  //various messages that may appear on the page.
   debugMessage: string = '';
   errorMessage: string = '';
+  confirmMessage: string = '';
   addedToCartMessage: string = '';
 
+  //booleans
+  showConfirmButton: boolean = false;
+
+  //seperate id's
+  userId = '61b70536efeb9804e3a76664';
+
   ngOnInit(): void {
+    // get product ID from route parameter
     const productId = this.route.snapshot.paramMap.get('id');
+
+    // if productID isn't null, call the product
     if (productId != null) {
       this.product$ = this.productService
         .getProductById(productId)
         .subscribe((result) => {
           this.product = result;
         });
+    }
+
+    //if userID isn't null, call the user's active basket
+    if (this.userId != null) {
       this.basket$ = this.basketService
         .getBasketsByUserId(this.userId)
         .subscribe((result) => {
+          //find the active basket
           result.forEach((list) => {
             if (list.orderId == null) {
               this.basket = list;
             }
           });
         });
-      this.debugMessage += 'product get' + productId;
     }
+
+    // make sure this bool is false
+    this.showConfirmButton = false;
   }
 
+  // unsubscribes from all subscriptions on destroy
   ngOnDestroy(): void {
     this.product$.unsubscribe();
     this.basket$.unsubscribe();
     this.postBasketItem$.unsubscribe();
   }
 
+  //when the submit button is pressed
   onSubmit(): void {
-    if (this.addProductToCartForm.value.amount != 0) {
-      this.basketItem.basketId = this.basket._id;
-      this.basketItem.productId = this.product._id!;
-      this.basketItem.amount = this.addProductToCartForm.value.amount;
-      console.log(this.basketItem)
+    //when the first button is pressed, show a confirm message & turn the bool to true. the bool will display a different confirm button to finish adding the item.
+    if (!this.showConfirmButton) {
+      this.showConfirmButton = true;
+      this.confirmMessage = "Are you sure you want to add " + this.product.name + " " + Math.round(this.addProductToCartForm.value.amount) + " time(s) to your basket?";
+    }
+    // confirm button was pressed now it is added to the basket by makeing a new basketItem
+    else{
+      if (this.addProductToCartForm.value.amount != 0) {
+        // Make the basketItem object
+        this.basketItem.basketId = this.basket._id;
+        this.basketItem.productId = this.product._id!;
+        this.basketItem.amount = this.addProductToCartForm.value.amount;
+        console.log(this.basketItem)
 
+        // post the new basketItem
       this.postBasketItem$ = this.basketItemService
         .addBasketItem(this.basketItem)
         .subscribe(
           (result) => {
+            // show a success message, remove the confirmation text & turn the bool to false
             this.addedToCartMessage =
               this.product.name +
-              ' is ' +
+              ' has been ' +
               Math.round(this.addProductToCartForm.value.amount) +
-              ' keer toegevoegd aan uw winkelmandje.';
+              ' time(s) added to your basket.';
+              this.showConfirmButton = false;
+              this.confirmMessage = "";
           },
           (error) => {
             this.errorMessage = error.message;
           }
         );
     }
+    }
+
   }
 }
