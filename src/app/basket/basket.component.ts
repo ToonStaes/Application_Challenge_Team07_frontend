@@ -20,6 +20,7 @@ import { OrderService } from '../order.service';
 export class BasketComponent implements OnInit {
   basket?: Basket;
   basketItems: BasketItem[] = [];
+  basketEmpty: boolean = true;
   products: Product[] = [];
   total: number = 0;
   totalRounded: number = 0;
@@ -53,14 +54,36 @@ export class BasketComponent implements OnInit {
                   console.log('basketItems found');
                   console.log(dbBasketItems);
                   this.basketItems = dbBasketItems;
+
+
+                  // controleer of het winkelmandje gevuld is
+                  // console.log(this.basketItems.length)
+                  if  (this.basketItems.length == 0){
+                    this.basketEmpty = true;
+                    // console.log("WINKELMANDJE LEEG")
+                    // console.log(this.basketEmpty)
+                  }
+
+                  if (this.basketItems.length > 0){
+                    this.basketEmpty = false;
+                    // console.log("WINKELMANDJE GEVULD")
+                    // console.log(this.basketEmpty)
+                  }
+                  console.log(this.basketItems.length)
+
                   this.basketItems.forEach((item) => {
                     console.log(item.id);
                   });
                 });
+
             }
           });
         });
+
     }
+
+
+
   }
 
   updateTotal(itemTotal: ItemTotal) {
@@ -93,6 +116,22 @@ export class BasketComponent implements OnInit {
         this.basketItems.splice(index, 1);
       }
     })
+
+
+    // controleer of het winkelmandje gevuld is
+    // console.log(this.basketItems.length)
+    if  (this.basketItems.length == 0){
+      this.basketEmpty = true;
+      // console.log("WINKELMANDJE LEEG")
+      // console.log(this.basketEmpty)
+    }
+
+    if (this.basketItems.length > 0){
+      this.basketEmpty = false;
+      // console.log("WINKELMANDJE GEVULD")
+      // console.log(this.basketEmpty)
+    }
+    console.log(this.basketItems.length)
   }
 
   getOrders() {
