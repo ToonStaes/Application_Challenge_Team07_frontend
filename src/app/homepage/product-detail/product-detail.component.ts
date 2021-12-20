@@ -2,16 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Category } from '../admin/category/category';
-import { Basket } from '../basket';
-import { BasketItemService } from '../basket-item.service';
-import { BasketService } from '../basket.service';
-import { BasketItem } from '../basketItem';
-import { Order } from '../order';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
-import { AuthService } from '../security/auth.service';
-import { User } from '../user';
+import { Category } from '../../admin/category/category';
+import { Basket } from '../../basket';
+import { BasketItemService } from '../../basket-item.service';
+import { BasketService } from '../../basket.service';
+import { BasketItem } from '../../basketItem';
+import { Order } from '../../order';
+import { Product } from '../../admin/product/product';
+
+import { AuthService } from '../../security/auth.service';
+import { User } from '../../user';
+import { ProductService } from 'src/app/admin/product/product.service';
 
 @Component({
   selector: 'app-product-detail',

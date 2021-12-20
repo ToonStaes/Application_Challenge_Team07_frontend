@@ -7,8 +7,9 @@ import { BasketItemService } from '../basket-item.service';
 import { BasketItem } from '../basketItem';
 
 import { ItemTotal } from '../itemTotal';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from '../admin/product/product';
+import { ProductService } from '../admin/product/product.service';
+
 
 @Component({
   selector: 'app-basket-item',

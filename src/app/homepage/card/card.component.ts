@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
-import { Product } from '../../product';
+
+import { Product } from '../../admin/product/product';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +8,7 @@ import { removeSummaryDuplicates } from '@angular/compiler';
 import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { CategoryService } from 'src/app/admin/category/category.service';
 import { Category } from 'src/app/admin/category/category';
+import { ProductService } from 'src/app/admin/product/product.service';
 
 @Component({
   selector: 'app-card',

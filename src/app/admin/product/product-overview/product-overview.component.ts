@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/product';
-import { ProductService } from 'src/app/product.service';
+import { Product } from 'src/app/admin/product/product';
+import { ProductService } from '../product.service';
 import { AuthService } from 'src/app/security/auth.service';
 import { UserService } from 'src/app/user.service';
 

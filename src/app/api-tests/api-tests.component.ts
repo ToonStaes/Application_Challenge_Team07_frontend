@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Basket } from '../basket';
 import { BasketService } from '../basket.service';
 
-import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { Product } from '../admin/product/product';
+
 import { Order } from '../order';
 import { OrderService } from '../order.service';
 import { User } from '../user';
@@ -12,6 +12,7 @@ import { BasketItem } from '../basketItem';
 import { BasketItemService } from '../basket-item.service';
 import { Category } from '../admin/category/category';
 import { CategoryService } from '../admin/category/category.service';
+import { ProductService } from '../admin/product/product.service';
 
 @Component({
   selector: 'app-api-tests',
