@@ -40,7 +40,6 @@
 
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
-    <!-- <a href="product/{{product.id}}"> -->
     <div class="card" (click)="toDetail(product._id!)">
       <div class="card-body ">
           <img class="m-auto" src={{product.imageLocation}} alt="Product Image" />
@@ -50,6 +49,18 @@
         <p class="bold red">€ {{ product.price }}</p>
       </div>
     </div>
+
+    <ng-template #outOfStockCard>
+      <div class="card outOfStock" (click)="toDetail(product._id!)">
+        <div class="card-body">
+          <img src={{product.imageLocation}} alt="Aquarius" />
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p>{{ product.name }} - <span class="red bold">Out of Stock</span></p>
+          <p class="bold red">€ {{ product.price }}</p>
+        </div>
+      </div>
+    </ng-template>
   </div>
   <h4 class="mx-auto pt-5" *ngIf="products.length <= 0">There were no products found</h4>
 </div>

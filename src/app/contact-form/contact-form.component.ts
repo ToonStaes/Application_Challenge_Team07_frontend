@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import '../../assets/e-mail/smtp.js';
-declare let Email: any;
-
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,10 +10,14 @@ declare let Email: any;
 })
 export class ContactFormComponent implements OnInit {
 
+  //state boolean
   isSubmitted: boolean = false;
+
+  // messages that could appear on the page
   errorMessage: string = '';
   nameChangeMessage: string = '';
 
+  // react form formcontrol
   emailForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -28,58 +30,27 @@ export class ContactFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // onSubmit(firstName: String, lastName: String, email: String, message: String ) {
-    sendMail(firstName: string, lastName: string, email: string, message:string) {
+  // to send the confirmation email
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        'bitworks',
+        'contact',
+        e.target as HTMLFormElement,
+        'user_woIu3evAgyCU440BeG15g'
+      )
+      .then(
+        (result: EmailJSResponseStatus) => {
+          console.log(result.text);
+        },
+        (error) => {
+          this.errorMessage = error
+        }
+      );
+    this.router.navigateByUrl('/');
+  }
 
-    console.log(firstName)
-    console.log(lastName)
-    console.log(email)
-    console.log(message)
 
-    // Email.send({
-    // Host : 'smtp.elasticemail.com',
-    // Username : 'SportAholic.test@email.com',
-    // Password : 'E897EC137FB391E0553EF27F1BEE92DFF7E5',
-    // To : email,
-    // From : `SportAholic.test@email.com`,
-    // Subject : 'this.model.subject',
-    // Body :
-    // `
-    // <i>This is sent as a feedback from my resume page.</i>
-    // <br/>
-    // <b>Name: </b>
-    // ${firstName}${lastName}
-
-    // <br />
-    // <b>Email: </b>
-    // <br />
-    // <b>Subject: </b>
-    // <br />
-    // <b>Message:</b>
-    // ${message}
-    // <br />
-    // <br>
-    // <br>
-    // <b>~End of Message.~</b>
-    // `
-    // })
-
-    // console.log("sendmail gelukt, ga naar " + email + " om de test te bekijken")
-    // this.router.navigateByUrl("/");
-    }
-
-    onSubmit(): void{
-      var firstName = this.emailForm.value.firstName;
-      var lastName = this.emailForm.value.lastName;
-      var email = this.emailForm.value.email;
-      var message = this.emailForm.value.message;
-
-      // console.log(firstName)
-      // console.log(lastName)
-      // console.log(email)
-      // console.log(message)
-
-      this.sendMail(firstName, lastName, email, message);
-    }
 
 }

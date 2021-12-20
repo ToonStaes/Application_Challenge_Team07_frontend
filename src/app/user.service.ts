@@ -12,20 +12,17 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // get all users
   getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.url + '/users');
   }
 
+  // get user by ID
   getUserById(id: string): Observable<User> {
     return this.httpClient.get<User>(this.url + '/users/' + id);
   }
 
-  getUserByIdWithProductLists(id: number | string): Observable<User> {
-    return this.httpClient.get<User>(
-      'http://localhost:3000/users/' + id + '?_embed=productLists'
-    );
-  }
-
+  // post a new user
   postUser(user: User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -35,6 +32,7 @@ export class UserService {
     });
   }
 
+  // put an existing user
   putUser(id: string, user: User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -44,18 +42,8 @@ export class UserService {
     });
   }
 
+  // delete an existing user
   deleteUser(id: string): Observable<User> {
     return this.httpClient.delete<User>(this.url + '/users/' + id);
-  }
-
-  getToken(email: string, password: string): Observable<string> {
-    let obj = '';
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<string>(
-      'https://bitworks-api.herokuapp.com/auth/login',
-      obj,
-      { headers: headers }
-    );
   }
 }
