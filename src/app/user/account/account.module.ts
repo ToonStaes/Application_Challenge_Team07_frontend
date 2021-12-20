@@ -4,6 +4,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
 import { AccountOrderComponent } from './account-order/account-order.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { OrderService } from '../../shared/services/order.service';
 
 
 
@@ -21,6 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AccountOverviewComponent,
     AccountFormComponent,
     AccountOrderComponent
+  ],
+  providers:[
+    OrderService
   ]
 })
 export class AccountModule { }
