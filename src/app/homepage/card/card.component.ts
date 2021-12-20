@@ -97,7 +97,7 @@ export class CardComponent implements OnInit {
 
 
   onFilter() {
-    if (this.selectedCategory != "0") {
+    if (this.selectedCategory != '') {
       this.getProductsByCategory(this.selectedCategory);
     } else {
       this.getProducts();

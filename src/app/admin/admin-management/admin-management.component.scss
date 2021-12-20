@@ -1,0 +1,32 @@
+i {
+  &.edit{
+    color: #5cb85c ;
+
+    &:hover{
+      color: black;
+    }
+  }
+  &.delete{
+    color: rgb(202, 60, 60) !important;
+
+    &:hover{
+      color: black;
+    }
+  }
+
+
+
+}
+
+.btn-success{
+border-radius: 50%;
+margin-bottom: 20px;
+}
+
+.fa-check{
+  color: rgb(47, 184, 35);
+}
+
+.fa-times{
+  color: rgb(202, 60, 60);
+}

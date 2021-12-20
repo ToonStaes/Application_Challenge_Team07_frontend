@@ -12,6 +12,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SecurityComponent } from './security/security/security.component';
 import { AuthGuard } from './security/auth.guard';
 import { ProductOverviewComponent } from './admin/product-overview/product-overview.component';
+import { AdminManagementComponent } from './admin/admin-management/admin-management.component';
+import { AdminFormComponent } from './admin/admin-form/admin-form.component';
 import { AddProductFormComponent } from './admin/add-product-form/add-product-form.component';
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'register', component: SecurityComponent },
   { path: 'logout', component: SecurityComponent },
   { path: 'apitests', component: ApiTestsComponent },
+  { path: 'admin-management', component: AdminManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
+  { path: 'admin-form', component: AdminFormComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'products', component: ProductOverviewComponent, canActivate: [AuthGuard]},
   { path: 'newProduct', component: AddProductFormComponent, canActivate: [AuthGuard]},
   { path: 'editProduct/:id', component: AddProductFormComponent, canActivate: [AuthGuard]},
