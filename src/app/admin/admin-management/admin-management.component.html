@@ -3,10 +3,13 @@
   {{ errorMessage }}
 </div>
 
-<div class="col-md-12 pb-3 pt-2">
+<div class="col-md-12 pb-3 pt-2 d-flex justify-content-between">
   <button type="button" class="btn btn-success addBtn" (click)="add()">
     <i class="fas fa-plus"></i></button>
-</div>
+    <section>
+      <mat-checkbox (change)="toggleShowUsers()">Toon alle accounts.</mat-checkbox>
+    </section>
+  </div>
 
 <table class="table table-hover" *ngIf="admins && admins.length > 0">
   <thead>

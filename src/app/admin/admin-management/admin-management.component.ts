@@ -13,6 +13,7 @@ import { UserService } from 'src/app/user.service';
 export class AdminManagementComponent implements OnInit {
 
   admins: User[] = [];
+  showUsers: boolean = false;
 
   errorMessage: string = '';
 
@@ -42,14 +43,30 @@ export class AdminManagementComponent implements OnInit {
     this.admins$ = this.userService
       .getUsers()
       .subscribe((result) => {
-        this.admins = [];
+
+        if (this.showUsers) {
+          this.admins = result;
+        }
+        else{
+          this.admins = [];
         result.forEach(user => {
           if (user.isAdmin || user.isSuperAdmin) {
             this.admins.push(user);
           }
 
         });
+        }
+
       });
+  }
+
+  toggleShowUsers(){
+    if (this.showUsers) {
+      this.showUsers = false;
+    }else{
+      this.showUsers = true;
+    }
+    this.getAdmins();
   }
 
   add() {
