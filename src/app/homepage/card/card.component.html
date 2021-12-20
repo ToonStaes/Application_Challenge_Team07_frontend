@@ -40,7 +40,7 @@
 
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
-    <div class="card" (click)="toDetail(product._id!)">
+    <div class="card" (click)="toDetail(product._id!)" *ngIf="product.stockCount > 0; else outOfStockCard;">
       <div class="card-body ">
           <img class="m-auto" src={{product.imageLocation}} alt="Product Image" />
       </div>
