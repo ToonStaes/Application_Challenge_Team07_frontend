@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Basket } from '../../../basket';
 import { BasketService } from '../../../basket.service';
@@ -38,8 +37,6 @@ export class AccountOverviewComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router,
     private basketService: BasketService,
     private authService: AuthService
   ) {}

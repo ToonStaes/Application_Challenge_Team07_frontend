@@ -1,4 +1,3 @@
-import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,9 +7,6 @@ import { BasketService } from '../basket.service';
 import { BasketItem } from '../basketItem';
 import { ItemTotal } from '../itemTotal';
 import { Order } from '../order';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
-import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-basket',
@@ -24,7 +20,6 @@ export class BasketComponent implements OnInit {
   //lists
   basketItems: BasketItem[] = [];
   itemTotals: ItemTotal[] = [];
-  orders: Order[] = [];
 
   //totals
   total: number = 0;
@@ -36,7 +31,6 @@ export class BasketComponent implements OnInit {
   constructor(
     private basketService: BasketService,
     private basketItemService: BasketItemService,
-    private orderService: OrderService,
     private router: Router
   ) {}
 

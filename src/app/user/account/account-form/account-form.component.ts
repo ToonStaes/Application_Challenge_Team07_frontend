@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../../../user';
 import { UserService } from '../../../user.service';
@@ -37,9 +36,7 @@ export class AccountFormComponent implements OnInit {
   });
 
   constructor(
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router
+    private userService: UserService
   ) {
     if (this.user._id != '' && this.user._id != '0') {
       this.accountForm.setValue({
