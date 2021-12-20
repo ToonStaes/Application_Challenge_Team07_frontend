@@ -1,4 +1,5 @@
 .card{
+  min-height: 280px;
   &:hover{
     box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.14),0px 3px 3px -2px rgba(0,0,0,0.12),0px 1px 8px 0px rgba(0,0,0,0.2);
     cursor: pointer;
@@ -7,11 +8,14 @@
 
 .card-body{
   text-align: center;
+  align-self: center;
 }
 
 img{
-  width: 70px;
+  width: 170px;
   height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .fr{
@@ -37,4 +41,8 @@ img{
 
 .tc{
   text-align: center;
+}
+
+.outOfStock{
+  opacity: 0.7;
 }
