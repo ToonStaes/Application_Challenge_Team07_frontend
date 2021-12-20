@@ -1,22 +1,23 @@
 <div class="d-flex justify-content-between">
-  <mat-form-field appearance="fill">
-    <section></section>
+  <mat-form-field class="align-items-center" appearance="fill">
     <mat-label>Filter on category</mat-label>
     <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
       <mat-option value="0">All categories</mat-option>
-      <mat-option *ngFor="let category of categories" [value]="category.id">
+      <mat-option *ngFor="let category of categories" [value]="category._id!">
         {{ category.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <form [formGroup]="searchForm" class="form-inline my-2 my-lg-0 align-items-center">
+    <input  class="form-control mr-sm-2" type="search" placeholder="Where are u looking for?" aria-label="Search" id="search" name="search" formControlName="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()" type="submit">Search</button>
+  </form>
 
-  <section>
-    <mat-checkbox (change)="onShowOutOfStock()"
-      >Toon items die niet op vooraad zijn.</mat-checkbox
-    >
-    <!-- <input formControlName="showOutOfStock"  type="checkbox" (change)="onShowOutOfStock()"/> -->
+  <section class="align-items-center">
+    <mat-checkbox (change)="onShowOutOfStock()">Toon items die niet op vooraad zijn.</mat-checkbox>
   </section>
 </div>
+
 
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
@@ -30,6 +31,7 @@
         <p class="bold red">€ {{ product.price }}</p>
       </div>
     </div>
-    <!-- </a> -->
   </div>
+  <h4 class="mx-auto pt-5" *ngIf="products.length <= 0">There were no products found</h4>
 </div>
+

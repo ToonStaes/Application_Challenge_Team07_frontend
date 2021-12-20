@@ -36,28 +36,31 @@ export class BasketComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.basketService
-      .getBasketsByUserId('61b70536efeb9804e3a76664')
-      .subscribe((result) => {
-        result.forEach((dbBasket) => {
-          if (dbBasket.orderId == null) {
-            console.log('basket found');
-            console.log(dbBasket._id);
-            this.basket = dbBasket;
-            this.basketItems = [];
-            this.basketItemService
-              .getBasketItemsByBasketId(this.basket._id)
-              .subscribe((dbBasketItems) => {
-                console.log('basketItems found');
-                console.log(dbBasketItems);
-                this.basketItems = dbBasketItems;
-                this.basketItems.forEach((item) => {
-                  console.log(item.id);
+    var userId = localStorage.getItem('id');
+    if (userId != null && userId!= ''){
+      this.basketService
+        .getBasketsByUserId(userId)
+        .subscribe((result) => {
+          result.forEach((dbBasket) => {
+            if (dbBasket.orderId == null) {
+              console.log('basket found');
+              console.log(dbBasket._id);
+              this.basket = dbBasket;
+              this.basketItems = [];
+              this.basketItemService
+                .getBasketItemsByBasketId(this.basket._id)
+                .subscribe((dbBasketItems) => {
+                  console.log('basketItems found');
+                  console.log(dbBasketItems);
+                  this.basketItems = dbBasketItems;
+                  this.basketItems.forEach((item) => {
+                    console.log(item.id);
+                  });
                 });
-              });
-          }
+            }
+          });
         });
-      });
+    }
   }
 
   updateTotal(itemTotal: ItemTotal) {
@@ -81,9 +84,24 @@ export class BasketComponent implements OnInit {
     this.totalRounded = Math.round((this.total + Number.EPSILON) * 100) / 100;
   }
 
+  deleteBasketItem(id: string){
+    var index: number = this.basketItems.findIndex(function(o){
+      return o._id === 'myid';
+    })
+    this.basketItems.forEach(basketItem => {
+      if (basketItem._id == id){
+        this.basketItems.splice(index, 1);
+      }
+    })
+  }
+
   getOrders() {
     this.orders$ = this.orderService
       .getOrders()
       .subscribe((result) => (this.orders = result));
+  }
+
+  goToPayment(basketId: number | string){
+    this.router.navigate(['payment-form'], {state: {basketId: basketId}});
   }
 }

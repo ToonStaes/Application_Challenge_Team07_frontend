@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
@@ -28,6 +29,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatFormFieldModule,
     AngularFireModule,
     AngularFireStorageModule,
+    MatCheckboxModule
   ],
 })
 export class SharedModule {}

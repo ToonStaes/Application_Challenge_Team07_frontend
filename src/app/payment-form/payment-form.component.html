@@ -1,5 +1,5 @@
 <h1>Payment form</h1>
-<form (ngsubmit)="onSubmit()" [formGroup]="paymentForm">
+<form [formGroup]="paymentForm">
   <div class="form-group">
     <label for="address">Address</label>
     <input type="text" class="form-control" id="address" name="address" placeholder="Streetname + number" formControlName="address" minlength="2">
@@ -8,5 +8,5 @@
     <label for="postalCode">Postal Code</label>
     <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postal Code" formControlName="postalCode" minlength="4">
   </div>
-  <button  type="submit" class="btn btn-primary" (click)="onSubmit" [disabled]="!paymentForm.valid || isSubmitted" >Confirm payment</button>
+  <button  type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!paymentForm.valid || isSubmitted" >Confirm payment</button>
 </form>

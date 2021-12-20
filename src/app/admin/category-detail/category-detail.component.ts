@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CategoryDetailComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
-  categoryId: number = 0;
+  categoryId: string = '';
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
@@ -23,18 +23,16 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   categoryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    isActive: new FormControl(''),
+    isActive: new FormControl('')
   });
 
-  constructor(
-    private router: Router,
-    private categoryService: CategoryService
-  ) {
-    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode === 'add';
+  constructor(private router: Router, private categoryService: CategoryService) {
+    this.isAdd = this.router.getCurrentNavigation()?.extras.state?.mode == 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
-    if (this.categoryId != null && 0) {
+
+    if (this.categoryId != null && this.categoryId != '') {
       this.category$ = this.categoryService
         .getCategoryById(this.categoryId)
         .subscribe((result) => {
@@ -42,6 +40,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
             name: result.name,
             isActive: result.isActive,
           });
+          console.log(this.categoryForm.value.name)
         });
     }
 
@@ -61,7 +60,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.putCategory$.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.isSubmitted = true;
     if (this.isAdd) {
       this.postCategory$ = this.categoryService
