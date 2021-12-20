@@ -1,17 +1,33 @@
 <div class="mt-3">
   <h1>Products</h1>
-  <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
-  <div class="row mt-2 product" *ngFor="let product of products">
-    <p class="col-sm-6 col-md-2 align-self-center">{{ product.name }}</p>
-    <p class="col-sm-3 col-md-1 align-self-center">Stock: {{ product.stockCount }}</p>
-    <p class="col-sm-9 col-md-3 align-self-center">{{ product.description}}</p>
-    <p class="col-sm-6 col-md-2 align-self-center">{{ product.category.name }}</p>
-    <p class="col-sm-3 col-md-1 align-self-center" *ngIf="product.isActive">Active</p>
-    <p class="col-sm-3 col-md-1 align-self-center" *ngIf="!product.isActive">Not active</p>
-    <p class="col-sm-3 col-md-1 align-self-center">€ {{ product.price }}</p>
-    <p class="col-sm-12 col-md-2 row align-self-center">
-      <button class="btn col-6 edit" (click)='edit(product)'><i class="far fa-edit"></i></button>
-      <button class="btn col-6 delete" (click)='toggleActive(product)'><i class="far fa-trash-alt"></i></button>
-    </p>
-  </div>
+  <button class="btn btn-success addBtn" (click)="addProduct()"><i class="fas fa-plus"></i></button>
+  <table class="table table-hover" *ngIf="products && products.length>0">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Active?</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td scope="row"><img src="{{product.imageLocation}}" alt="Product image"></td>
+        <td>{{product.name}}</td>
+        <td>{{product.stockCount}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.category.name}}</td>
+        <td *ngIf="product.isActive"><button type="button" class="btn py-0 align-self-center" (click)='toggleActive(product)'><i class="fas fa-check"></i></button></td>
+        <td *ngIf="!product.isActive"><button type="button" class="btn py-0 align-self-center" (click)='toggleActive(product)'><i class="fas fa-times"></i></button></td>
+        <td>€ {{product.price}}</td>
+        <td>
+          <button class="btn col-6 edit" (click)='edit(product)'><i class="fas fa-edit edit"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

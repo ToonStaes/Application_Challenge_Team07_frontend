@@ -23,8 +23,8 @@
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
     <!-- <a href="product/{{product.id}}"> -->
     <div class="card" (click)="toDetail(product._id!)">
-      <div class="card-body">
-        <img src={{product.imageLocation}} alt="Aquarius" />
+      <div class="card-body align-middle">
+          <img class="m-auto" src={{product.imageLocation}} alt="Product Image" />
       </div>
       <div class="card-footer d-flex justify-content-between">
         <p>{{ product.name }}</p>
