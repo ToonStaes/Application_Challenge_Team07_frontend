@@ -2,7 +2,7 @@
 <div class="row bt" *ngIf="!isLoading">
       <div class="row p ">
         <div style="text-align: center;" class="col-3">
-          <img src="../../assets/images/aquarius.jpg" alt="Aquarius" />
+          <img src={{product!.imageLocation}} alt="Product image" />
         </div>
         <div class="col-8">
           <p class="bold">{{product!.name}}</p>
