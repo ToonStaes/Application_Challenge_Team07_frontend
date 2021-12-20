@@ -4,16 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from '../../admin/category/category';
 
-import { Order } from '../../order';
+import { Order } from '../../user/account/order';
 import { Product } from '../../admin/product/product';
 
 import { AuthService } from '../../security/auth.service';
-import { User } from '../../user';
 import { ProductService } from 'src/app/admin/product/product.service';
 import { Basket } from 'src/app/user/basket/basket';
 import { BasketItem } from 'src/app/user/basket/basketItem';
 import { BasketService } from 'src/app/user/basket/basket.service';
 import { BasketItemService } from 'src/app/user/basket/basket-item.service';
+import { User } from 'src/app/security/user';
 
 @Component({
   selector: 'app-product-detail',

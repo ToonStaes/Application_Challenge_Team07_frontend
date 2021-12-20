@@ -1,5 +1,5 @@
-import { Order } from "src/app/order";
-import { User } from "src/app/user";
+import { Order } from "src/app/user/account/order";
+import { User } from "src/app/security/user";
 
 
 export interface Basket {

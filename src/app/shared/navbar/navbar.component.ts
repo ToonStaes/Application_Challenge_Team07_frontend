@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { ProductService } from '../../admin/product/product.service';
 
 import { AuthService } from '../../security/auth.service';
-import { User } from '../../user';
-import { UserService } from '../../user.service';
+import { User } from '../../security/user';
+import { UserService } from '../../security/user.service';
 
 @Component({
   selector: 'app-navbar',

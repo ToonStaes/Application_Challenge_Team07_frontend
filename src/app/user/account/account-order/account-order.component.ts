@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Order } from '../../../order';
-import { User } from '../../../user';
+import { Order } from '../order';
+import { User } from '../../../security/user';
 import * as moment from 'moment';
 import { BasketItemService } from '../../basket/basket-item.service';
 import { BasketItem } from '../../basket/basketItem';

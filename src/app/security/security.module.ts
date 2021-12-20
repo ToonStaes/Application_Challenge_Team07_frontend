@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SecurityComponent } from './security/security.component';
 import { FormsModule } from '@angular/forms';
+import { UserService } from './user.service';
 
 
 
@@ -12,6 +13,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+  ],
+  providers: [
+    UserService
   ]
 })
 export class SecurityModule { }

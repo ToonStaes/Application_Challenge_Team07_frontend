@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { User } from '../../../user';
-import { UserService } from '../../../user.service';
+import { User } from '../../../security/user';
+import { UserService } from '../../../security/user.service';
 
 @Component({
   selector: 'app-account-form',

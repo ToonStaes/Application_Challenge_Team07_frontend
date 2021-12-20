@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/admin/product/product';
 import { ProductService } from '../product.service';
 import { AuthService } from 'src/app/security/auth.service';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/security/user.service';
+
 
 @Component({
   selector: 'app-product-overview',
