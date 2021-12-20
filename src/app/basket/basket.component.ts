@@ -111,8 +111,6 @@ export class BasketComponent implements OnInit {
       this.updateTotal(itemTotal)
     })
 
-  }
-
 
     // controleer of het winkelmandje gevuld is
     // console.log(this.basketItems.length)
