@@ -32,7 +32,7 @@ export class ContactFormComponent implements OnInit {
     e.preventDefault();
     emailjs
       .sendForm(
-        'contact_service',
+        'bitworks',
         'contact',
         e.target as HTMLFormElement,
         'user_woIu3evAgyCU440BeG15g'
