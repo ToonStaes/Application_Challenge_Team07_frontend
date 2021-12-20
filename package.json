@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "api": "json-server --watch json-server-local\\db.json",
-    "heroku-postbuild": "ng buld --prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
