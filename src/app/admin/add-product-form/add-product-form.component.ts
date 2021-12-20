@@ -30,20 +30,33 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     this.isEdit = !this.isAdd;
   }
 
+  //booleans
   isSubmitted: boolean = false;
-  errorMessage: string = '';
-  productId: string = '';
+  isImageChanged: boolean = false;
   isAdd: boolean = false;
   isEdit: boolean = false;
-  isImageChanged: boolean = false;
-  imageSrc: string = '';
-  inputProduct = {} as Product;
-  // inputProduct?: Product;
 
+  //Massages to potentially display on the page
+  errorMessage: string = '';
+
+  // id's & values
+  productId: string = '';
+  imageSrc: string = '';
+
+  //empty product object
+  inputProduct = {} as Product;
+
+   // categories for select
+   categoriesFromDB: Category[] = [];
+   categories: Category[] = [];
+   selected: string = '';
+
+  //subscriptions
   postProduct$: Subscription = new Subscription();
-  updateProduct$: Subscription = new Subscription();
+  putProduct$: Subscription = new Subscription();
   categories$: Subscription = new Subscription();
 
+  //reactive from formcontrol
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -60,10 +73,6 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   imageFile: any;
   uploadProgress: number | undefined;
 
-  // categories for select
-  categoriesFromDB: Category[] = [];
-  categories: Category[] = [];
-  selected: string = '';
 
   ngOnInit(): void {
     if (this.isEdit) {
@@ -94,26 +103,26 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
 
   }
 
-  getCategories() {
-    this.categories$ = this.categoryService.getCategories().subscribe((result) => {
-      this.categoriesFromDB = result;
-      this.categoriesFromDB.forEach((category) => {
-        console.log(category);
-        console.log("selected:" + this.selected)
-        if (category.isActive) {
-          console.log("is active");
-          this.categories.push(category);
-        }
-      });
-      console.log(this.categories);
-});
-  }
-
+  // unsubscribe from subscriptions on destroy
   ngOnDestroy(): void {
     this.postProduct$.unsubscribe();
     this.categories$.unsubscribe();
   }
 
+  //get all categories for dropdown
+  getCategories() {
+    this.categories$ = this.categoryService.getCategories().subscribe((result) =>
+    {
+      //filter out inactive categories
+      result.forEach((category) => {
+        if (category.isActive) {
+          this.categories.push(category);
+        }
+      });
+    });
+  }
+
+  // return page title
   getTitle(): string {
     if (this.isAdd) {
       return 'Add new product';
@@ -122,6 +131,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  // creates the filepath where the image will be saved
   onImageSelected(event: any): void {
     // create a random id
     const randomId = Math.random().toString(36).substring(2);
@@ -134,10 +144,12 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.isSubmitted = true;
+    // if no image was uploaded give an error message
     if (this.imageFile === undefined && this.isAdd) {
       this.isSubmitted = false;
       this.errorMessage = 'No image selected!';
     } else {
+      // uploads image & save data
       if (this.isImageChanged) {
         this.task = this.angularFireStorage.upload(
           this.filePath,
@@ -162,24 +174,17 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  //saves the submitten object to the DB
   async submitData(): Promise<void> {
+    //creates the to be submitted object
+    this.createInputProduct();
     if (this.isAdd) {
-      this.inputProduct.category = this.productForm.value.categoryId;
-      this.inputProduct.name = this.productForm.value.name;
-      this.inputProduct.description = this.productForm.value.description;
-      this.inputProduct.stockCount = this.productForm.value.stockCount;
-      this.inputProduct.imageLocation = this.productForm.value.imageUrl;
-      this.inputProduct.price = this.productForm.value.price;
-      this.inputProduct.isActive = true;
-
       // inputvalues for DB
       this.inputProduct.rating = 0;
       this.inputProduct.color = '';
       this.inputProduct.size = '';
       this.inputProduct.amount = '';
 
-      console.log('pre-post');
-      console.log(this.inputProduct);
       this.postProduct$ = this.productService
         .postProduct(this.inputProduct)
         .subscribe(
@@ -192,15 +197,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-      this.inputProduct.category = this.productForm.value.categoryId;
-      this.inputProduct.name = this.productForm.value.name;
-      this.inputProduct.description = this.productForm.value.description;
-      this.inputProduct.stockCount = this.productForm.value.stockCount;
-      this.inputProduct.imageLocation = this.productForm.value.imageUrl;
-      this.inputProduct.price = this.productForm.value.price;
-      this.inputProduct.isActive = true;
-
-      this.updateProduct$ = this.productService
+      this.putProduct$ = this.productService
         .putProduct(this.inputProduct._id!, this.inputProduct)
         .subscribe(
           (result) => {
@@ -212,5 +209,15 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
           }
         );
     }
+  }
+
+  createInputProduct(){
+    this.inputProduct.category = this.productForm.value.categoryId;
+    this.inputProduct.name = this.productForm.value.name;
+    this.inputProduct.description = this.productForm.value.description;
+    this.inputProduct.stockCount = this.productForm.value.stockCount;
+    this.inputProduct.imageLocation = this.productForm.value.imageUrl;
+    this.inputProduct.price = this.productForm.value.price;
+    this.inputProduct.isActive = true;
   }
 }

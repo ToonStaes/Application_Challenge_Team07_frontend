@@ -12,11 +12,16 @@ import { UserService } from 'src/app/user.service';
 })
 export class AdminManagementComponent implements OnInit {
 
+  // arrayw of users
   admins: User[] = [];
+
+  //state boolean
   showUsers: boolean = false;
 
+  // messages that could appear on the page
   errorMessage: string = '';
 
+  //subscriptions
   admins$: Subscription = new Subscription();
   deleteAdmin$: Subscription = new Subscription();
 
@@ -27,6 +32,7 @@ export class AdminManagementComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    // get all admins & redirect anyone not logged in to the login page
     this.getAdmins();
     if (!this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/login');
@@ -34,6 +40,7 @@ export class AdminManagementComponent implements OnInit {
 
   }
 
+  // unsubscribe from any subscriptions on destroy
   ngOnDestroy(): void {
     this.admins$.unsubscribe();
     this.deleteAdmin$.unsubscribe();
@@ -43,42 +50,42 @@ export class AdminManagementComponent implements OnInit {
     this.admins$ = this.userService
       .getUsers()
       .subscribe((result) => {
-
+        // if showusers is true, get all available users
         if (this.showUsers) {
           this.admins = result;
         }
+        //else get only people marked as admins
         else{
+          // clear the array to prevent issues with the push method
           this.admins = [];
-        result.forEach(user => {
-          if (user.isAdmin || user.isSuperAdmin) {
-            this.admins.push(user);
-          }
-
-        });
+          result.forEach(user => {
+            if (user.isAdmin || user.isSuperAdmin) {
+              this.admins.push(user);
+            }
+          });
         }
-
       });
   }
 
+  // toggles the show users bool
   toggleShowUsers(){
-    if (this.showUsers) {
-      this.showUsers = false;
-    }else{
-      this.showUsers = true;
-    }
+    this.showUsers = !this.showUsers;
     this.getAdmins();
   }
 
+  // navigate to add form
   add() {
     this.router.navigate(['admin-form'], { state: { mode: 'add' } });
   }
 
+    // navigate to edit form
   edit(id: string) {
     this.router.navigate(['admin-form'], {
       state: { id: id, mode: 'edit' }
     });
   }
 
+  // delete the user
   delete(id: string){
     this.deleteAdmin$ = this.userService.deleteUser(id).subscribe(result => {
       this.getAdmins();
