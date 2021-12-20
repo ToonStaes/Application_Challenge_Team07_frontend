@@ -24,7 +24,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     HttpClientModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule,
+    MatSelectModule
     MatDialogModule,
     MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
