@@ -5,15 +5,15 @@
 </div>
 <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
   <div class="form-group">
-    <label for="name">Naam van Categorie</label>
+    <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name" formControlName="name" minlength="2">
   </div>
 
   <div class="form-group" >
     <input type="checkbox" formControlName="isActive" id="isActive" class="mr-2">
-    <label for="isActive">Actief</label>
+    <label for="isActive">Active</label>
   </div>
 
-  <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!categoryForm.valid || isSubmitted">Toevoegen</button>
-  <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!categoryForm.valid || isSubmitted">Opslaan</button>
+  <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!categoryForm.valid || isSubmitted">Add</button>
+  <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!categoryForm.valid || isSubmitted">Save</button>
 </form>

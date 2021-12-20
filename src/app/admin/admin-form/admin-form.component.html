@@ -1,28 +1,28 @@
-<h1 *ngIf="isAdd">Nieuwe Administrator</h1>
-<h1 *ngIf="isEdit">Administrator Aanpassen</h1>
+<h1 *ngIf="isAdd">New Administrator</h1>
+<h1 *ngIf="isEdit">Edit Administrator</h1>
 <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
   {{errorMessage}}
 </div>
 <form (ngSubmit)="onSubmit()" [formGroup]="adminForm">
   <div class="form-group d-flex w-100 justify-content-between">
     <div class="w-40">
-      <label for="firstName">Voornaam</label>
+      <label for="firstName">First Name</label>
       <input type="text" class="form-control" id="firstName" name="firstName" placeholder="firstName" formControlName="firstName" minlength="2">
     </div>
     <div class="w-40">
-      <label for="lastName">Achternaam</label>
+      <label for="lastName">Last Name</label>
       <input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastName" formControlName="lastName" minlength="2">
     </div>
 
   </div>
 
   <div class="form-group">
-    <label for="email">Email Addres</label>
+    <label for="email">Email Address</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" formControlName="email" minlength="2">
   </div>
 
   <div class="form-group">
-    <label for="password">Wachtwoord</label>
+    <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="password" formControlName="password" minlength="2">
   </div>
 
