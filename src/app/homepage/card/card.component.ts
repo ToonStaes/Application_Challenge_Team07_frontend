@@ -15,19 +15,23 @@ import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  selectedCategory: string = '';
-  isCategory1: boolean = false;
   productCategory: Product[] = [];
   products: Product[] = [];
-  products$: Subscription = new Subscription();
   categories: Category[] = [];
-  categories$: Subscription = new Subscription();
-  showOutOfStock: boolean = false;
-  isSubmitted: boolean = false;
-  errorMessage: string = '';
+
+  selectedCategory: string = '';
   productName: string = '';
   search: string = '';
+
+  products$: Subscription = new Subscription();
+  categories$: Subscription = new Subscription();
   postSearch$: Subscription = new Subscription();
+
+  isSubmitted: boolean = false;
+  showOutOfStock: boolean = false;
+  isCategory1: boolean = false;
+
+  errorMessage: string = '';
 
   searchForm = new FormGroup({
     search: new FormControl('', [Validators.required])
@@ -43,15 +47,26 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // On initialization call all products & categories
     this.getProducts();
     this.getCategories();
   }
 
+  ngOnDestroy(): void {
+    // on destroy unsubscribe from all subscriptions
+    this.products$.unsubscribe();
+    this.categories$.unsubscribe();
+    this.postSearch$.unsubscribe();
+  }
+
+  //calls all products
   getProducts() {
     this.products$ = this.productService.getProducts().subscribe((result) => {
+      //checks & potentialy filters out products that don't have any stock
       if (this.showOutOfStock) {
         this.products = result;
       } else {
+        // clearing the products array to prevent stacking while using the push method.
         this.products = [];
         result.forEach((item) => {
           if (item.stockCount > 0) {
@@ -64,11 +79,33 @@ export class CardComponent implements OnInit {
     });
   }
 
+    //calls products based on their category id
+    getProductsByCategory(categoryId: string) {
+      this.products$ = this.productService
+        .getProductsByCategoryId(categoryId)
+        .subscribe((result) => {
+          //checks & potentialy filters out products that don't have any stock
+          if (this.showOutOfStock) {
+            this.products = result;
+          } else {
+            // clearing the products array to prevent stacking while using the push method.
+            this.products = [];
+            result.forEach((item) => {
+              if (item.stockCount > 0) {
+                this.products.push(item);
+              }
+            });
+          }
+        });
+    }
+
+  //calls all categories for the dropdown list
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
       .subscribe((result) => {
         this.categories = [];
+        // forEach to filter out all the non active categories
         result.forEach(cat => {
           if (cat.isActive) {
             this.categories.push(cat);
@@ -77,25 +114,7 @@ export class CardComponent implements OnInit {
       });
   }
 
-  getProductsByCategory(categoryId: string) {
-    this.products$ = this.productService
-      .getProductsByCategoryId(categoryId)
-      .subscribe((result) => {
-        if (this.showOutOfStock) {
-          this.products = result;
-        } else {
-          this.products = [];
-          result.forEach((item) => {
-            if (item.stockCount > 0) {
-              this.products.push(item);
-            }
-          });
-        }
-      });
-  }
-
-
-
+  // checks if there is a category selected & calls the corresponding method to call the products
   onFilter() {
     if (this.selectedCategory != '') {
       this.getProductsByCategory(this.selectedCategory);
@@ -104,7 +123,8 @@ export class CardComponent implements OnInit {
     }
   }
 
-  onShowOutOfStock() {
+  //Toggles the showOutOfStock boolean & calls the onFilter method to recall the products
+  toggleShowOutOfStock() {
     if (this.showOutOfStock) {
       this.showOutOfStock = false;
     } else {
@@ -113,6 +133,7 @@ export class CardComponent implements OnInit {
     this.onFilter();
   }
 
+  // navigates to product detail page.
   toDetail(id: string) {
     this.router.navigateByUrl('/product/' + id);
   }

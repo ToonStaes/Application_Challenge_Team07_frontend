@@ -14,7 +14,7 @@
   </form>
 
   <section class="align-items-center">
-    <mat-checkbox (change)="onShowOutOfStock()">Toon items die niet op vooraad zijn.</mat-checkbox>
+    <mat-checkbox (change)="toggleShowOutOfStock()">Show out of stock items.</mat-checkbox>
   </section>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
     <!-- <a href="product/{{product.id}}"> -->
-    <div class="card" (click)="toDetail(product._id!)">
+    <div class="card" (click)="toDetail(product._id!)" *ngIf="product.stockCount > 0; else outOfStockCard;">
       <div class="card-body">
         <img src={{product.imageLocation}} alt="Aquarius" />
       </div>
@@ -31,6 +31,18 @@
         <p class="bold red">€ {{ product.price }}</p>
       </div>
     </div>
+
+    <ng-template #outOfStockCard>
+      <div class="card outOfStock" (click)="toDetail(product._id!)">
+        <div class="card-body">
+          <img src={{product.imageLocation}} alt="Aquarius" />
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p>{{ product.name }} - <span class="red bold">Out of Stock</span></p>
+          <p class="bold red">€ {{ product.price }}</p>
+        </div>
+      </div>
+    </ng-template>
   </div>
   <h4 class="mx-auto pt-5" *ngIf="products.length <= 0">There were no products found</h4>
 </div>
