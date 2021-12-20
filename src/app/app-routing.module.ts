@@ -18,7 +18,7 @@ import { AddProductFormComponent } from './admin/add-product-form/add-product-fo
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'category-management', component: CategoryManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
+  { path: 'categories', component: CategoryManagementComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]},
   { path: 'category-detail', component: CategoryDetailComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
   { path: 'contact', component: ContactFormComponent },
   { path: 'basket', component: BasketComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] },
