@@ -1,28 +1,47 @@
-<div class="d-flex justify-content-between">
-  <mat-form-field class="align-items-center" appearance="fill">
-    <mat-label>Filter on category</mat-label>
-    <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
-      <mat-option value="">All categories</mat-option>
-      <mat-option *ngFor="let category of categories" [value]="category._id!">
-        {{ category.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <form [formGroup]="searchForm" class="form-inline my-2 my-lg-0 align-items-center">
-    <input  class="form-control mr-sm-2" type="search" placeholder="Where are u looking for?" aria-label="Search" id="search" name="search" formControlName="search">
-    <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()" type="submit">Search</button>
-  </form>
-
-  <section class="align-items-center">
-    <mat-checkbox (change)="toggleShowOutOfStock()">Show out of stock items.</mat-checkbox>
-  </section>
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-4">
+    <mat-form-field  appearance="fill">
+      <mat-label>Filter on category</mat-label>
+      <mat-select [(value)]="selectedCategory" (selectionChange)="onFilter()">
+        <mat-option value="0">All categories</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category._id!">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-12 col-sm-6 col-md-4">
+    <div class="va">
+    <div class=" d-none d-lg-inline">
+      <form [formGroup]="searchForm" style="display: inline;" class="form-inline my-2 my-lg-0 nowrap">
+        <input  class="form-control mr-sm-2" type="search" placeholder="What are u looking for?" aria-label="Search" id="search" name="search" formControlName="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="col-12 col-sm-6 col-md-4">
+    <div class="va">
+      <section class="text-md-right">
+        <mat-checkbox (change)="onShowOutOfStock()">Not in stock</mat-checkbox>
+      </section>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-4">
+    <div class="va d-lg-none">
+      <form [formGroup]="searchForm" style="display: inline;" class="form-inline my-2 my-lg-0 nowrap">
+        <input  class="form-control mr-sm-2" type="search" placeholder="What are u looking for?" aria-label="Search" id="search" name="search" formControlName="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 pb" *ngFor="let product of products">
     <div class="card" (click)="toDetail(product._id!)">
-      <div class="card-body align-middle">
+      <div class="card-body ">
           <img class="m-auto" src={{product.imageLocation}} alt="Product Image" />
       </div>
       <div class="card-footer d-flex justify-content-between">

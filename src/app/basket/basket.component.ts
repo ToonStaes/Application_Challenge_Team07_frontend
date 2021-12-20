@@ -94,14 +94,24 @@ export class BasketComponent implements OnInit {
 
   // deletes a basket Item
   deleteBasketItem(id: string){
-    var index: number = this.basketItems.findIndex(function(o){
-      return o._id === 'myid';
-    })
-    this.basketItems.forEach(basketItem => {
-      if (basketItem._id == id){
+    this.basketItems.forEach(item => {
+      if (item._id === id) {
+        var index = this.basketItems.indexOf(item)
         this.basketItems.splice(index, 1);
       }
     })
+
+    this.itemTotals = []
+
+    this.basketItems.forEach(item => {
+      var itemTotal = {} as ItemTotal;
+      itemTotal.productId = item.productId
+      itemTotal.total = item.amount * item.product.price
+      this.itemTotals.push(itemTotal)
+      this.updateTotal(itemTotal)
+    })
+
+  }
 
 
     // controleer of het winkelmandje gevuld is

@@ -77,7 +77,7 @@ export class BasketItemComponent implements OnInit {
 
   amountChanged() {
     console.log('onChange werkt, amount: ' + this.amountForm.value.amount);
-    console.log(this.basketItem.id);
+    console.log(this.basketItem._id);
     this.basketItem.amount = this.amountForm.value.amount;
 
     this.itemTotal.total =
@@ -85,10 +85,8 @@ export class BasketItemComponent implements OnInit {
         (this.product!.price * this.basketItem.amount + Number.EPSILON) * 100
       ) / 100;
 
-    this.sendItemAmountEvent.emit(this.itemTotal);
-
     this.basketItemService
-      .updateBasketItem(this.basketItem.id!, this.basketItem)
+      .updateBasketItem(this.basketItem._id!, this.basketItem)
       .subscribe(
         (result) => {
           console.log(result);
@@ -97,6 +95,8 @@ export class BasketItemComponent implements OnInit {
           console.log(error);
         }
       );
+
+      this.sendItemAmountEvent.emit(this.itemTotal);
   }
 
   removeFromBasket(basketItemId: string){
