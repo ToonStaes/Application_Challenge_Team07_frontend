@@ -61,7 +61,7 @@ export class CardComponent implements OnInit {
 
   //calls all products
   getProducts() {
-    this.products$ = this.productService.getProducts().subscribe((result) => {
+    this.products$ = this.productService.getActiveProducts().subscribe((result) => {
       this.checkOutOfStock(result);
       console.log(this.products);
     });
