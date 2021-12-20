@@ -24,8 +24,15 @@ i {
   margin-bottom: 20px;
 }
 
+.img{
+  text-align: center;
+  align-self: center;
+  vertical-align: middle;
+}
+
 img{
-  width: 90px;
+  max-height: 90px;
+  max-width: 90px;
   height: auto;
 }
 

@@ -9,11 +9,11 @@
 .card-body{
   text-align: center;
   align-self: center;
+  vertical-align: middle;
 }
 
 img{
-  width: 170px;
-  height: auto;
+  max-height: 170px;
   margin-top: auto;
   margin-bottom: auto;
 }
