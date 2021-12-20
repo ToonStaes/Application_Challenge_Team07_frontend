@@ -7,3 +7,9 @@ h1{
   font-style: italic;
   font-size: 54px;
 }
+
+h1 > span{
+  font-family: 'Anton', sans-serif;
+  font-style: italic;
+  font-size: 54px;
+}

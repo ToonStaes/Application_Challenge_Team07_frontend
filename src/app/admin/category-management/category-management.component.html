@@ -1,9 +1,10 @@
-<h1>Categories</h1>
+<h1>Categorieën</h1>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{ errorMessage }}
 </div>
 
-<div class="col-md-12 pb-3 pt-2">
+
+<div class="col-md-12 pb-3 pt-2 d-flex justify-content-between">
   <button type="button" class="btn btn-success addBtn" (click)="add()">
     <i class="fas fa-plus"></i></button>
 </div>
@@ -18,13 +19,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let cat of categories">
+
       <td scope="row">{{ cat.name }}</td>
-      <td *ngIf="cat.isActive == false">
+      <td *ngIf="!cat.isActive">
         <button type="button" class="btn py-0 align-self-center" (click)="toggleActive(cat)" >
         <i class="fas fa-times"></i>
         </button>
       </td>
-      <td *ngIf="cat.isActive == true">
+      <td *ngIf="cat.isActive">
         <button type="button" class="btn py-0 align-self-center" (click)="toggleActive(cat)" >
           <i class="fas fa-check"></i>
         </button></td>
@@ -36,4 +38,3 @@
     </tr>
   </tbody>
 </table>
-

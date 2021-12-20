@@ -67,7 +67,14 @@ export class CardComponent implements OnInit {
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
-      .subscribe((result) => (this.categories = result));
+      .subscribe((result) => {
+        this.categories = [];
+        result.forEach(cat => {
+          if (cat.isActive) {
+            this.categories.push(cat);
+          }
+        });
+      });
   }
 
   getProductsByCategory(categoryId: string) {
