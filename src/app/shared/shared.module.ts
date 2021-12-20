@@ -18,7 +18,7 @@ import { AppRoutingModule } from '../app-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
