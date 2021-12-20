@@ -6,7 +6,6 @@ import { BasketItemService } from '../basket-item.service';
 import { BasketService } from '../basket.service';
 import { BasketItem } from '../basketItem';
 import { ItemTotal } from '../itemTotal';
-import { Order } from '../order';
 
 @Component({
   selector: 'app-basket',
@@ -15,13 +14,13 @@ import { Order } from '../order';
 })
 export class BasketComponent implements OnInit {
   basketEmpty: boolean = true;
-  
+
   //basketItem
   basket?: Basket;
-  
+
   //lists
+  itemTotals: ItemTotal[] = [];
   basketItems: BasketItem[] = [];
-  products: Product[] = [];
 
   //totals
   total: number = 0;
@@ -50,28 +49,13 @@ export class BasketComponent implements OnInit {
                 .getBasketItemsByBasketId(this.basket._id) // get basketItems from basket
                 .subscribe((dbBasketItems) => {
                   this.basketItems = dbBasketItems;
-
-
-                  // controleer of het winkelmandje gevuld is
-                  // console.log(this.basketItems.length)
                   if  (this.basketItems.length == 0){
                     this.basketEmpty = true;
-                    // console.log("WINKELMANDJE LEEG")
-                    // console.log(this.basketEmpty)
                   }
-
                   if (this.basketItems.length > 0){
                     this.basketEmpty = false;
-                    // console.log("WINKELMANDJE GEVULD")
-                    // console.log(this.basketEmpty)
                   }
-                  console.log(this.basketItems.length)
-
-                  this.basketItems.forEach((item) => {
-                    console.log(item.id);
-                  });
                 });
-
             }
           });
         });
