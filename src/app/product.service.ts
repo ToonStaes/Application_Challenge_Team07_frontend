@@ -65,7 +65,7 @@ export class ProductService {
   // get products by name
   filterByProductName(search: string): Observable<Product[]> {
     return this.httpClient.get<Product[]>(
-      this.url + '/products/filterByProductName/' + search.search + '?active=true'
+      this.url + '/products?name=' + search.search + '&active=true'
     );
   }
 }
