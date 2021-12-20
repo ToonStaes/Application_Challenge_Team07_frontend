@@ -62,19 +62,7 @@ export class CardComponent implements OnInit {
   //calls all products
   getProducts() {
     this.products$ = this.productService.getProducts().subscribe((result) => {
-      //checks & potentialy filters out products that don't have any stock
-      if (this.showOutOfStock) {
-        this.products = result;
-      } else {
-        // clearing the products array to prevent stacking while using the push method.
-        this.products = [];
-        result.forEach((item) => {
-          if (item.stockCount > 0) {
-            this.products.push(item);
-          }
-        });
-      }
-
+      this.checkOutOfStock(result);
       console.log(this.products);
     });
   }
@@ -84,18 +72,8 @@ export class CardComponent implements OnInit {
       this.products$ = this.productService
         .getProductsByCategoryId(categoryId)
         .subscribe((result) => {
-          //checks & potentialy filters out products that don't have any stock
-          if (this.showOutOfStock) {
-            this.products = result;
-          } else {
-            // clearing the products array to prevent stacking while using the push method.
-            this.products = [];
-            result.forEach((item) => {
-              if (item.stockCount > 0) {
-                this.products.push(item);
-              }
-            });
-          }
+
+          this.checkOutOfStock(result);
         });
     }
 
@@ -138,25 +116,33 @@ export class CardComponent implements OnInit {
     this.router.navigateByUrl('/product/' + id);
   }
 
+  //made to reduce duplicate code
+  checkOutOfStock(result: Array<Product>){
+    //checks & potentialy filters out products that don't have any stock
+    if (this.showOutOfStock) {
+      this.products = result;
+    } else {
+      // clearing the products array to prevent stacking while using the push method.
+      this.products = [];
+      result.forEach((item) => {
+        if (item.stockCount > 0) {
+          this.products.push(item);
+        }
+      });
+    }
+  }
+
+  //filters products based on name
   filterProductsByName(search: string){
     console.log("search", search);
     this.products$ = this.productService.filterByProductName(search).subscribe((result => {
       console.log(this.products$);
-      if (this.showOutOfStock){
-        this.products = result;
-      }
-      else{
-        this.products = []
-        result.forEach((item) => {
-          if (item.stockCount > 0) {
-            this.products.push(item);
-          }
-        });
-      }
+      this.checkOutOfStock(result);
       console.log(this.products);
     }));
   }
 
+  //calls the filterProductsByName method when values aren't empty
   onSubmit(){
     if (this.searchForm.value != null && this.searchForm.value != ''){
       this.isSubmitted = true;
