@@ -17,9 +17,8 @@ img{
   max-width: 200px;
   height: auto;
   margin: auto;
+  max-width: 197px;
 }
-
-
 
 .p{
   padding-top: 1.6rem;
@@ -49,6 +48,12 @@ img{
 
 .va{
   padding: 5px 0;
+}
+
+@media screen and (max-width: 1200px){
+  img{
+    max-width: 170px;
+  }
 }
 
 
