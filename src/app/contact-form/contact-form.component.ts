@@ -5,7 +5,6 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import '../../assets/e-mail/smtp.js';
 declare let Email: any;
 
-
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
@@ -43,12 +42,9 @@ export class ContactFormComponent implements OnInit {
           console.log(result.text);
         },
         (error) => {
-          console.log(error.text);
+          this.errorMessage = error
         }
       );
-    console.log(
-      'sendmail gelukt'
-    );
     this.router.navigateByUrl('/');
   }
 
