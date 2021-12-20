@@ -10,6 +10,7 @@ export class BasketItemService {
   url = "https://bitworks-api.herokuapp.com";
   constructor(private httpClient: HttpClient) {}
 
+  // put an existing basket item
   updateBasketItem(
     id: number | string,
     basketItem: BasketItem
@@ -24,6 +25,7 @@ export class BasketItemService {
     );
   }
 
+  // post a basket item
   addBasketItem(basketItem: BasketItem): Observable<BasketItem> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -39,14 +41,17 @@ export class BasketItemService {
     );
   }
 
+  //get all basket items
   getBasketItems(): Observable<BasketItem[]> {
     return this.httpClient.get<BasketItem[]>(this.url + "/basket-items");
   }
 
+  // get all basket items by bakset ID
   getBasketItemsByBasketId(id: string): Observable<BasketItem[]> {
     return this.httpClient.get<BasketItem[]>(this.url + '/basket-items/findByBasket/'  + id);
   }
 
+  // delete an existing basket item
   deleteBasketItem(id: string): Observable<BasketItem>{
     return this.httpClient.delete<BasketItem>(this.url + '/basket-items/' + id);
   }

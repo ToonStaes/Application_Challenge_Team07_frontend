@@ -12,14 +12,17 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // get all categories
   getCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(this.url + '/categories');
   }
 
+  // get category by ID
   getCategoryById(id: string): Observable<Category> {
     return this.httpClient.get<Category>(this.url + '/categories/' + id);
   }
 
+  // post a new category
   postCategory(category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -31,6 +34,7 @@ export class CategoryService {
     });
   }
 
+  // put an existing category
   putCategory(id: string, category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -44,6 +48,7 @@ export class CategoryService {
       });
   }
 
+  // delete an existing category
   deleteCategory(id: string): Observable<Category> {
     return this.httpClient.delete<Category>(this.url + '/categories/' + id);
   }
