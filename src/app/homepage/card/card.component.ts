@@ -15,7 +15,7 @@ import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  selectedCategory: number = 0;
+  selectedCategory: string = '';
   isCategory1: boolean = false;
   productCategory: Product[] = [];
   products: Product[] = [];
@@ -67,11 +67,20 @@ export class CardComponent implements OnInit {
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
-      .subscribe((result) => (this.categories = result));
+      .subscribe((result) => {
+        this.categories = [];
+        result.forEach(cat => {
+          if (cat.isActive) {
+            this.categories.push(cat);
+          }
+        });
+      });
   }
 
-  getProductsByCategory(categoryId: number) {
-    this.products$ = this.productService.getProductsByCategoryId(categoryId).subscribe((result) => {
+  getProductsByCategory(categoryId: string) {
+    this.products$ = this.productService
+      .getProductsByCategoryId(categoryId)
+      .subscribe((result) => {
         if (this.showOutOfStock) {
           this.products = result;
         } else {
@@ -88,7 +97,7 @@ export class CardComponent implements OnInit {
 
 
   onFilter() {
-    if (this.selectedCategory != 0) {
+    if (this.selectedCategory != "0") {
       this.getProductsByCategory(this.selectedCategory);
     } else {
       this.getProducts();

@@ -22,9 +22,9 @@ export class ProductService {
     return this.httpClient.get<Product>(this.url + "/products/" + id);
   }
 
-  getProductsByCategoryId(categoryId: number): Observable<Product[]>{
+  getProductsByCategoryId(categoryId: string): Observable<Product[]>{
     console.log("categories get", this.url+ "/products/findByCategory/"+ categoryId);
-    return this.httpClient.get<Product[]>(this.url+ "/products/findByCategory/"+ categoryId); //waiting for specific call
+    return this.httpClient.get<Product[]>(this.url + "/products/findByCategory/"+ categoryId); //waiting for specific call
   }
 
   postProduct(product: Product):  Observable<Product>{
