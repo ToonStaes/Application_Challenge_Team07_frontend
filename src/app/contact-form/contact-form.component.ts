@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import '../../assets/e-mail/smtp.js';
-declare let Email: any;
 
 @Component({
   selector: 'app-contact-form',
@@ -32,7 +30,7 @@ export class ContactFormComponent implements OnInit {
     e.preventDefault();
     emailjs
       .sendForm(
-        'contact_service',
+        'bitworks',
         'contact',
         e.target as HTMLFormElement,
         'user_woIu3evAgyCU440BeG15g'

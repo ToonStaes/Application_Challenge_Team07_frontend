@@ -1,8 +1,33 @@
-<h1>Login</h1>
+<h1 *ngIf="isLogin">Login</h1>
+<h1 *ngIf="isRegister">Register</h1>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
   {{ errorMessage }}
 </div>
-<form (ngSubmit)="onSubmit()" #authForm="ngForm">
+<form (ngSubmit)="onSubmit($event)" #authForm="ngForm">
+  <div class="form-group mb-4" *ngIf="isRegister">
+    <label for="first_name">First name</label>
+    <input
+      type="text"
+      name="first_name"
+      id="first_name"
+      class="form-control"
+      minlength="2"
+      [(ngModel)]="user.firstName"
+      required=""
+    />
+  </div>
+  <div class="form-group mb-4" *ngIf="isRegister">
+    <label for="last_name">Last name</label>
+    <input
+      type="text"
+      name="last_name"
+      id="last_name"
+      class="form-control"
+      minlength="2"
+      [(ngModel)]="user.lastName"
+      required=""
+    />
+  </div>
   <div class="form-group">
     <label for="email">Email</label>
     <input
@@ -27,7 +52,9 @@
       required=""
     />
   </div>
+
   <input
+    *ngIf="isLogin"
     name="login"
     id="login"
     class="btn btn-block btn-primary mb-4"
@@ -35,8 +62,17 @@
     value="Login"
     [disabled]="!authForm.form.valid || isSubmitted"
   />
+  <input
+    *ngIf="isRegister"
+    name="register"
+    id="register"
+    class="btn btn-block btn-primary mb-4"
+    type="submit"
+    value="Register"
+    [disabled]="!authForm.form.valid || isSubmitted"
+  />
 </form>
 
-<p class="login-wrapper-footer-text">
+<p *ngIf="!isRegister" class="login-wrapper-footer-text">
   Don't have an account? <a href="/register">Register here</a>
 </p>
