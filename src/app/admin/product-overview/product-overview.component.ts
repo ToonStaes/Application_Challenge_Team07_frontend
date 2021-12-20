@@ -11,6 +11,7 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./product-overview.component.scss'],
 })
 export class ProductOverviewComponent implements OnInit {
+  // list of product-objects
   products: Product[] = [];
 
   constructor(
@@ -21,6 +22,7 @@ export class ProductOverviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // check if logged in & retrieve userid if true, if not return to login
     if (this.authService.isLoggedIn()) {
       var userId = localStorage.getItem('id');
       if (userId != null && userId != ''){
@@ -35,17 +37,23 @@ export class ProductOverviewComponent implements OnInit {
       }
     }
 
+    // get products for list
     this.productService.getProducts().subscribe((result) => {
-      result.forEach((item) => {
-        this.products.push(item);
-      });
+      this.products = result;
     });
   }
 
+  // navigates to form in add mode
+  addProduct() {
+    this.router.navigateByUrl('newProduct');
+  }
+
+  // navigates to form in edit mode
   edit(product: Product) {
     this.router.navigateByUrl('editProduct/' + product._id);
   }
 
+  // toggle if a product is active by clicking it's active symbol in the list
   toggleActive(product: Product) {
     product.isActive = !product.isActive;
 
@@ -61,7 +69,5 @@ export class ProductOverviewComponent implements OnInit {
       });
   }
 
-  addProduct() {
-    this.router.navigateByUrl('newProduct');
-  }
+
 }

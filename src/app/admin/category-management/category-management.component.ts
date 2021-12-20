@@ -23,13 +23,17 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService
   ) {}
+
+
   ngOnInit(): void {
+    // get all categories & redirect anyone not logged in to the login page
     this.getCategories();
     if (!this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/login');
     }
   }
 
+  // unsubscribe from any subscriptions on destroy
   ngOnDestroy(): void {
     this.categories$.unsubscribe();
     this.putCategory$.unsubscribe();
@@ -47,6 +51,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     });
   }
 
+  // makes the active collumn on the page toggle-able by clicking the icon
   toggleActive(category: Category) {
     category.isActive = !category.isActive;
 
@@ -54,11 +59,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
       .putCategory(category._id, category)
       .subscribe(
         (result) => {
-          console.log(result);
-          //all went well
           this.getCategories();
-          // this.router.navigateByUrl("category-management");
-
         },
         (error) => {
           this.errorMessage = error.message;
@@ -66,6 +67,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
       );
   }
 
+  // gets all categories
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()

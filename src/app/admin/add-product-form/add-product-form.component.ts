@@ -30,20 +30,33 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     this.isEdit = !this.isAdd;
   }
 
+  //booleans
   isSubmitted: boolean = false;
-  errorMessage: string = '';
-  productId: string = '';
+  isImageChanged: boolean = false;
   isAdd: boolean = false;
   isEdit: boolean = false;
-  isImageChanged: boolean = false;
-  imageSrc: string = '';
-  inputProduct = {} as Product;
-  // inputProduct?: Product;
 
+  //Massages to potentially display on the page
+  errorMessage: string = '';
+
+  // id's & values
+  productId: string = '';
+  imageSrc: string = '';
+
+  //empty product object
+  inputProduct = {} as Product;
+
+   // categories for select
+   categoriesFromDB: Category[] = [];
+   categories: Category[] = [];
+   selected: string = '';
+
+  //subscriptions
   postProduct$: Subscription = new Subscription();
-  updateProduct$: Subscription = new Subscription();
+  putProduct$: Subscription = new Subscription();
   categories$: Subscription = new Subscription();
 
+  //reactive from formcontrol
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -59,11 +72,6 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   filePath = `productImages/`;
   imageFile: any;
   uploadProgress: number | undefined;
-
-  // categories for select
-  categoriesFromDB: Category[] = [];
-  categories: Category[] = [];
-  selected: string = '';
 
   ngOnInit(): void {
     if (this.isEdit) {
@@ -200,7 +208,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
       this.inputProduct.price = this.productForm.value.price;
       this.inputProduct.isActive = true;
 
-      this.updateProduct$ = this.productService
+      this.putProduct$ = this.productService
         .putProduct(this.inputProduct._id!, this.inputProduct)
         .subscribe(
           (result) => {
