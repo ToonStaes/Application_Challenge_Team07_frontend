@@ -36,37 +36,44 @@ export class ContactFormComponent implements OnInit {
     console.log(email)
     console.log(message)
 
-    // Email.send({
-    // Host : 'smtp.elasticemail.com',
-    // Username : 'SportAholic.test@email.com',
-    // Password : 'E897EC137FB391E0553EF27F1BEE92DFF7E5',
-    // To : email,
-    // From : `SportAholic.test@email.com`,
-    // Subject : 'this.model.subject',
-    // Body :
-    // `
-    // <i>This is sent as a feedback from my resume page.</i>
-    // <br/>
-    // <b>Name: </b>
-    // ${firstName}${lastName}
+    Email.send({
+    Host : 'smtp.elasticemail.com',
+    Username : 'SportAholic.test@email.com',
+    Password : 'E897EC137FB391E0553EF27F1BEE92DFF7E5',
+    To : email,
+    From : `SportAholic.test@email.com`,
+    Subject : 'this.model.subject',
+    Body :
+    `
+    <i>This is sent as a feedback from my resume page.</i>
+    <br/>
+    <b>Name: </b>
+    ${firstName}${lastName}
 
-    // <br />
-    // <b>Email: </b>
-    // <br />
-    // <b>Subject: </b>
-    // <br />
-    // <b>Message:</b>
-    // ${message}
-    // <br />
-    // <br>
-    // <br>
-    // <b>~End of Message.~</b>
-    // `
-    // })
+    <br />
+    <b>Email: </b>
+    <br />
+    <b>Subject: </b>
+    <br />
+    <b>Message:</b>
+    ${message}
+    <br />
+    <br>
+    <br>
+    <b>~End of Message.~</b>
+    `
+    })
 
-    // console.log("sendmail gelukt, ga naar " + email + " om de test te bekijken")
-    // this.router.navigateByUrl("/");
+    console.log("sendmail gelukt, ga naar " + email + " om de test te bekijken")
+    this.router.navigateByUrl("/");
     }
+
+
+
+
+
+
+
 
     onSubmit(): void{
       var firstName = this.emailForm.value.firstName;
