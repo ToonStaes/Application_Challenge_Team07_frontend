@@ -109,17 +109,19 @@ export class ProductDetailComponent implements OnInit {
     }
 
     //if userID isn't null, call the user's active basket
-    if (this.user._id != '' || this.user._id != null) {
-      this.basket$ = this.basketService
-        .getBasketsByUserId(this.user._id)
-        .subscribe((result) => {
-          //find the active basket
-          result.forEach((list) => {
-            if (list.orderId == null) {
-              this.basket = list;
-            }
+    if (this.user) {
+      if (this.user._id != '' || this.user._id != null) {
+        this.basket$ = this.basketService
+          .getBasketsByUserId(this.user._id)
+          .subscribe((result) => {
+            //find the active basket
+            result.forEach((list) => {
+              if (list.orderId == null) {
+                this.basket = list;
+              }
+            });
           });
-        });
+      }
     }
 
     // make sure this bool is false
