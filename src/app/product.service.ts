@@ -22,7 +22,7 @@ export class ProductService {
     return this.httpClient.get<Product>(this.url + "/products/" + id);
   }
 
-  getProductsByCategoryId(categoryId: number): Observable<Product[]>{
+  getProductsByCategoryId(categoryId: string): Observable<Product[]>{
     return this.httpClient.get<Product[]>(this.url+ "/products/findByCategory/"+ categoryId); //waiting for specific call
   }
 
@@ -40,6 +40,10 @@ export class ProductService {
 
   deleteProduct(id: string): Observable<Product> {
     return this.httpClient.delete<Product>(this.url + "/products/" + id);
+  }
+
+  filterByProductName(search: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(this.url + "/products/filterByProductName/"+ search.search);
   }
 
 }

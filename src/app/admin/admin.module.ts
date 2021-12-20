@@ -3,6 +3,9 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { CategoryManagementComponent } from './category-management/category-management.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { AdminFormComponent } from './admin-form/admin-form.component';
+import { AddProductFormComponent } from './add-product-form/add-product-form.component';
 
 
 
@@ -10,7 +13,10 @@ import { ProductOverviewComponent } from './product-overview/product-overview.co
   declarations: [
     CategoryDetailComponent,
     CategoryManagementComponent,
-    ProductOverviewComponent
+    ProductOverviewComponent,
+    AdminManagementComponent,
+    AdminFormComponent,
+    AddProductFormComponent
   ],
   imports: [
     SharedModule

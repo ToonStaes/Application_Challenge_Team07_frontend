@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../product.service';
 import { AuthService } from '../security/auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -12,7 +15,7 @@ import { UserService } from '../user.service';
 export class NavbarComponent implements OnInit {
   user?: User
 
-  constructor(private router: Router, public authService: AuthService, public userService: UserService) { }
+  constructor(private router: Router, public authService: AuthService, public productService: ProductService, public userService: UserService) { }
 
   ngOnInit(): void {
     var userId = localStorage.getItem('id');

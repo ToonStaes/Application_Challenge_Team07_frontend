@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Category } from '../../category';
 import { CategoryService } from '../../category.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { removeSummaryDuplicates } from '@angular/compiler';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-card',
@@ -13,7 +15,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  selectedCategory: number = 0;
+  selectedCategory: string = '';
   isCategory1: boolean = false;
   productCategory: Product[] = [];
   products: Product[] = [];
@@ -21,6 +23,15 @@ export class CardComponent implements OnInit {
   categories: Category[] = [];
   categories$: Subscription = new Subscription();
   showOutOfStock: boolean = false;
+  isSubmitted: boolean = false;
+  errorMessage: string = '';
+  productName: string = '';
+  search: string = '';
+  postSearch$: Subscription = new Subscription();
+
+  searchForm = new FormGroup({
+    search: new FormControl('', [Validators.required])
+  })
 
   constructor(
     private productService: ProductService,
@@ -56,10 +67,17 @@ export class CardComponent implements OnInit {
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
-      .subscribe((result) => (this.categories = result));
+      .subscribe((result) => {
+        this.categories = [];
+        result.forEach(cat => {
+          if (cat.isActive) {
+            this.categories.push(cat);
+          }
+        });
+      });
   }
 
-  getProductsByCategory(categoryId: number) {
+  getProductsByCategory(categoryId: string) {
     this.products$ = this.productService
       .getProductsByCategoryId(categoryId)
       .subscribe((result) => {
@@ -76,8 +94,10 @@ export class CardComponent implements OnInit {
       });
   }
 
+
+
   onFilter() {
-    if (this.selectedCategory != 0) {
+    if (this.selectedCategory != '') {
       this.getProductsByCategory(this.selectedCategory);
     } else {
       this.getProducts();
@@ -95,5 +115,35 @@ export class CardComponent implements OnInit {
 
   toDetail(id: string) {
     this.router.navigateByUrl('/product/' + id);
+  }
+
+  filterProductsByName(search: string){
+    console.log("search", search);
+    this.products$ = this.productService.filterByProductName(search).subscribe((result => {
+      console.log(this.products$);
+      if (this.showOutOfStock){
+        this.products = result;
+      }
+      else{
+        this.products = []
+        result.forEach((item) => {
+          if (item.stockCount > 0) {
+            this.products.push(item);
+          }
+        });
+      }
+      console.log(this.products);
+    }));
+  }
+
+  onSubmit(){
+    if (this.searchForm.value != null && this.searchForm.value != ''){
+      this.isSubmitted = true;
+      this.filterProductsByName(this.searchForm.value);
+    }
+    else{
+      this.getProducts();
+    }
+
   }
 }
