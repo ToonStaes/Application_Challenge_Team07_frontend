@@ -18,8 +18,6 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   errorMessage: string = '';
 
-  showNonActive: boolean = false;
-
   constructor(
     private categoryService: CategoryService,
     private router: Router,
@@ -72,29 +70,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.categories$ = this.categoryService
       .getCategories()
       .subscribe((result) => {
-
-        if (this.showNonActive) {
           this.categories = result;
-        }
-        else{
-          this.categories = [];
-          result.forEach(cat => {
-            if (cat.isActive) {
-              this.categories.push(cat);
-            }
-          });
-        }
       });
-  }
-
-  onShowNonActive(){
-    if (this.showNonActive) {
-      this.showNonActive = false;
-
-    }
-    else{
-      this.showNonActive = true;
-    }
-    this.getCategories();
   }
 }
