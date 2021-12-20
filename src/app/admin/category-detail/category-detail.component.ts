@@ -75,7 +75,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
         .postCategory(this.categoryForm.value)
         .subscribe(
           (result) => {
-            this.router.navigateByUrl('category-management');
+            this.router.navigateByUrl('categories');
           },
           (error) => {
             this.errorMessage = error.message;
@@ -88,7 +88,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
         .subscribe(
           (result) => {
             //all went well
-            this.router.navigateByUrl('category-management');
+            this.router.navigateByUrl('categories');
           },
           (error) => {
             this.errorMessage = error.message;
