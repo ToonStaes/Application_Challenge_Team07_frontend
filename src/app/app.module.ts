@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,6 +30,7 @@ import { ApiTestsComponent } from './api-tests/api-tests.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { UserModule } from './user/user.module';
 import { HomepageModule } from './homepage/homepage.module';
+import { SecurityInterceptor } from './security/security.interceptor';
 
 
 @NgModule({
@@ -53,7 +54,13 @@ import { HomepageModule } from './homepage/homepage.module';
     UserModule,
     HomepageModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
