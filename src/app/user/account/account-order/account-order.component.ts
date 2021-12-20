@@ -5,6 +5,7 @@ import { BasketItemService } from '../../../basket-item.service';
 import { BasketItem } from '../../../basketItem';
 import { Order } from '../../../order';
 import { User } from '../../../user';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-account-order',
@@ -19,13 +20,13 @@ export class AccountOrderComponent implements OnInit {
     orderId: 0,
     isActive: true,
     user: {} as User,
-    order: {} as Order
+    order: {} as Order,
   };
   //basketItem array
   basketItems: BasketItem[] = [];
 
   // message that could show on page
-  debugMessage: string = "test ";
+  debugMessage: string = 'test ';
 
   // total variables
   totalProducts = 0;
@@ -41,21 +42,20 @@ export class AccountOrderComponent implements OnInit {
     this.basketItems$ = this.basketItemService
       .getBasketItemsByBasketId(this.basket._id)
       .subscribe((result) => {
-        this.basket.order.date = this.basket.order.date.slice(0, -14) // remove the last part of the date variable
+        this.basket.order.date = moment(this.basket.order.date).format("DD/MM/YYYY").toString();
+        // this.basket.order.date = this.basket.order.date.slice(0, -14); // remove the last part of the date variable
         this.basketItems = result;
 
-        this.basketItems.forEach(item => { // count the total cost & total amount of products in the order
+        this.basketItems.forEach((item) => {
+          // count the total cost & total amount of products in the order
           this.totalProducts += item.amount;
           this.totalCost += item.amount * item.product.price;
         });
-
-
       });
   }
 
-   // unsubscribe from all subscriptions on destroy
-   ngOnDestroy(): void
-   {
-     this.basketItems$.unsubscribe();
-   }
+  // unsubscribe from all subscriptions on destroy
+  ngOnDestroy(): void {
+    this.basketItems$.unsubscribe();
+  }
 }
