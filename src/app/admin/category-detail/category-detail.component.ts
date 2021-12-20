@@ -47,7 +47,6 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
             name: result.name,
             isActive: result.isActive,
           });
-          console.log(this.categoryForm.value.name)
         });
     }
     // ensure the formcontrols have their default values

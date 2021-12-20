@@ -64,7 +64,6 @@ export class SecurityComponent implements OnInit {
           localStorage.setItem('token', result.access_token);
           localStorage.setItem('id', result.user_id);
           localStorage.setItem('email', this.user.email);
-          console.log(result);
         },
         (error) => {
           this.errorMessage = 'Email/password not correct!';
@@ -86,7 +85,6 @@ export class SecurityComponent implements OnInit {
             )
             .then(
               (result: EmailJSResponseStatus) => {
-                console.log(result.text);
               },
               (error) => {
                 this.errorMessage = error;

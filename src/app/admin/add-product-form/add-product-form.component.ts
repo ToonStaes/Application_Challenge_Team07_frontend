@@ -82,7 +82,6 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
         this.productService
           .getProductById(this.productId)
           .subscribe((result) => {
-            console.log(result)
             this.inputProduct = result;
             this.imageSrc = result.imageLocation;
             this.selected = result.category._id!;

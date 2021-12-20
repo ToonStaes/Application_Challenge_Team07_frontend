@@ -38,8 +38,6 @@ export class CategoryService {
   putCategory(id: string, category: Category): Observable<Category> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    console.log('id: ' + id)
-    console.log(category);
     return this.httpClient.put<Category>(
       this.url + '/categories/' + id,{
         headers: headers,

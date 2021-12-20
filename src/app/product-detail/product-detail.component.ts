@@ -157,7 +157,6 @@ export class ProductDetailComponent implements OnInit {
     this.basketItem.basketId = basketId;
       this.basketItem.productId = productId;
       this.basketItem.amount = amount;
-      console.log(this.basketItem)
   }
 
 

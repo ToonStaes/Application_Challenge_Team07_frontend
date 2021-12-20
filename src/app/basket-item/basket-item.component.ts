@@ -47,7 +47,6 @@ export class BasketItemComponent implements OnInit {
     this.productService
       .getProductById(this.basketItem.product!._id!)
       .subscribe((dbProduct) => {
-        console.log(dbProduct)
         this.product = dbProduct;
 
         this.itemTotal.productId = this.product._id!;
@@ -61,7 +60,6 @@ export class BasketItemComponent implements OnInit {
         this.categoryService
           .getCategoryById(this.product.category!._id!)
           .subscribe((dbCategory) => {
-            console.log("category")
             this.category = dbCategory;
             this.isLoading = false;
           }, (error) => {
@@ -76,8 +74,6 @@ export class BasketItemComponent implements OnInit {
   });
 
   amountChanged() {
-    console.log('onChange werkt, amount: ' + this.amountForm.value.amount);
-    console.log(this.basketItem._id);
     this.basketItem.amount = this.amountForm.value.amount;
 
     this.itemTotal.total =
@@ -89,7 +85,6 @@ export class BasketItemComponent implements OnInit {
       .updateBasketItem(this.basketItem._id!, this.basketItem)
       .subscribe(
         (result) => {
-          console.log(result);
         },
         (error) => {
           console.log(error);

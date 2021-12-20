@@ -49,7 +49,6 @@ export class AuthService {
   }
 
   register(user: User): Observable<UserResponse> {
-    console.log(user)
     return this.httpClient.post<UserResponse>(
       'https://bitworks-api.herokuapp.com/users',
       {
