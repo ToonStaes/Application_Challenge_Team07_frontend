@@ -14,10 +14,7 @@
   </form>
 
   <section class="align-items-center">
-    <mat-checkbox (change)="onShowOutOfStock()"
-      >Toon items die niet op vooraad zijn.</mat-checkbox
-    >
-    <!-- <input formControlName="showOutOfStock"  type="checkbox" (change)="onShowOutOfStock()"/> -->
+    <mat-checkbox (change)="onShowOutOfStock()">Toon items die niet op vooraad zijn.</mat-checkbox>
   </section>
 </div>
 
@@ -27,7 +24,7 @@
     <!-- <a href="product/{{product.id}}"> -->
     <div class="card" (click)="toDetail(product._id!)">
       <div class="card-body">
-        <img src="../../assets/images/aquarius.jpg" alt="Aquarius" />
+        <img src={{product.imageLocation}} alt="Aquarius" />
       </div>
       <div class="card-footer d-flex justify-content-between">
         <p>{{ product.name }}</p>

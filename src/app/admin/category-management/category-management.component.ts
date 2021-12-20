@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/security/auth.service';
 export class CategoryManagementComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   categories$: Subscription = new Subscription();
-  deleteCategorie$: Subscription = new Subscription();
+  putCategory$: Subscription = new Subscription();
 
   errorMessage: string = '';
 
@@ -32,7 +32,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.categories$.unsubscribe();
-    this.deleteCategorie$.unsubscribe();
+    this.putCategory$.unsubscribe();
   }
 
   add() {
@@ -40,7 +40,7 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
     this.router.navigate(['category-detail'], { state: { mode: 'add' } });
   }
 
-  edit(id: number | string) {
+  edit(id: string) {
     //Navigate to form in edit mode
     this.router.navigate(['category-detail'], {
       state: { id: id, mode: 'edit' }
@@ -50,17 +50,17 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
   toggleActive(category: Category) {
     category.isActive = !category.isActive;
 
-    this.deleteCategorie$ = this.categoryService
-      .putCategory(category._id!, category)
+    this.putCategory$ = this.categoryService
+      .putCategory(category._id, category)
       .subscribe(
         (result) => {
           console.log(result);
           //all went well
-          //this.getCategories();
+          this.getCategories();
           // this.router.navigateByUrl("category-management");
+
         },
         (error) => {
-          //error
           this.errorMessage = error.message;
         }
       );
@@ -69,6 +69,8 @@ export class CategoryManagementComponent implements OnInit, OnDestroy {
   getCategories() {
     this.categories$ = this.categoryService
       .getCategories()
-      .subscribe((result) => (this.categories = result));
+      .subscribe((result) => {
+          this.categories = result;
+      });
   }
 }

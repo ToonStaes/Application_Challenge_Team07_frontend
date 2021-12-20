@@ -31,6 +31,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.mode === 'edit';
     this.categoryId = this.router.getCurrentNavigation()?.extras.state?.id;
 
+
     if (this.categoryId != null && this.categoryId != '') {
       this.category$ = this.categoryService
         .getCategoryById(this.categoryId)
@@ -39,6 +40,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
             name: result.name,
             isActive: result.isActive,
           });
+          console.log(this.categoryForm.value.name)
         });
     }
 

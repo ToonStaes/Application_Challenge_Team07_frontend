@@ -31,6 +31,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { UserModule } from './user/user.module';
 import { HomepageModule } from './homepage/homepage.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,9 @@ import { HomepageModule } from './homepage/homepage.module';
     PaymentFormComponent,
     ProductFormComponent,
     ApiTestsComponent,
-    ContactFormComponent
+    ContactFormComponent,
+
+
   ],
   imports: [
     SharedModule,
