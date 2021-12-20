@@ -9,13 +9,21 @@ import { OrderService } from '../order.service';
   styleUrls: ['./payment-form.component.scss'],
 })
 export class PaymentFormComponent implements OnInit {
+  // id's
   orderId: string = '';
   basketId: string = '';
+
+  // state boolean
   isSubmitted: boolean = false;
+
+  // messages that could appear on the page
   errorMessage: string = '';
+
+  // subscriptions
   order$: Subscription = new Subscription();
   postPayment$: Subscription = new Subscription();
 
+  // reactive from formcontrol
   paymentForm = new FormGroup({
     address: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
@@ -26,20 +34,27 @@ export class PaymentFormComponent implements OnInit {
   });
 
   constructor(private router: Router, private orderService: OrderService) {
-    console.log(this.router.getCurrentNavigation());
+    // get basket id from router state
     this.basketId = this.router.getCurrentNavigation()?.extras.state?.basketId;
-    console.log(this.basketId);
   }
 
   ngOnInit(): void {}
 
+   // unsubscribe from all subscriptions on destroy
+   ngOnDestroy(): void
+   {
+     this.order$.unsubscribe();
+     this.postPayment$.unsubscribe();
+   }
+
+   // post the order & navigate to homepage
   onSubmit(): void {
     this.isSubmitted = true;
+    //update values
     this.paymentForm.patchValue({
       basket: this.basketId,
       isPaid: true,
     });
-    console.log(this.paymentForm.value);
     this.postPayment$ = this.orderService
       .postOrder(this.paymentForm.value)
       .subscribe(

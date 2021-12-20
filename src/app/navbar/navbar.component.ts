@@ -18,14 +18,17 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, public authService: AuthService, public productService: ProductService, public userService: UserService) { }
 
   ngOnInit(): void {
+    // get logged in user id from localstorage
     var userId = localStorage.getItem('id');
+    //get user by id
     if (userId != null && userId != ''){
       this.userService.getUserById(userId).subscribe(userFromDB => {
         this.user = userFromDB;
-        console.log(this.user!)
       })
     }
   }
+
+  // Navigation methods
 
   toAccount() {
     this.router.navigateByUrl("/account")

@@ -10,10 +10,14 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 })
 export class ContactFormComponent implements OnInit {
 
+  //state boolean
   isSubmitted: boolean = false;
+
+  // messages that could appear on the page
   errorMessage: string = '';
   nameChangeMessage: string = '';
 
+  // react form formcontrol
   emailForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -26,6 +30,7 @@ export class ContactFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // to send the confirmation email
   public sendEmail(e: Event) {
     e.preventDefault();
     emailjs
